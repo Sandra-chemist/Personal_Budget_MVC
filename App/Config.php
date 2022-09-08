@@ -20,7 +20,7 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'mvc_personal_budget';
+    const DB_NAME = 'mvcpersonalbudget';
 
     /**
      * Database user
