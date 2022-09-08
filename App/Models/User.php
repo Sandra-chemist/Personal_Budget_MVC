@@ -72,6 +72,9 @@ class User extends \Core\Model{
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = 'Niepoprawny email';
         }
+        if ($this->emailExists($this->email)){
+            $this->errors[] = 'Już istnieje konto z tym adresem e-mail ';
+        }
         // Password
         if ($this->password !=  $this->password_confirmation) {
             $this->errors[] = 'Niepoprawne hasło';
@@ -91,4 +94,22 @@ class User extends \Core\Model{
 
     }
 
+    /**
+     *  See if a user record already exist with the specified email
+     * 
+     * @param string $email email address to search for
+     * 
+     * @return boolean True if a record already exists with the specified email, false otherwise 
+     */
+    protected function emailExists($email){
+        $sql = 'SELECT * FROM users WHERE email = :email';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch() !== false;
+    }
 }
