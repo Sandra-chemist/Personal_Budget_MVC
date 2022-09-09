@@ -76,8 +76,8 @@ class User extends \Core\Model{
             $this->errors[] = 'Już istnieje konto z tym adresem e-mail ';
         }
         // Password
-        if (strlen($this->password) < 8){
-            $this->errors[] = 'Hasło powinno zawierać co najmniej 8 znaków';
+        if (strlen($this->password) < 6){
+            $this->errors[] = 'Hasło powinno zawierać co najmniej 6 znaków';
         }
 
         if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
