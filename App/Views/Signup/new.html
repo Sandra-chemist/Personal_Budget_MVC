@@ -18,19 +18,19 @@
     <form method="post" action="/signup/create">
         <div>
             <label for="inputName">Imię</label>
-            <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}"/>
+            <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}" required/>
         </div>
         <div>
             <label for="inputEmail">E-mail</label>
-            <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}"/>
+            <input type="email" id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required/>
         </div>
         <div>
             <label for="inputPassword">Hasło</label>
-            <input type="password" id="inputPassword" name="password" placeholder="hasło"/>
+            <input type="password" id="inputPassword" name="password" placeholder="hasło" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Hasło musi posiadać minimum 8 znaków"/>
         </div>
         <div>
             <label for="inputPasswordConfirmation">Powtórz hasło</label>
-            <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="powtórz hasło"/>
+            <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="powtórz hasło" required/>
         </div>
 
         <button type="submit">Zarejestruj się</button>
