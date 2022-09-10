@@ -24,7 +24,7 @@ class User extends \Core\Model{
      *
      * @return void
      */
-    public function __construct($data){
+    public function __construct($data = []){
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
@@ -98,14 +98,20 @@ class User extends \Core\Model{
      * @return boolean True if a record already exists with the specified email, false otherwise 
      */
     public static function emailExists($email){
+        return static::findByEmail($email) !== false;
+    }
+
+    public static function findByEmail($email){
         $sql = 'SELECT * FROM users WHERE email = :email';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
         $stmt->execute();
 
-        return $stmt->fetch() !== false;
+        return $stmt->fetch();
     }
 }
