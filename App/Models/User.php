@@ -114,4 +114,15 @@ class User extends \Core\Model{
 
         return $stmt->fetch();
     }
+
+    public static function authenticate($email, $password){
+        $user = static::findByEmail($email);
+
+        if ($user){
+            if(password_verify($password, $user->password)){
+                return $user;
+            }
+        }
+        return false;
+    }
 }
