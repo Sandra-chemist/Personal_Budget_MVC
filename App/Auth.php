@@ -30,4 +30,12 @@ class Auth{
     public static function isLoggedIn(){
         return isset($_SESSION['id']);
     }
+
+    public static function rememberRequestedPage(){
+        $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
+    }
+
+    public static function getReturnToPage(){
+        return $_SESSION['return_to'] ?? '/';
+    }
 }
