@@ -30,7 +30,7 @@ class Login extends \Core\Controller{
          $this->redirect(Auth::getReturnToPage());
       } else {
 
-         Flash::addMessage('Logowanie nie powiodło się, proszę spróbuj ponownie.');
+         Flash::addMessage('Logowanie nie powodło się, proszę spróbuj jeszcze raz.', Flash::WARNING);
 
          View::renderTemplate('Login/new.html', [
             'email' => $_POST['email'],
