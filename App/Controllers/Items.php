@@ -5,11 +5,7 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Auth;
 
-class Items extends \Core\Controller
-{
-    protected function before(){
-        $this->requireLogin();
-    }
+class Items extends Authenticated{
     /**
      * Items index
      *
