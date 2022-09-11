@@ -30,7 +30,7 @@ class Login extends \Core\Controller{
          $this->redirect(Auth::getReturnToPage());
       } else {
 
-         Flash::addMessage('Logowanie nie powiodło się, proszę spróbuj ponownie');
+         Flash::addMessage('Logowanie nie powiodło się, proszę spróbuj ponownie.');
 
          View::renderTemplate('Login/new.html', [
             'email' => $_POST['email'],
@@ -38,9 +38,14 @@ class Login extends \Core\Controller{
       }
    }
 
-   public function destroyAction()
-   {
+   public function destroyAction(){
       Auth::logout();
+
+      $this->redirect('/login/show-logout-message');
+   }
+
+   public function showLogoutMessageAction(){
+      Flash::addMessage('Wylogowanie powiodło się.');
 
       $this->redirect('/');
    }
