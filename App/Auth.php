@@ -2,15 +2,40 @@
 
 namespace App;
 
-class Auth{
-    public static function login($user){
+use App\Models\User;
+
+/**
+ * Authentication
+ *
+ * PHP version 7.0
+ */
+class Auth
+{
+    /**
+     * Login the user
+     *
+     * @param User $user The user model
+     *
+     * @return void
+     */
+    public static function login($user)
+    {
         session_regenerate_id(true);
+
         $_SESSION['id'] = $user->id;
     }
 
-    public static function logout(){
+    /**
+     * Logout the user
+     *
+     * @return void
+     */
+    public static function logout()
+    {
+        // Unset all of the session variables
         $_SESSION = [];
 
+        // Delete the session cookie
         if (ini_get('session.use_cookies')) {
             $params = session_get_cookie_params();
 
@@ -24,18 +49,50 @@ class Auth{
                 $params['httponly']
             );
         }
+
+        // Finally destroy the session
         session_destroy();
     }
 
-    public static function isLoggedIn(){
+    /**
+     * Return indicator of whether a user is logged in or not
+     *
+     * @return boolean
+     */
+    public static function isLoggedIn()
+    {
         return isset($_SESSION['id']);
     }
 
-    public static function rememberRequestedPage(){
+    /**
+     * Remember the originally-requested page in the session
+     *
+     * @return void
+     */
+    public static function rememberRequestedPage()
+    {
         $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
     }
 
-    public static function getReturnToPage(){
+    /**
+     * Get the originally-requested page to return to after requiring login, or default to the homepage
+     *
+     * @return void
+     */
+    public static function getReturnToPage()
+    {
         return $_SESSION['return_to'] ?? '/';
+    }
+
+    /**
+     * Get the current logged-in user, from the session or the remember-me cookie
+     *
+     * @return mixed The user model or null if not logged in
+     */
+    public static function getUser()
+    {
+        if (isset($_SESSION['id'])) {
+            return User::findByID($_SESSION['id']);
+        }
     }
 }
