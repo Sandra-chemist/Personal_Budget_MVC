@@ -8,7 +8,9 @@ use \App\Auth;
 
 class Login extends \Core\Controller{
      public function newAction(){
-         View::renderTemplate('Login/new.html');
+         View::renderTemplate('Login/new.html', [
+            'message' => $_GET['message']
+         ]);
      }
 
      public function createAction(){
