@@ -6,6 +6,12 @@
 
     <h1>Witaj</h1>
 
-    <a href="/signup/new">Zarejestruj się</a>
+    {% if current_user %}
+        Hello {{ current_user.username }}.
+
+        <a href="/logout">Wyloguj</a>
+    {% else %}
+        <a href="/signup/new">Zarejestruj się</a> lub <a href="/login">Zaloguj się</a>
+    {% endif %}
 
 {% endblock %}
