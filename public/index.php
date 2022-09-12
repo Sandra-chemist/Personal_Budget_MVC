@@ -5,7 +5,7 @@
  *
  * PHP version 7.0
  */
-
+ini_set('session.cookie_lifetime', '86400');
 /**
  * Composer
  */
