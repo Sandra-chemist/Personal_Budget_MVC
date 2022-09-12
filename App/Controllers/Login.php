@@ -25,7 +25,7 @@ class Login extends \Core\Controller{
 
       if ($user) {
 
-         Auth::login($user);
+         Auth::login($user, $remember_me);
 
          Flash::addMessage('Zalogowano poprawnie!');
 
