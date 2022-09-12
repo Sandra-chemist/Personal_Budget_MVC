@@ -15,6 +15,7 @@ class Auth
      * Login the user
      *
      * @param User $user The user model
+     * @param boolean $remember_me Remember the login if true
      *
      * @return void
      */
@@ -24,8 +25,12 @@ class Auth
 
         $_SESSION['id'] = $user->id;
 
-        if ($remember_me){
-            $user->rememberLogin();
+        if ($remember_me) {
+
+            if ($user->rememberLogin()) {
+
+                setcookie('remember_me', $user->remember_token, $user->expiry_timestamp, '/');
+            }
         }
     }
 
@@ -57,6 +62,7 @@ class Auth
         // Finally destroy the session
         session_destroy();
     }
+
     /**
      * Remember the originally-requested page in the session
      *
@@ -85,6 +91,7 @@ class Auth
     public static function getUser()
     {
         if (isset($_SESSION['id'])) {
+
             return User::findByID($_SESSION['id']);
         }
     }
