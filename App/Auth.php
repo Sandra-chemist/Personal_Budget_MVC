@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\RememberedLogin;
 use App\Models\User;
 
 /**
@@ -88,11 +89,31 @@ class Auth
      *
      * @return mixed The user model or null if not logged in
      */
-    public static function getUser()
-    {
+    public static function getUser(){
         if (isset($_SESSION['id'])) {
 
             return User::findByID($_SESSION['id']);
+        } else{
+            return static::loginFromRememberCookie();
+
+        }
+    }
+
+    protected static function loginFromRememberCookie(){
+        $cookie = $_COOKIE['remember_me'] ?? false;
+
+        if ($cookie) {
+
+            $remembered_login = RememberedLogin::findByToken($cookie);
+
+            if ($remembered_login) {
+
+                $user = $remembered_login->getUser();
+
+                static::login($user, false);
+
+                return $user;
+            }
         }
     }
 }
