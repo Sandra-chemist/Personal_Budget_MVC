@@ -15,7 +15,11 @@
             <label for="inputPassword">Hasło</label>
             <input type="password" id="inputPassword" name="password" placeholder="hasło">
         </div>
-
+        <div>
+            <label>
+                <input type="checkbox", name="remember_me" {% if remember_me %} checked="checked"{% endif %}/>Zpamiętaj mnie
+            </label>
+        </div>
         <button type="submit">Zaloguj się</button>
     </form>
 
