@@ -74,7 +74,7 @@ class User extends \Core\Model{
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = 'Niepoprawny email';
         }
-        if (static::emailExists($this->email)){
+        if (static::emailExists($this->email, $this->id ?? null)){
             $this->errors[] = 'Już istnieje konto z tym adresem e-mail ';
         }
         // Password
@@ -99,8 +99,15 @@ class User extends \Core\Model{
      * 
      * @return boolean True if a record already exists with the specified email, false otherwise 
      */
-    public static function emailExists($email){
-        return static::findByEmail($email) !== false;
+    public static function emailExists($email, $ignore_id = null){
+        $user =  static::findByEmail($email);
+
+        if ($user){
+            if ($user->id != $ignore_id){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static function findByEmail($email){
@@ -222,5 +229,13 @@ class User extends \Core\Model{
                 return $user;
             }
         }
+     }
+
+     public function resetPassword($password){
+        $this->password = $password;
+        
+        $this->validate();
+
+        return empty($this->errors);
      }
 }

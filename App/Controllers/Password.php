@@ -32,7 +32,14 @@ class Password extends \Core\Controller{
 
         $user = $this->getUserOrExit($token);
 
-        echo "Zresetuj hasło użytkownika tutaj";
+        if ($user->resetPassword($_POST['password'])){
+            echo "Hasło ważne";
+        } else{
+            View::renderTemplate('Password/reset.html', [
+                'token' => $token,
+                'user' => $user
+            ]);
+        }
     }
 
     /**
