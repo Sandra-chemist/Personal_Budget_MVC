@@ -12,30 +12,28 @@ class Mail{
 
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'user@example.com';                     //SMTP username
-            $mail->Password   = 'secret';                               //SMTP password
-            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+           // $mail->SMTPDebug = 3;                      //Enable verbose debug output
+            $mail->isSMTP();                             //Send using SMTP
+            $mail->Host       = Config::SMTP;            //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                    //Enable SMTP authentication
+            $mail->Username   = Config::MAIL_ADDRESS;    //SMTP username
+            $mail->Password   = Config::PASSWORD;        //SMTP password
+            $mail->SMTPSecure = 'tls';                   //Enable implicit TLS encryption
+            $mail->Port       = 587;                     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress($to);     //Add a recipient
-            $mail->addReplyTo('info@example.com', 'Information');
-
+            $mail->setFrom(Config::MAIL_ADDRESS, 'Mailer');
+            $mail->addAddress($to);                      
             //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->isHTML(true);                         //Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $text;
-            $mail->AltBody = $html;
+            $mail->Body    = $html;
+            $mail->AltBody = $text;
 
             $mail->send();
-            echo 'Message has been sent';
+            echo 'Wiadomość została wysłana';
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            echo "Wiadomość nie może być wysłana. Mailer Error: {$mail->ErrorInfo}";
         }
     }
 }
