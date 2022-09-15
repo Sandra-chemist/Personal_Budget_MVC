@@ -11,32 +11,17 @@ use \Core\View;
  *
  * PHP version 7.0
  */
-class User extends \Core\Model{
-    /**
-     *  Error messages
-     * 
-     * @var array
-     */
+class User extends \Core\Model
+{
     public $errors = [];
 
-    /**
-     * Class constructor
-     *
-     * @param array $data  Initial property values
-     *
-     * @return void
-     */
-    public function __construct($data = []){
+    public function __construct($data = [])
+    {
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
 
-    /**
-     * Save the user model with the current property values
-     *
-     * @return void
-     */
     public function save(){
 
         $this->validate();
@@ -236,6 +221,21 @@ class User extends \Core\Model{
         
         $this->validate();
 
-        return empty($this->errors);
+
+        if (empty($this->errors)){
+            $password = password_hash($this->password, PASSWORD_DEFAULT);
+
+            $sql = 'UPDATE users SET password = :password, password_reset = NULL, password_reset_expires_at = NULL WHERE id = :id';
+
+            $db = static::getDB();
+
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        }
+        return false;
      }
 }

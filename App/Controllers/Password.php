@@ -33,7 +33,7 @@ class Password extends \Core\Controller{
         $user = $this->getUserOrExit($token);
 
         if ($user->resetPassword($_POST['password'])){
-            echo "Hasło ważne";
+            View::renderTemplate('Password/reset_success.html');
         } else{
             View::renderTemplate('Password/reset.html', [
                 'token' => $token,
