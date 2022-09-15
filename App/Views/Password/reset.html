@@ -40,7 +40,10 @@
 </ul>
 {% endif %}
 
-<form method="post" id="formPassword">
+<form method="post" id="formPassword" action="/password/reset-password">
+
+    <input type="hiden" name="token" value="{{ token }}"/>
+
     <div>
         <label for="inputPassword">Hasło</label>
         <input type="password" id="inputPassword" name="password" placeholder="hasło" required />
