@@ -28,8 +28,8 @@ class Mail{
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $text;
-            $mail->AltBody = $html;
+            $mail->Body    = $html;
+            $mail->AltBody = $text;
 
             $mail->send();
             echo 'Wiadomość została wysłana';
