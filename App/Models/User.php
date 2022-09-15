@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Token;
+use \App\Token;
 use PDO;
-
+use \App\Mail;
 /**
  * Example user model
  *
@@ -168,7 +168,7 @@ class User extends \Core\Model{
 
         if ($user){
              if ($user->startPasswordReset()){
-
+                $user->sendPasswordResetEmail
              }
         }
     }
@@ -176,6 +176,7 @@ class User extends \Core\Model{
     protected function startPasswordReset(){
         $token = new Token();
         $hashed_token = $token->getHash();
+        $this->password_reset_token = $token->getValue();
 
         $expiry_timestamp = time() + 60 * 60 * 2;
 
@@ -189,5 +190,15 @@ class User extends \Core\Model{
         $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
         return $stmt->execute();
+     }
+
+     protected function sendPasswordResetEmail(){
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/reset/' . $this->password_reset_token;
+
+        $text = "Proszę kliknąć w link, żeby zresetować hasło: $url";
+        $html = "Proszę kliknąć <a href=\"$url\">Tutaj</a>, żeby zresetować hasło.";
+
+        Mail::send($this->email, 'Resetowanie_hasła', $text, $html);
+
      }
 }
