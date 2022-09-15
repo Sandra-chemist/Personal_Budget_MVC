@@ -167,7 +167,27 @@ class User extends \Core\Model{
         $user = static::findByEmail($email);
 
         if ($user){
-            
+             if ($user->startPasswordReset()){
+
+             }
         }
     }
+
+    protected function startPasswordReset(){
+        $token = new Token();
+        $hashed_token = $token->getHash();
+
+        $expiry_timestamp = time() + 60 * 60 * 2;
+
+        $sql = 'UPDATE users SET password_reset = :token_hash, password_reset_expires_at = :expires_at WHERE id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+        $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $expiry_timestamp), PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+     }
 }
