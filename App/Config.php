@@ -22,10 +22,18 @@ class Config
 
     const SECRET_KEY ='Alf4WgE0AB8YlR3fWXK33Lm5Bz8awQQh';
 
+<<<<<<< HEAD
     const SMTP = 'smtp.gmail.com';  
     
     const MAIL_ADDRESS = 'sandraskibiszewska@gmail.com';
 
     const PASSWORD = 'kftfdmhqfpvbwzxr'; 
     
+=======
+    const SMTP= 'smtp.gmail.com';
+
+    const MAIL_ADDRESS = 'sandraskibiszewska@gmail.com';
+
+    const PASSWORD = 'kftfdmhqfpvbwzxr';
+>>>>>>> feature_password-reset
 }
