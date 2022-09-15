@@ -30,6 +30,7 @@ class Mail{
             $mail->Subject = $subject;
             $mail->Body    = $html;
             $mail->AltBody = $text;
+            $mail->CharSet = 'UTF-8';
 
             $mail->send();
             echo 'Wiadomość została wysłana';
