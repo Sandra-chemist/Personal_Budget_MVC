@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Rejestracja{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block footer %}
 <script src="/js/hideShowPassword.min.js"></script>
@@ -8,16 +8,25 @@
 
 <script>
     $(document).ready(function () {
-        $('#formSignup').validate({
+
+        var userId = '{{ user.id }}';
+
+        $('#formProfile').validate({
             rules: {
                 name: 'required',
                 email: {
                     required: true,
                     email: true,
-                    remote: '/account/validate-email'
+                    remote: {
+                        url: '/account/validate-email',
+                        data: {
+                            ignore_id: function() {
+                                return userId;
+                            }
+                        }
+                    }
                 },
                 password: {
-                    required: true,
                     minlength: 6,
                     validPassword: true
                 }
@@ -44,7 +53,7 @@
 
 {% block body %}
 
-<h1>Rejestracja</h1>
+<h1>Profil</h1>
 
 {% if user.errors is not empty %}
 <p>Errors:</p>
@@ -55,23 +64,24 @@
 </ul>
 {% endif %}
 
-<form method="post" action="/signup/create" id="formSignup">
+<form method="post" id="formProfile" action="/profile/update">
 
     <div>
         <label for="inputName">Imię</label>
-        <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}" required />
+        <input id="inputName" name="username" placeholder="imię" value="{{ user.username }}" required />
     </div>
     <div>
         <label for="inputEmail">E-mail</label>
-        <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required
-            type="email" />
+        <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required type="email" />
     </div>
     <div>
         <label for="inputPassword">Hasło</label>
-        <input type="password" id="inputPassword" name="password" placeholder="hasło" required />
+        <input type="password" id="inputPassword" name="password" placeholder="hasło" aria-describedby="helpBlock"/>
+        <span id="helpBlock">Pozostaw puste, aby zachować aktualne hasło</span>
     </div>
 
-    <button type="submit">Zarejestruj się</button>
+    <button type="submit">Zapisz</button>
+    <a href="/profile/show">Anuluj</a>
 
 </form>
 
