@@ -27,7 +27,6 @@
                     }
                 },
                 password: {
-                    required: true,
                     minlength: 6,
                     validPassword: true
                 }
@@ -77,7 +76,8 @@
     </div>
     <div>
         <label for="inputPassword">Hasło</label>
-        <input type="password" id="inputPassword" name="password" placeholder="hasło" required />
+        <input type="password" id="inputPassword" name="password" placeholder="hasło" aria-describedby="helpBlock"/>
+        <span id="helpBlock">Pozostaw puste, aby zachować aktualne hasło</span>
     </div>
 
     <button type="submit">Zapisz</button>
