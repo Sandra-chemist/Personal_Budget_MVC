@@ -32,6 +32,7 @@ class User extends \Core\Model
 
             $token = new Token();
             $hashed_token = $token->getHash();
+            $this->activation_token = $token->getValue();
 
             $sql = 'INSERT INTO users (username, email, password, activation_hash)
                     VALUES (:username, :email, :password, :activation_hash)';
@@ -189,7 +190,7 @@ class User extends \Core\Model
         return $stmt->execute();
      }
 
-     protected function sendPasswordResetEmail(){
+    protected function sendPasswordResetEmail(){
         $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/reset/' . $this->password_reset_token;
 
         $text = View::getTemplate('Password/reset_email.txt', ['url' => $url]);
@@ -232,7 +233,6 @@ class User extends \Core\Model
             $sql = 'UPDATE users SET password = :password, password_reset = NULL, password_reset_expires_at = NULL WHERE id = :id';
 
             $db = static::getDB();
-
             $stmt = $db->prepare($sql);
 
             $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
@@ -242,4 +242,13 @@ class User extends \Core\Model
         }
         return false;
      }
+
+    public function sendActivationEmail(){
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/signup/activate/' . $this->activation_token;
+
+        $text = View::getTemplate('Signup/activation_email.txt', ['url' => $url]);
+        $html = View::getTemplate('Signup/activation_email.html', ['url' => $url]);
+
+        Mail::send($this->email, 'Aktywacja konta', $text, $html);
+    }
 }
