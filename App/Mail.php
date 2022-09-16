@@ -2,9 +2,13 @@
 
 namespace App;
 
+use App\Config;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
+
 
 class Mail{
     public static function send($to, $subject, $text, $html){
@@ -12,7 +16,6 @@ class Mail{
 
         try {
             //Server settings
-<<<<<<< HEAD
            // $mail->SMTPDebug = 3;                      //Enable verbose debug output
             $mail->isSMTP();                             //Send using SMTP
             $mail->Host       = Config::SMTP;            //Set the SMTP server to send through
@@ -25,7 +28,6 @@ class Mail{
             //Recipients
             $mail->setFrom(Config::MAIL_ADDRESS, 'Mailer');
             $mail->addAddress($to);                      
-=======
        //     $mail->SMTPDebug  = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = Config::SMTP;                     //Set the SMTP server to send through
@@ -39,16 +41,13 @@ class Mail{
             $mail->setFrom(Config::MAIL_ADDRESS, 'Mailer');
             $mail->addAddress($to);     //Add a recipient
 
->>>>>>> feature_password-reset
             //Content
             $mail->isHTML(true);                         //Set email format to HTML
             $mail->Subject = $subject;
             $mail->Body    = $html;
             $mail->AltBody = $text;
-<<<<<<< HEAD
-=======
             $mail->CharSet = 'UTF-8';
->>>>>>> feature_password-reset
+
 
             $mail->send();
             echo 'Wiadomość została wysłana';
