@@ -8,13 +8,23 @@
 
 <script>
     $(document).ready(function () {
+
+        var userId = '{{ user.id }}';
+
         $('#formProfile').validate({
             rules: {
                 name: 'required',
                 email: {
                     required: true,
                     email: true,
-                    remote: '/account/validate-email'
+                    remote: {
+                        url: '/account/validate-email',
+                        data: {
+                            ignore_id: function() {
+                                return userId;
+                            }
+                        }
+                    }
                 },
                 password: {
                     required: true,
