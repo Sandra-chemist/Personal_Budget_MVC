@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Dodaj przychód{% endblock %}
+
+{% block body %}
+
+<h2>Dodaj przychód</h2>
+<form method="post" action="/Income/create">
+    <div>
+        <label>Kategoria</label>
+        <select>
+            <option>pensja</option>
+            <option>odsetki bankowe</option>
+            <option>sprzedaż na allegro</option>
+            <option>inna</option>
+        </select>
+    </div>
+    <div>
+        <label>Kwota</label>
+        <input type="number">
+    </div>
+    <div>
+        <label>Data</label>
+        <input type="date">
+    </div>
+    <div>
+        <label>Komentarz</label>
+        <input type="text">
+    </div>
+</form>
+
+{% endblock %}
