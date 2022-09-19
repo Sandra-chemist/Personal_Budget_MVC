@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    <title>{% block title %}Budżet osobisty{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
 <div class="container">
-
+    <div class="row">
+        <h2>Budżet Osobisty</h2>
+        <h3>Twój Menedżer Finansów</h3>
+    </div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
@@ -18,6 +21,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user %}
+                <li><a href="/menu/index">Menu</a></li>
                 <li><a href="/profile/show">Profil</a></li>
                 <li><a href="/logout">Wyloguj</a></li>
                 {% endif %}
