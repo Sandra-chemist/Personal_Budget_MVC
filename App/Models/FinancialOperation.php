@@ -16,8 +16,6 @@ class FinancialOperation extends \Core\Model{
     public function saveIncome(){
         $this->validate();
 
-        $income_category_id = 1;
-
         if (empty($this->errors)){
         $sql = 'INSERT INTO incomes (user_id, income_category_assigned_to_user_id, amount, date_of_income, income_comment)
                     VALUES (:user_id, :income_category_assigned_to_user_id, :amount, :date_of_income, :income_comment)';
@@ -26,7 +24,7 @@ class FinancialOperation extends \Core\Model{
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
-        $stmt->bindValue(':income_category_assigned_to_user_id', $income_category_id, PDO::PARAM_STR);
+        $stmt->bindValue(':income_category_assigned_to_user_id', $this->category, PDO::PARAM_STR);
         $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
         $stmt->bindValue(':date_of_income', $this->date, PDO::PARAM_STR);
         $stmt->bindValue(':income_comment', $this->comment, PDO::PARAM_STR);
@@ -37,8 +35,10 @@ class FinancialOperation extends \Core\Model{
     }
 
     public function validate(){
-        if (strlen($this->comment > 100)) {
-            $this->errors[] = 'Komentarz nie może mieć więcej niż 100 znaków';
+        if (isset($this->comment)) {
+            if (strlen($this->comment) > 100) {
+                $this->errors[] = 'Komentarz nie może mić więcej niż 100 znaków';
+            }
         }
     }
 }
