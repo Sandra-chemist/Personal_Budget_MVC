@@ -6,26 +6,26 @@
 
 <h2>Dodaj przychód</h2>
 <form method="post" action="/income/create">
-    <div>
-        <label>Kategoria</label>
-        <select>
-            <option>pensja</option>
-            <option>odsetki bankowe</option>
-            <option>sprzedaż na allegro</option>
-            <option>inna</option>
+    <div class="form-group">
+        <label for="inputCategory">Kategoria</label>
+        <select name="category" id="inputCategory">
+            <option value="1">pensja</option>
+            <option value="2">odsetki bankowe</option>
+            <option value="3">sprzedaż na allegro</option>
+            <option value="4">inna</option>
         </select>
     </div>
-    <div>
-        <label>Kwota</label>
-        <input type="number" name="amount">
+    <div class="form-group">
+        <label for="inputAmount">Kwota</label>
+        <input type="number" id="inputAmount" name="amount" placeholder="123" min="0" step="0.01">
     </div>
-    <div>
-        <label>Data</label>
-        <input type="date" name="date">
+    <div class="form-group">
+        <label for="inputDate">Data</label>
+        <input type="date" id="inputDate" name="date" min="2000-01-01">
     </div>
-    <div>
-        <label>Komentarz</label>
-        <input type="text" name="comment">
+    <div class="form-group">
+        <label for="inputComment">Komentarz</label>
+        <input type="text" id="inputComment" name="comment" placeholder="(opcjonalnie)">
     </div>
     <button type="submit" class="btn btn-default">Dodaj</button>
     <a href="/Menu/index"><button type="button" class="btn btn-default">Anuluj</button></a>
