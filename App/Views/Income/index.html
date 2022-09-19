@@ -5,7 +5,7 @@
 {% block body %}
 
 <h2>Dodaj przychód</h2>
-<form method="post" action="/Income/create">
+<form method="post" action="/income/create">
     <div>
         <label>Kategoria</label>
         <select>
@@ -17,15 +17,15 @@
     </div>
     <div>
         <label>Kwota</label>
-        <input type="number">
+        <input type="number" name="amount">
     </div>
     <div>
         <label>Data</label>
-        <input type="date">
+        <input type="date" name="date">
     </div>
     <div>
         <label>Komentarz</label>
-        <input type="text">
+        <input type="text" name="comment">
     </div>
     <button type="submit" class="btn btn-default">Dodaj</button>
     <a href="/Menu/index"><button type="button" class="btn btn-default">Anuluj</button></a>

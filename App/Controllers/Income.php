@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
-use \App\Models\FinancialOperation;;
+use \App\Models\FinancialOperation;
 
 class Income extends Authenticated{
     public function indexAction(){
@@ -11,7 +11,7 @@ class Income extends Authenticated{
     }
 
     public function createAction(){
-        $financialOperation = new $FinancialOperation($_POST);
+        $financialOperation = new FinancialOperation($_POST);
 
         if ($financialOperation->saveIncome()) {
             $this->redirect('/Menu/index');
