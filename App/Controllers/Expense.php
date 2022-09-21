@@ -5,15 +5,12 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Models\FinancialOperation;
 
-class Income extends Authenticated
-{
-    public function indexAction()
-    {
+class Expense extends Authenticated{
+    public function indexAction(){
         View::renderTemplate('Expense/index.html');
     }
 
-    public function createAction()
-    {
+    /*public function createAction(){
         $financialOperation = new FinancialOperation($_POST);
 
         if ($financialOperation->saveExpense()) {
@@ -23,5 +20,5 @@ class Income extends Authenticated
                 'financialOperation' => $financialOperation
             ]);
         }
-    }
+    }*/
 }
