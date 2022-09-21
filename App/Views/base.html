@@ -4,30 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Budżet osobisty{% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
     <div class="row">
         <h1>Budżet Osobisty</h1>
         <h2>Twój Menedżer Finansów</h2>
     </div>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Strona główna</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% if current_user %}
-                <li><a href="/menu/index">Menu</a></li>
-                <li><a href="/profile/show">Profil</a></li>
-                <li><a href="/logout">Wyloguj</a></li>
+    <div class="container">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if current_user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Strona główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/menu/index">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/profile/show">Profil</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                        <a class="nav-link" href="/logout">Wyloguj</a>
+                </span>
                 {% endif %}
-            </ul>
+            </div>
         </div>
     </nav>
 

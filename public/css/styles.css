@@ -4,6 +4,10 @@ body{
     text-align: center;
     color: indigo;
     font-size: 22px;
+    background: none;
+    /* Background pattern from subtlepatterns.com */
+        background-image: url('img/whitediamond.png');
+   
 }
 h1, h2{
     font-family: 'Libre Bodoni', serif !important;
@@ -16,7 +20,15 @@ h2{
     font-size: 30px;
 }
 h3{
-    font-size: 45px;
+    font-size: 35px;
     font-weight: bold;
+}
+.container-fluid{
+    background-color: #bda6d2;
+    border-radius: 25px;
+    border: 2px solid #433551;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 35px;
 }
 

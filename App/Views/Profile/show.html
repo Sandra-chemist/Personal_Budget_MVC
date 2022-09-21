@@ -6,11 +6,9 @@
 
     <h3>Profil</h3>
 
-    <dl class="dl-horizontal">
-        <dt>Imię</dt>
-        <dd>{{ user.username }}</dd>
-        <dt>e-mail</dt>
-        <dd>{{ user.email }}</dd>
+    <dl >
+        <dt>Imię: {{ user.username }}</dt>
+        <dt>e-mail: {{ user.email }}</dt>
     </dl>
 
     <a href="/profile/edit">Edytuj</a>
