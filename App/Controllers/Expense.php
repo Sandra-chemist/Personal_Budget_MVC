@@ -10,7 +10,7 @@ class Expense extends Authenticated{
         View::renderTemplate('Expense/index.html');
     }
 
-    /*public function createAction(){
+    public function createAction(){
         $financialOperation = new FinancialOperation($_POST);
 
         if ($financialOperation->saveExpense()) {
@@ -20,5 +20,5 @@ class Expense extends Authenticated{
                 'financialOperation' => $financialOperation
             ]);
         }
-    }*/
+    }
 }

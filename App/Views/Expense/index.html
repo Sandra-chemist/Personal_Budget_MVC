@@ -4,34 +4,34 @@
 
 {% block body %}
 <h2>Dodaj wydatek</h2>
-<form method="post">
+<form method="post" action="/expense/create">
     <div class="form-group">
         <label for="inputCategory">Kategoria</label>
         <select name="category" id="inputCategory">
-            <option>jedzenie</option>
-            <option>mieszkanie</option>
-            <option>transport</option>
-            <option>telekomunikacja</option>
-            <option>opieka zdrowotna</option>
-            <option>ubrania</option>
-            <option>higiena</option>
-            <option>dzieci</option>
-            <option>rozrywka</option>
-            <option>podróże</option>
-            <option>szkolenia</option>
-            <option>książki</option>
-            <option>oszczędności</option>
-            <option>spłata długu</option>
-            <option>darowizna</option>
-            <option>giełda</option>
+            <option value="1">jedzenie</option>
+            <option value="2">mieszkanie</option>
+            <option value="3">transport</option>
+            <option value="4">telekomunikacja</option>
+            <option value="5">opieka zdrowotna</option>
+            <option value="6">ubrania</option>
+            <option value="7">higiena</option>
+            <option value="8">dzieci</option>
+            <option value="9">rozrywka</option>
+            <option value="10">podróże</option>
+            <option value="11">szkolenia</option>
+            <option value="12">książki</option>
+            <option value="13">oszczędności</option>
+            <option value="14">spłata długu</option>
+            <option value="15">darowizna</option>
+            <option value="16">giełda</option>
         </select>
     </div>
     <div class="form-group">
         <label for="inputPayment">Sposób płatności</label>
         <select name="payment" id="inputPayment">
-            <option>gotówka</option>
-            <option>karta debetowa</option>
-            <option>karta kredytowa</option>
+            <option value="1">gotówka</option>
+            <option value="2">karta debetowa</option>
+            <option value="3">karta kredytowa</option>
         </select>
     </div>
     <div class="form-group">

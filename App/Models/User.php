@@ -300,4 +300,34 @@ class User extends \Core\Model{
 
         $stmt->execute();
     }
+
+    public function setDefaultExpensesCategories()
+    {
+        $user =  static::findByEmail($this->email);
+        $email = $user->email;
+
+        $sql = "INSERT INTO expenses_category_assigned_to_users (id, user_id, name) 
+                SELECT expenses_category_default.id, users.id, expenses_category_default.name 
+                FROM expenses_category_default, users WHERE email = '$email'";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute();
+    }
+
+    public function setDefaultPaymentMethods()
+    {
+        $user =  static::findByEmail($this->email);
+        $email = $user->email;
+
+        $sql = "INSERT INTO payment_methods_assigned_to_users (id, user_id, name) 
+                SELECT payment_methods_default.id, users.id, payment_methods_default.name 
+                FROM payment_methods_default, users WHERE email = '$email'";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute();
+    }
 }
