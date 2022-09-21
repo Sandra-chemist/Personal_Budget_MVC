@@ -51,13 +51,22 @@ button{
     background-color: #CABCE8;
 }
 .form-group{
-    padding: 10px;
-}
-.btn btn-default{
-    border-radius: 10px;
-    border: 1px solid #433551;
     padding: 5px;
-    width: 200px;
-    background-color: rgb(217, 187, 234);
 }
-
+.btn{
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #433551;
+    background-color: #CABCE8;
+    font-size: 20px;
+}
+input[type=text],
+input[type=date],
+input[type=number],
+select{
+    border-radius: 5px;
+    border: 1px solid #433551;
+    padding: 3px;
+    padding-left: 7px;
+    color: rgb(97, 65, 120);
+}
