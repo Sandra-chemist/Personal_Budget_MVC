@@ -14,3 +14,8 @@ $.validator.addMethod('validPassword',
     },
     'Musi posiadać co najmniej jedną literę i jedną cyfrę.'
 );
+
+function date(){
+    document.getElementById("start") = new Date().getDate();
+
+}

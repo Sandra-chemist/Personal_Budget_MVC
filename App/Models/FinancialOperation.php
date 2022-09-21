@@ -37,7 +37,7 @@ class FinancialOperation extends \Core\Model{
     public function validate(){
         if (isset($this->comment)) {
             if (strlen($this->comment) > 100) {
-                $this->errors[] = 'Komentarz nie może mić więcej niż 100 znaków';
+                $this->errors[] = 'Komentarz nie może mieć więcej niż 100 znaków';
             }
         }
     }
