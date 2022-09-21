@@ -2,21 +2,16 @@
 
 namespace App\Models;
 
-use \App\Token;
 use PDO;
+use \App\Token;
 use \App\Mail;
 use \Core\View;
-/**
- * Example user model
- *
- * PHP version 7.0
- */
-class User extends \Core\Model
-{
+                      
+
+class User extends \Core\Model{
     public $errors = [];
 
-    public function __construct($data = [])
-    {
+    public function __construct($data = []) {
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
@@ -50,11 +45,6 @@ class User extends \Core\Model
         return false;
     }
 
-    /**
-     * Validate current property values, adding validation error message to the errors array property
-     * 
-     * @return void
-     */
     public function validate(){
         // Username
         if ($this->username == ''){
@@ -84,13 +74,6 @@ class User extends \Core\Model
 
     }
 
-    /**
-     *  See if a user record already exist with the specified email
-     * 
-     * @param string $email email address to search for
-     * 
-     * @return boolean True if a record already exists with the specified email, false otherwise 
-     */
     public static function emailExists($email, $ignore_id = null){
         $user =  static::findByEmail($email);
 
@@ -302,5 +285,49 @@ class User extends \Core\Model
             return $stmt->execute();
         }
         return false;
+    }
+
+    public function setDefaultIncomesCategories(){
+        $user =  static::findByEmail($this->email);
+        $email = $user->email;
+
+        $sql = "INSERT INTO incomes_category_assigned_to_users (id, user_id, name) 
+                SELECT incomes_category_default.id, users.id, incomes_category_default.name 
+                FROM incomes_category_default, users WHERE email = '$email'";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute();
+    }
+
+    public function setDefaultExpensesCategories()
+    {
+        $user =  static::findByEmail($this->email);
+        $email = $user->email;
+
+        $sql = "INSERT INTO expenses_category_assigned_to_users (id, user_id, name) 
+                SELECT expenses_category_default.id, users.id, expenses_category_default.name 
+                FROM expenses_category_default, users WHERE email = '$email'";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute();
+    }
+
+    public function setDefaultPaymentMethods()
+    {
+        $user =  static::findByEmail($this->email);
+        $email = $user->email;
+
+        $sql = "INSERT INTO payment_methods_assigned_to_users (id, user_id, name) 
+                SELECT payment_methods_default.id, users.id, payment_methods_default.name 
+                FROM payment_methods_default, users WHERE email = '$email'";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute();
     }
 }
