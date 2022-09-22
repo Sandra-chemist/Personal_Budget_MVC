@@ -7,12 +7,12 @@ use PDO;
 class FinancialOperation extends \Core\Model{
     public $errors = [];
 
-    public function __construct($financialOperation = [])
-    {
+    public function __construct($financialOperation = []){
         foreach ($financialOperation as $key => $value) {
             $this->$key = $value;
         };
     }
+    
     public function saveIncome(){
         $this->validate();
 
@@ -33,8 +33,8 @@ class FinancialOperation extends \Core\Model{
         }
         return false;
     }
-    public function saveExpense()
-    {
+
+    public function saveExpense(){
         $this->validate();
 
         if (empty($this->errors)) {
