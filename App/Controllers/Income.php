@@ -15,7 +15,7 @@ class Income extends Authenticated{
         $financialOperation = new FinancialOperation($_POST);
 
         if ($financialOperation->saveIncome()) {
-            Flash::addMessage('Przychód został poprawnie dodany');
+            Flash::addMessage('Przychód został poprawnie dodany!');
             $this->redirect('/Menu/index');
         } else {
             View::renderTemplate('Income/index.html', [
