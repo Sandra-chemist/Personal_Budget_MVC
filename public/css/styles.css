@@ -48,6 +48,7 @@ button{
     border: 1px solid #433551;
     padding: 10px;
     width: 200px;
+    margin-top: 10px;
     background-color: #CABCE8;
 }
 .form-group{
