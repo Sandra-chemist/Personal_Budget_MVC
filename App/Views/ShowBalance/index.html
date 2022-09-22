@@ -5,18 +5,20 @@
 {% block body %}
 
     <h3>Przeglądaj bilans</h3>
-
+    <section class="container-fluid mb-4 py-3">
     <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Przeglądaj bilans
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="">Obecny miesiąc</a></li>
-            <li><a class="dropdown-item" href="#">Poprzedni miesiąc</a></li>
-            <li><a class="dropdown-item" href="#">Obecny rok</a></li>
-            <li><a class="dropdown-item" href="#">Wybierz okres czasu</a></li>
+            <li><a class="dropdown-item" href="/showBalance/index?option=1">Obecny miesiąc</a></li>
+            <li><a class="dropdown-item" href="#" value="2">Poprzedni miesiąc</a></li>
+            <li><a class="dropdown-item" href="#" value="3">Obecny rok</a></li>
+            <li><a class="dropdown-item" href="#" value="4">Wybierz okres czasu</a></li>
         </ul>
     </div>
+    <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
+            balance.endDate|date("d M Y") }}</span></h5>
     <div>
     <a href="/Menu/index"><button type="button" class="btn btn-default">Menu główne</button></a>
     </div>
