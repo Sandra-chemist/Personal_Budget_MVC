@@ -11,8 +11,8 @@ class ShowBalance extends Authenticated{
     public function indexAction(){
         $balance = new Balance($_POST);
         
-        if(!$balance->prepare()){
-            Flash::addMessage('Podani nieprawidłowe dane');
+        if(!$balance){
+            Flash::addMessage('Podano nieprawidłowe dane');
             $this->redirect('/Menu/index');
         }
         View::renderTemplate('ShowBalance/index.html');
