@@ -33,8 +33,8 @@ class Balance extends \Core\Model{
     }
 
     public function getSelectPeriodData(){
-        $this->startDate;
-        $this->endDate ;
+        $this->startDate = Date::getSelectPeriodStartDate();
+        $this->endDate = Date::getSelectPeriodEndDate();
 
         //$this->getBalanceData();
     }

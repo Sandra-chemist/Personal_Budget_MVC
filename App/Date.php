@@ -31,11 +31,11 @@ class Date{
         return date("Y-12-31");
     }
 
-    public static function getSelectPeriodStartDate(){
-        return date("Y-m-01", strtotime("$selectPeriod"));
+    public static function getSelectPeriodStartDate($date){
+        return date("Y-m-01", strtotime("$date"));
     }
 
-    public static function getSelectPeriodEndDate(){
-        return date("Y-m-t", strtotime($selectPeriod));
+    public static function getSelectPeriodEndDate($date){
+        return date("Y-m-t", strtotime($date));
     }
 }
