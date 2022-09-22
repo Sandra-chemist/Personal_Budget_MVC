@@ -4,15 +4,14 @@
 
 {% block body %}
 
-    <h3>Zmiana hasła</h3>
+    <h3>Resetowanie hasło</h3>
 
     <form method="post" action="/password/request-reset">
         <div class="form-group">
             <label for="inputEmail">Adress E-mail</label>
             <input type="email" id="inputEmail" name="email" placeholder="e-mail" autofocus required class="form-control"/>
         </div>
-
-        <button type="submit" class="btn btn-default">Zresetuj hasło</button>
+        <button type="submit" class="btn btn-default">Resetuj hasło</button>
     </form>
 
 {% endblock %}

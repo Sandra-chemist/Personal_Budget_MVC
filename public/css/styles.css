@@ -21,6 +21,7 @@ h2{
 h3{
     font-size: 35px;
     font-weight: bold;
+    letter-spacing: 3px;
 }
 .row{
     border-bottom: 5px solid #7b7bd2;
@@ -46,25 +47,28 @@ h3{
 button{
     border-radius: 5px;
     border: 3px solid #7b7bd2;
-    padding: 10px;
     width: 200px;
-    margin-top: 10px;
     background-color: #9f9fdf;
+    font-size: 22px !important;
 }
 .form-group{
     padding: 5px;
 }
-.btn{
-    padding: 8px;
-    width: 200px;
-    border: 3px solid #7b7bd2;
-    background-color: #9f9fdf;
-    font-size: 20px;
+.btn,
+.dropdown-item{
+    background-color: #9f9fdf !important;
+    border: 3px solid #7b7bd2 !important;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
 }
 input[type=text],
 input[type=date],
 input[type=number],
-select{
+select,
+.form-control{
     border-radius: 5px;
     border: 2px solid #7b7bd2;
     padding: 3px;
@@ -72,30 +76,26 @@ select{
     color: #9f9fdf;
 }
 a{
-    color: black;
+    color: #8383db;
     transition: all .33s ease-in-out;
 }
 a:hover{
-    color:red;
+    color: #3b3baa;
 }
-.btn-primary:hover {
+.btn-primary:hover,
+.dropdown-item:hover,
+.btn:hover {
     background-color: #8383db !important;
     border: 3px solid #7b7bd2 !important;
-}
-.dropdown-item{
-    background-color: #9f9fdf !important;
-    border: 2px solid #7b7bd2 !important;
-    color: white;
+    color: aliceblue;
     border-radius: 5px;
-    padding: 10px;
+}
+.form-control{
+    width: 300px;
+    height: 40px;
     text-align: center;
-    margin-bottom: 5px;
+    margin: auto;
 }
-.dropdown-item:hover {
-    background-color: #8383db !important;
-    border: 2px solid #7b7bd2 !important;
-    border-radius: 5px;
-    color: white;
-}
+
 
 

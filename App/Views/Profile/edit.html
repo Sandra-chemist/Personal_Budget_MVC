@@ -67,15 +67,15 @@
 <form method="post" id="formProfile" action="/profile/update">
 
     <div class="form-group">
-        <label for="inputName">Imię</label>
+        <label for="inputName"><i class="icon-user"></i></label>
         <input id="inputName" name="username" placeholder="imię" value="{{ user.username }}" required class="form-control"/>
     </div>
     <div class="form-group">
-        <label for="inputEmail">E-mail</label>
+        <label for="inputEmail"><i class="icon-mail-alt"></i></label>
         <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required type="email" class="form-control"/>
     </div>
     <div class="form-group">
-        <label for="inputPassword">Hasło</label>
+        <label for="inputPassword"><i class="icon-lock"></i></label>
         <input type="password" id="inputPassword" name="password" placeholder="hasło" aria-describedby="helpBlock" class="form-control"/>
         <span id="helpBlock" class="help-block">Pozostaw puste, aby zachować aktualne hasło</span>
     </div>
