@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+    <h3>Przeglądaj bilans</h3>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">Przeglądaj bilans</button>
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Obecny miesiąc</a></li>
+            <li><a class="dropdown-item" href="#">Poprzedni miesiąc</a></li>
+            <li><a class="dropdown-item" href="#">Obecny rok</a></li>
+            <li><a class="dropdown-item" href="#">Wybierz okres czasu</a></li>
+        </ul>
+    </div>
+
+
+{% endblock %}
