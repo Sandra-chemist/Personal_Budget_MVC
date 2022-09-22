@@ -2,7 +2,7 @@ body{
     margin-top: 3em;
     font-family: 'Darker Grotesque', sans-serif;
     text-align: center;
-    color: rgb(108, 43, 154);
+    color: #29282f;
     font-size: 22px;
     /* Background pattern from subtlepatterns.com */
         background-image: url('img/dot-grid.png');
@@ -23,15 +23,16 @@ h3{
     font-weight: bold;
 }
 .row{
-    border-bottom: 5px solid #6927a2;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    border-bottom: 5px solid #7b7bd2;
+    border-top: 5px solid #7b7bd2;
+    padding: 25px;
+    background-color: #9f9fdf;
 }
 .container{
 }
 .navbar{
     background-color: white;
-    border-bottom: 2px solid #6927a2;
+    border-bottom: 3px solid #7b7bd2;
     padding: 10px;
     padding-left: 15px;
     padding-right: 35px;
@@ -43,13 +44,12 @@ h3{
     margin-top: 20px;
 }
 button{
-    color: rgb(97, 65, 120);
     border-radius: 5px;
-    border: 1px solid #433551;
+    border: 3px solid #7b7bd2;
     padding: 10px;
     width: 200px;
     margin-top: 10px;
-    background-color: #CABCE8;
+    background-color: #9f9fdf;
 }
 .form-group{
     padding: 5px;
@@ -57,8 +57,8 @@ button{
 .btn{
     padding: 8px;
     width: 200px;
-    border: 1px solid #433551;
-    background-color: #CABCE8;
+    border: 3px solid #7b7bd2;
+    background-color: #9f9fdf;
     font-size: 20px;
 }
 input[type=text],
@@ -66,8 +66,36 @@ input[type=date],
 input[type=number],
 select{
     border-radius: 5px;
-    border: 1px solid #433551;
+    border: 2px solid #7b7bd2;
     padding: 3px;
     padding-left: 7px;
-    color: rgb(97, 65, 120);
+    color: #9f9fdf;
 }
+a{
+    color: black;
+    transition: all .33s ease-in-out;
+}
+a:hover{
+    color:red;
+}
+.btn-primary:hover {
+    background-color: #8383db !important;
+    border: 3px solid #7b7bd2 !important;
+}
+.dropdown-item{
+    background-color: #9f9fdf !important;
+    border: 2px solid #7b7bd2 !important;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.dropdown-item:hover {
+    background-color: #8383db !important;
+    border: 2px solid #7b7bd2 !important;
+    border-radius: 5px;
+    color: white;
+}
+
+

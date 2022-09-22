@@ -5,6 +5,10 @@
 {% block body %}
 
     <h3>Przeglądaj bilans</h3>
+    <div>
+        <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
+                balance.endDate|date("d M Y") }}</span></h5>
+    </div>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Przeglądaj bilans
@@ -16,9 +20,5 @@
             <li><a class="dropdown-item" href="">wybierz okres czasu</a></li>
         </ul>
     </div>
-    <div>
-        <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
-        balance.endDate|date("d M Y") }}</span></h5>
-    </div>
-
+    
 {% endblock %}
