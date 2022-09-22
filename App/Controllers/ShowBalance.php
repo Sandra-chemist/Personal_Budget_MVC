@@ -47,4 +47,14 @@ class ShowBalance extends Authenticated{
             'balance' => $currentYear
         ]);
     }
+
+    public function selectPeriodAction(){
+        $selectPeriod = new Balance();
+
+        $selectPeriod->getSelectPeriodData();
+
+        View::renderTemplate('ShowBalance/index.html', [
+            'balance' => $selectPeriod
+        ]);
+    }
 }

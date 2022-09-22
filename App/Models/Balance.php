@@ -17,17 +17,24 @@ class Balance extends \Core\Model{
 
         //$this->getBalanceData();
     }
-    public function getPreviousMonthData()
-    {
+
+    public function getPreviousMonthData(){
         $this->startDate = Date::getPreviousMonthStartDate();
         $this->endDate = Date::getPreviousMonthEndDate();
 
         //$this->getBalanceData();
     }
-    public function getCurrentYearData()
-    {
+
+    public function getCurrentYearData(){
         $this->startDate = Date::getCurrentYearStartDate();
         $this->endDate = Date::getCurrentYearEndDate();
+
+        //$this->getBalanceData();
+    }
+
+    public function getSelectPeriodData(){
+        $this->startDate;
+        $this->endDate ;
 
         //$this->getBalanceData();
     }
