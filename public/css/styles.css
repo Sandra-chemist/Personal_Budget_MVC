@@ -78,6 +78,8 @@ select,
 a{
     color: #8383db;
     transition: all .33s ease-in-out;
+    text-decoration: none;
+    font-size: 25px !important;
 }
 a:hover{
     color: #3b3baa;
@@ -96,6 +98,12 @@ a:hover{
     text-align: center;
     margin: auto;
 }
-
+.icon-chart-pie,
+.icon-basket,
+.icon-money,
+.icon-cog-alt{
+    padding: 10px;
+    margin-left: -40px;
+}
 
 
