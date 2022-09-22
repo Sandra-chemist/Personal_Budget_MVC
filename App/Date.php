@@ -14,4 +14,13 @@ class Date{
     public static function getCurrentMonthEndDate(){
         return date("Y-m-t");
     }
+    public static function getPreviousMonthStartDate()
+    {
+        return date("Y-m-01", strtotime("last month"));
+    }
+
+    public static function getPreviousMonthEndDate()
+    {
+        return date("Y-m-t", strtotime("last month"));
+    }
 }
