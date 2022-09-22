@@ -50,7 +50,6 @@ class Mail{
 
 
             $mail->send();
-            echo 'Wiadomość została wysłana';
         } catch (Exception $e) {
             echo "Wiadomość nie może być wysłana. Mailer Error: {$mail->ErrorInfo}";
         }

@@ -181,7 +181,7 @@ class User extends \Core\Model{
         $text = View::getTemplate('Password/reset_email.txt', ['url' => $url]);
         $html = View::getTemplate('Password/reset_email.html', ['url' => $url]);
 
-        Mail::send($this->email, 'Resetowanie_hasła', $text, $html);
+        Mail::send($this->email, 'Resetowanie hasła', $text, $html);
      }
 
      public static function findByPasswordReset($token){
