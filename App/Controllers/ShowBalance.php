@@ -27,14 +27,24 @@ class ShowBalance extends Authenticated{
             'balance' => $currentMonth
          ]);
     }
-    public function previousMonthAction()
-    {
+
+    public function previousMonthAction(){
         $previousMonth = new Balance();
 
         $previousMonth->getPreviousMonthData();
 
         View::renderTemplate('ShowBalance/index.html', [
             'balance' => $previousMonth
+        ]);
+    }
+
+    public function currentYearAction(){
+        $currentYear = new Balance();
+
+        $currentYear->getCurrentYearData();
+
+        View::renderTemplate('ShowBalance/index.html', [
+            'balance' => $currentYear
         ]);
     }
 }
