@@ -10,17 +10,15 @@
             Przeglądaj bilans
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">obecny miesiąc</a></li>
-            <li><a class="dropdown-item" href="#">poprzedni miesiąc</a></li>
-            <li><a class="dropdown-item" href="#">obecny rok</a></li>
+            <li><a class="dropdown-item" href="/show-balance/current-month">obecny miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/previous-month">poprzedni miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/current-year">obecny rok</a></li>
             <li><a class="dropdown-item" href="#">wybierz okres czasu</a></li>
         </ul>
     </div>
-    <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
-            balance.endDate|date("d M Y") }}</span></h5>
     <div>
-    <a href="/Menu/index"><button type="button" class="btn btn-default">Menu główne</button></a>
+        <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
+        balance.endDate|date("d M Y") }}</span></h5>
     </div>
-
 
 {% endblock %}
