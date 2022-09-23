@@ -3,9 +3,9 @@
 {% block title %}Rejestracja{% endblock %}
 
 {% block footer %}
-<script src="/js/hideShowPassword.min.js"></script>
-<script scr="/js/app.js"></script>
 
+<script scr="/js/app.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 <script>
     $(document).ready(function () {
         $('#formSignup').validate({
@@ -28,15 +28,26 @@
                 }
             }
         });
+        
+    });
 
+    const togglePassword = document
+        .querySelector('#togglePassword');
 
-        /**
-          * Show password toggle button
-          */
-        $('#inputPassword').hideShowPassword({
-            show: false,
-            innerToggle: 'focus'
-        });
+    const password = document.querySelector('#inputPassword');
+
+    togglePassword.addEventListener('click', () => {
+
+        // Toggle the type attribute using
+        // getAttribure() method
+        const type = password
+            .getAttribute('type') === 'password' ?
+            'text' : 'password';
+
+        password.setAttribute('type', type);
+
+        // Toggle the eye and bi-eye icon
+        this.classList.toggle('bi-eye');
     });
 </script>
 
@@ -59,18 +70,19 @@
 
     <div class="form-group">
         <label for="inputName"><i class="icon-user"></i></label>
-        <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}" required class="form-control"/>
+        <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}" required class="form"/>
     </div>
     <div class="form-group">
         <label for="inputEmail"><i class="icon-mail-alt"></i></label>
         <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required
-            type="email" class="form-control" />
+            type="email" class="form" />
     </div>
     <div class="form-group">
+        <label for="inputEmail
         <label for="inputPassword"><i class="icon-lock"></i></label>
-        <input type="password" id="inputPassword" name="password" placeholder="hasło" required class="form-control"/>
+        <input type="password" name="password" id="inputPassword" placeholder="hasło" value="{{ user.password }}" class="form"/>
+        <i class="bi bi-eye-slash" id="togglePassword"></i>
     </div>
-
     <button type="submit" class="btn btn-primary">Zarejestruj się</button>
 
 </form>
