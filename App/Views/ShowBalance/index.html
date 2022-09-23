@@ -19,6 +19,16 @@
             <li><a class="dropdown-item" href="/show-balance/current-year">obecny rok</a></li>
             <li><a class="dropdown-item" href="">wybierz okres czasu</a></li>
         </ul>
+        </div>
+        <div>
+        
+        {% for expenses in balance.detailedExpenses %}
+        <tr>
+            <td class="date">Data: {{ expenses['date_of_expense'] }}</td>
+            <td class="amount">Kwota: {{ expenses['amount'] }}</td>
+            <td class="comment">Komentarz: {{ expenses['expense_comment'] }}</td>
+        </tr>
+        {% endfor %}
     </div>
     
 {% endblock %}

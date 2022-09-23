@@ -15,7 +15,7 @@ class Balance extends \Core\Model{
         $this->startDate = Date::getCurrentMonthStartDate();
         $this->endDate = Date::getCurrentMonthEndDate();
 
-        //$this->getBalanceData();
+        $this->getBalanceData();
     }
 
     public function getPreviousMonthData(){
@@ -32,11 +32,22 @@ class Balance extends \Core\Model{
         //$this->getBalanceData();
     }
 
-    public function getSelectPeriodData(){
-        $this->startDate = Date::getSelectPeriodStartDate();
-        $this->endDate = Date::getSelectPeriodEndDate();
-
-        //$this->getBalanceData();
+    public function getBalanceData(){
+        $this->getAllExpenses();
     }
-    
+
+    protected function getAllExpenses(){
+        $sql = 'SELECT expense_category_assigned_to_user_id, date_of_expense, amount, expense_comment
+                FROM expenses WHERE user_id = :user_id AND date_of_expense BETWEEN :startDate AND :endDate
+                ORDER BY date_of_expense ASC, expense_category_assigned_to_user_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $this->detailedExpenses = $stmt->fetchAll();
+    }
 }
