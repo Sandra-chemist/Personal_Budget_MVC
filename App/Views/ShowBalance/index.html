@@ -21,12 +21,21 @@
         </ul>
         </div>
         <div>
-        
         {% for expenses in balance.detailedExpenses %}
         <tr>
             <td class="date">Data: {{ expenses['date_of_expense'] }}</td>
             <td class="amount">Kwota: {{ expenses['amount'] }}</td>
             <td class="comment">Komentarz: {{ expenses['expense_comment'] }}</td>
+        </tr>
+        {% endfor %}
+    </div>
+
+    <div>
+        {% for incomes in balance.detailedIncomes %}
+        <tr>
+            <td class="date">Data: {{ incomes['date_of_income'] }}</td>
+            <td class="amount">Kwota: {{ incomess['amount'] }}</td>
+            <td class="comment">Komentarz: {{ incomes['income_comment'] }}</td>
         </tr>
         {% endfor %}
     </div>
