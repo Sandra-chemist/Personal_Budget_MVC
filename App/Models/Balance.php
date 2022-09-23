@@ -38,9 +38,11 @@ class Balance extends \Core\Model{
     }
 
     protected function getAllIncomes(){
-        $sql = 'SELECT income_category_assigned_to_user_id, date_of_income, amount, income_comment
-                FROM incomes WHERE user_id = :user_id AND date_of_income BETWEEN :startDate AND :endDate
-                ORDER BY date_of_income ASC, income_category_assigned_to_user_id';
+        $sql = 'SELECT name, date_of_income, amount, income_comment
+                FROM incomes, incomes_category_assigned_to_users WHERE incomes.user_id = :user_id AND incomes.user_id= incomes_category_assigned_to_users.user_id
+                AND incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id 
+                AND date_of_income BETWEEN :startDate AND :endDate
+                ORDER BY date_of_income ASC, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
