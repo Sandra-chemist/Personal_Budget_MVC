@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+    <h3>Przeglądaj bilans</h3>
+    <div>
+        <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
+                balance.endDate|date("d M Y") }}</span></h5>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Przeglądaj bilans
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/show-balance/current-month">obecny miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/previous-month">poprzedni miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/current-year">obecny rok</a></li>
+            <li><a class="dropdown-item" href="">wybierz okres czasu</a></li>
+        </ul>
+        </div>
+    
+    <table class="table-sm col-lg-10 mx-auto my-2">
+        <tbody>
+            <thead class="thead-dark">
+                <header>Przychody</header>
+                <tr>
+                    <th class="category">Kategoria</th>
+                    <th class="date">Data</th>
+                    <th class="amount">Ilość</th>
+                    <th class="comment">Komentarz</th>
+                </tr>
+            </thead>
+        {% for incomes in balance.detailedIncomes %}
+        <tr>
+            <td class="category">{{ incomes['name'] }}</td>
+            <td class="date">{{ incomes['date_of_income'] }}</td>
+            <td class="amount">{{ incomes['amount'] }}</td>
+            <td class="comment">{{ incomes['income_comment'] }}</td>
+            
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    <table class="table-sm col-lg-10 mx-auto my-2">
+        <tbody>
+            <thead class="thead-dark">
+                <header>Wydatki</header>
+                <tr>
+                    <th class="category">Kategoria</th>
+                    <th class="date">Data</th>
+                    <th class="amount">Ilość</th>
+                    <th class="comment">Komentarz</th>
+                </tr>
+            </thead>
+            {% for expenses in balance.detailedExpenses %}
+            <tr>
+                <td class="category">{{ expenses['name'] }}</td>
+                <td class="date">{{ expenses['date_of_expense'] }}</td>
+                <td class="amount">{{ expenses['amount'] }}</td>
+                <td class="comment">{{ expenses['expense_comment'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

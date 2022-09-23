@@ -8,11 +8,11 @@
 
     <form action="/login/create" method="post">
         <div class="form-group">
-            <label for="inputEmail">E-mail</label>
+            <label for="inputEmail"><i class="icon-mail-alt"></i></label>
             <input type="email" id="inputEmail" name="email" placeholder="e-mail" autofocus value="{{ email }}" class="form-control"/>
         </div>
         <div class="form-group">
-            <label for="inputPassword">Hasło</label>
+            <label for="inputPassword"><i class="icon-lock"></i></label>
             <input type="password" id="inputPassword" name="password" placeholder="hasło" class="form-control"class="form-control"/>
         </div>
         <div class="checkbox">
@@ -21,7 +21,7 @@
             </label>
         </div>
         <p><a href="/password/forgot">Zapomniałeś hasła?</a></p>
-        <button type="submit" class="btn btn-default">Zaloguj się</button>
+        <button type="submit" class="btn btn-primary">Zaloguj się</button>
        
     </form>
 

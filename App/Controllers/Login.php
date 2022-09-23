@@ -13,7 +13,6 @@ use \App\Flash;
  * PHP version 7.0
  */
 class Login extends \Core\Controller{
-   
    public function newAction(){
       View::renderTemplate('Login/new.html');
    }

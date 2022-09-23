@@ -7,12 +7,12 @@ use PDO;
 class FinancialOperation extends \Core\Model{
     public $errors = [];
 
-    public function __construct($financialOperation = [])
-    {
+    public function __construct($financialOperation = []){
         foreach ($financialOperation as $key => $value) {
             $this->$key = $value;
         };
     }
+    
     public function saveIncome(){
         $this->validate();
 
@@ -33,8 +33,8 @@ class FinancialOperation extends \Core\Model{
         }
         return false;
     }
-    public function saveExpense()
-    {
+
+    public function saveExpense(){
         $this->validate();
 
         if (empty($this->errors)) {
@@ -43,14 +43,12 @@ class FinancialOperation extends \Core\Model{
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
-
             $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
             $stmt->bindValue(':expense_category_assigned_to_user_id', $this->category, PDO::PARAM_STR);
             $stmt->bindValue(':payment_method_assigned_to_user_id', $this->payment, PDO::PARAM_STR);
             $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
             $stmt->bindValue(':date_of_expense', $this->date, PDO::PARAM_STR);
             $stmt->bindValue(':expense_comment', $this->comment, PDO::PARAM_STR);
-
             return $stmt->execute();
         }
         return false;
@@ -64,5 +62,5 @@ class FinancialOperation extends \Core\Model{
         }
     }
 
-    
+   
 }

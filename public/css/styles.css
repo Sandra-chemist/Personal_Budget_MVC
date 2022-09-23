@@ -2,7 +2,7 @@ body{
     margin-top: 3em;
     font-family: 'Darker Grotesque', sans-serif;
     text-align: center;
-    color: rgb(108, 43, 154);
+    color: #29282f;
     font-size: 22px;
     /* Background pattern from subtlepatterns.com */
         background-image: url('img/dot-grid.png');
@@ -21,17 +21,19 @@ h2{
 h3{
     font-size: 35px;
     font-weight: bold;
+    letter-spacing: 3px;
 }
 .row{
-    border-bottom: 5px solid #6927a2;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    border-bottom: 5px solid #7b7bd2;
+    border-top: 5px solid #7b7bd2;
+    padding: 25px;
+    background-color: #9f9fdf;
 }
 .container{
 }
 .navbar{
     background-color: white;
-    border-bottom: 2px solid #6927a2;
+    border-bottom: 3px solid #7b7bd2;
     padding: 10px;
     padding-left: 15px;
     padding-right: 35px;
@@ -43,30 +45,65 @@ h3{
     margin-top: 20px;
 }
 button{
-    color: rgb(97, 65, 120);
     border-radius: 5px;
-    border: 1px solid #433551;
-    padding: 10px;
+    border: 3px solid #7b7bd2;
     width: 200px;
-    background-color: #CABCE8;
+    background-color: #9f9fdf;
+    font-size: 22px !important;
 }
 .form-group{
     padding: 5px;
 }
-.btn{
-    padding: 8px;
-    width: 200px;
-    border: 1px solid #433551;
-    background-color: #CABCE8;
-    font-size: 20px;
+.btn,
+.dropdown-item{
+    background-color: #9f9fdf !important;
+    border: 3px solid #7b7bd2 !important;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
 }
 input[type=text],
 input[type=date],
 input[type=number],
-select{
+select,
+.form-control{
     border-radius: 5px;
-    border: 1px solid #433551;
+    border: 2px solid #7b7bd2;
     padding: 3px;
     padding-left: 7px;
-    color: rgb(97, 65, 120);
+    color: #9f9fdf;
 }
+a{
+    color: #8383db;
+    transition: all .33s ease-in-out;
+    text-decoration: none;
+    font-size: 25px !important;
+}
+a:hover{
+    color: #3b3baa;
+}
+.btn-primary:hover,
+.dropdown-item:hover,
+.btn:hover {
+    background-color: #8383db !important;
+    border: 3px solid #7b7bd2 !important;
+    color: aliceblue;
+    border-radius: 5px;
+}
+.form-control{
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    margin: auto;
+}
+.icon-chart-pie,
+.icon-basket,
+.icon-money,
+.icon-cog-alt{
+    padding: 10px;
+    margin-left: -40px;
+}
+
+
