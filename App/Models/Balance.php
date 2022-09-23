@@ -39,7 +39,8 @@ class Balance extends \Core\Model{
 
     protected function getAllIncomes(){
         $sql = 'SELECT name, date_of_income, amount, income_comment
-                FROM incomes, incomes_category_assigned_to_users WHERE incomes.user_id = :user_id AND incomes.user_id= incomes_category_assigned_to_users.user_id
+                FROM incomes, incomes_category_assigned_to_users WHERE incomes.user_id = :user_id 
+                AND incomes.user_id = incomes_category_assigned_to_users.user_id
                 AND incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id 
                 AND date_of_income BETWEEN :startDate AND :endDate
                 ORDER BY date_of_income ASC, name';
@@ -55,9 +56,12 @@ class Balance extends \Core\Model{
     }
 
     protected function getAllExpenses(){
-        $sql = 'SELECT expense_category_assigned_to_user_id, date_of_expense, amount, expense_comment
-                FROM expenses WHERE user_id = :user_id AND date_of_expense BETWEEN :startDate AND :endDate
-                ORDER BY date_of_expense ASC, expense_category_assigned_to_user_id';
+        $sql = 'SELECT name, date_of_expense, amount, expense_comment
+                FROM expenses, expenses_category_assigned_to_users WHERE expenses.user_id = :user_id 
+                AND expenses.user_id = expenses_category_assigned_to_users.user_id
+                AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id 
+                AND date_of_expense BETWEEN :startDate AND :endDate
+                ORDER BY date_of_expense ASC, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
