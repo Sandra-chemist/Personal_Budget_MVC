@@ -30,14 +30,25 @@
         {% endfor %}
     </div>
 
-    <div>
+    <table class="table-sm col-lg-10 mx-auto my-2">
+    
+        <tbody>
+            <thead class="thead-dark">
+                <tr>
+                    <th class="date">Data</th>
+                    <th class="amount">Ilość</th>
+                    <th class="comment">Komentarz</th>
+                </tr>
+            </thead>
         {% for incomes in balance.detailedIncomes %}
         <tr>
-            <td class="date">Data: {{ incomes['date_of_income'] }}</td>
-            <td class="amount">Kwota: {{ incomess['amount'] }}</td>
-            <td class="comment">Komentarz: {{ incomes['income_comment'] }}</td>
+            <td class="date">{{ incomes['date_of_income'] }}</td>
+            <td class="amount">{{ incomes['amount'] }}</td>
+            <td class="comment">{{ incomes['income_comment'] }}</td>
         </tr>
         {% endfor %}
-    </div>
+        </tbody>
+        </table>
+      
     
 {% endblock %}
