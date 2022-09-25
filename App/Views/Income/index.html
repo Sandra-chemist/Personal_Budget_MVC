@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}Dodaj przychód{% endblock %}
+{% block footer %}
+<script src="/js/customSelect.js"></script>
 
+{% endblock %}
 {% block body %}
 <h3>Dodaj przychód</h3>
 <form method="post" action="/income/create">
-    <div class="form-group">
+        <div class="custom-select">
         <label for="inputCategory">Kategoria</label>
         <select name="category" id="inputCategory">
             <option value="1">pensja</option>
@@ -13,23 +16,23 @@
             <option value="3">sprzedaż na allegro</option>
             <option value="4">inna</option>
         </select>
-    </div>
-    <div class="form-group">
+        </div>
         <label for="inputAmount">Kwota</label>
+        <div class="form-group"></div>
         <input type="number" id="inputAmount" name="amount" placeholder="123" min="0" step="0.01" required>
     </div>
+    <label for="inputDate">Data</label>
     <div class="form-group">
-        <label for="inputDate">Data</label>
-        <input type="date" id="inputDate" name="date" value="{{ income.date ? income.date : current_date }}" min="2000-01-01">
-        
+        <input type="date" id="inputDate" name="date" value="{{ expense.date ? expense.date : current_date }}"
+            min="2000-01-01">
     </div>
+    <label for="inputComment">Komentarz</label>
     <div class="form-group">
-        <label for="inputComment">Komentarz</label>
         <input type="text" id="inputComment" name="comment" placeholder="(opcjonalnie)">
         {% if financialOperation.errors is not empty %}
-            {% for error in financialOperation.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
+        {% for error in financialOperation.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
         {% endif %}
     </div>
     <button type="submit" class="btn btn-primary">Dodaj</button>
