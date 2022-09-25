@@ -48,27 +48,27 @@ class User extends \Core\Model{
     public function validate(){
         // Username
         if ($this->username == ''){
-            $this->errors[] = 'Podaj imię';
+            $this->errors[] = 'Podaj imię.';
         }
          // Email
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
-            $this->errors[] = 'Niepoprawny email';
+            $this->errors[] = 'Niepoprawny email!';
         }
         if (static::emailExists($this->email, $this->id ?? null)){
-            $this->errors[] = 'Już istnieje konto z tym adresem e-mail ';
+            $this->errors[] = 'Już istnieje konto z tym adresem e-mail!';
         }
         // Password
         if (isset($this->password)){
         if (strlen($this->password) < 6){
-            $this->errors[] = 'Hasło powinno zawierać co najmniej 6 znaków';
+            $this->errors[] = 'Hasło powinno zawierać co najmniej 6 znaków.';
         }
 
         if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
-            $this->errors[] = 'Hasło powinno zawierać co najmniej jedną literę';
+            $this->errors[] = 'Hasło powinno zawierać co najmniej jedną literę.';
         }
 
         if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-            $this->errors[] = 'Hasło powinno zawierać co najmniej jedną cyfrę';
+            $this->errors[] = 'Hasło powinno zawierać co najmniej jedną cyfrę.';
         }
      }
 

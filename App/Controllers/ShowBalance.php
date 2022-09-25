@@ -48,13 +48,4 @@ class ShowBalance extends Authenticated{
         ]);
     }
 
-    public function selectPeriodAction(){
-        $date = new Balance();
-
-        $date->getSelectPeriodData();
-
-        View::renderTemplate('ShowBalance/index.html', [
-            'balance' => $date
-        ]);
-    }
 }
