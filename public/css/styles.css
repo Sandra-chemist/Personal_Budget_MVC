@@ -204,3 +204,17 @@ a:hover{
     border-bottom: 3px solid #7b7bd2;
 }
 
+table{
+    background-color: #e0e0f8;
+    border: 3px solid #7b7bd2;
+}
+th{
+    color: white;
+    width: 100px;
+    background-color: #7b7bc2;
+}
+#income,
+#expense{
+    font-size: 30px;
+    margin-top: 30px;
+}

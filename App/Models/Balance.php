@@ -46,6 +46,8 @@ class Balance extends \Core\Model{
     public function getBalanceData(){
         $this->getAllExpenses();
         $this->getAllIncomes();
+        $this->groupedExpenses();
+        $this->groupedIncomes();
     }
 
     protected function getAllIncomes(){
@@ -82,5 +84,39 @@ class Balance extends \Core\Model{
         $stmt->execute();
 
         $this->detailedExpenses = $stmt->fetchAll();
+    }
+
+    protected function groupedIncomes(){
+        $sql = 'SELECT name, SUM(amount) AS incomeSum FROM incomes, incomes_category_assigned_to_users
+                WHERE incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id
+                AND incomes.user_id = :user_id AND incomes.user_id = incomes_category_assigned_to_users.user_id 
+                AND incomes.date_of_income BETWEEN :startDate AND :endDate
+                GROUP BY income_category_assigned_to_user_id ORDER BY incomeSum DESC';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $this->sumGroupedIncomes = $stmt->fetchAll();
+    }
+
+    protected function groupedExpenses(){
+        $sql = 'SELECT name, SUM(amount) AS expenseSum FROM expenses, expenses_category_assigned_to_users
+                WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
+                AND expenses.user_id = :user_id AND expenses.user_id = expenses_category_assigned_to_users.user_id 
+                AND expenses.date_of_expense BETWEEN :startDate AND :endDate
+                GROUP BY expense_category_assigned_to_user_id ORDER BY expenseSum DESC';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $this->sumGroupedExpenses = $stmt->fetchAll();
     }
 }

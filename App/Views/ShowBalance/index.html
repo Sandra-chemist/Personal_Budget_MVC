@@ -42,7 +42,7 @@
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
-                <header>Przychody</header>
+                <header id="income">Przychody</header>
                 <tr>
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
@@ -59,13 +59,20 @@
             
         </tr>
         {% endfor %}
+        {% for incomes in balance.sumGroupedIncomes %}
+        
+        <tr>
+            <th class="category">Kategorie: {{ incomes['name'] }}</th>
+            <th class="sum">Suma: {{ incomes['incomeSum'] }}</th>
+            {% endfor %}
+        </tr>
         </tbody>
         </table>
 
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
-                <header>Wydatki</header>
+                <header id="expense">Wydatki</header>
                 <tr>
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
@@ -81,6 +88,13 @@
                 <td class="comment">{{ expenses['expense_comment'] }}</td>
             </tr>
             {% endfor %}
+            {% for expenses in balance.sumGroupedExpenses %}
+
+            <tr>
+                <th class="category">Kategorie: {{ expenses['name'] }}</th>
+                <th class="sum">Suma: {{ expenses['expenseSum'] }}</th>
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
     
