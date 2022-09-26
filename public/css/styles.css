@@ -61,6 +61,8 @@ button{
     padding: 10px;
     text-align: center;
     margin-bottom: 5px;
+    width: 200px;
+    font-size: 20px !important;
 }
 input[type=text],
 input[type=date],
@@ -71,7 +73,7 @@ select,
     border: 2px solid #7b7bd2;
     padding: 3px;
     padding-left: 7px;
-    width: 150px;
+    width: 250px;
     color: #29282f;
     text-align: center;
 }
@@ -125,7 +127,6 @@ a:hover{
     color: #29282f !important;
 }
 
-/* Style the arrow inside the select element: */
 .select-selected:after {
     position: absolute;
     content: "";
@@ -137,13 +138,11 @@ a:hover{
     border-color: #fff transparent transparent transparent;
 }
 
-/* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
 }
 
-/* style the items (options), including the selected item: */
 .select-items div,
 .select-selected {
     color: #29282f !important;
@@ -156,7 +155,6 @@ a:hover{
     margin: auto;
 }
 
-/* Style items (options): */
 .select-items {
     position: absolute;
     background-color: #bfbffa;
@@ -174,5 +172,16 @@ a:hover{
 .select-items div:hover,
 .same-as-selected {
     background-color: #8d8de8;
+}
+
+.modal-content{
+    background-color: #bdbddf;
+    border: 3px solid #7b7bd2;
+    margin-top: 390px;
+}
+
+.modal-header{
+    margin: auto;
+    border-bottom: 3px solid #7b7bd2;
 }
 
