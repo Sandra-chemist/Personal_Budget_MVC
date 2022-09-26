@@ -66,6 +66,15 @@
             <th class="sum">Suma: {{ incomes['incomeSum'] }}</th>
             {% endfor %}
         </tr>
+
+        {% for incomes in balance.sumIncomes %}
+        
+        <tr>
+            <th class="sum">Suma: {{ incomes['totalIncomeSum'] }}</th>
+            {% endfor %}
+        </tr>
+
+       
         </tbody>
         </table>
 
@@ -95,6 +104,13 @@
                 <th class="sum">Suma: {{ expenses['expenseSum'] }}</th>
                 {% endfor %}
             </tr>
+            {% for expenses in balance.sumExpenses %}
+            
+            <tr>
+                <th class="sum">Suma: {{ expenses['totalExpenseSum'] }}</th>
+                {% endfor %}
+            </tr>
+            
         </tbody>
     </table>
     

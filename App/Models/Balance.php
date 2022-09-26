@@ -48,6 +48,8 @@ class Balance extends \Core\Model{
         $this->getAllIncomes();
         $this->groupedExpenses();
         $this->groupedIncomes();
+        $this->sumIncomes();
+        $this->sumExpenses();
     }
 
     protected function getAllIncomes(){
@@ -119,4 +121,38 @@ class Balance extends \Core\Model{
 
         $this->sumGroupedExpenses = $stmt->fetchAll();
     }
+
+    protected function sumIncomes(){
+        $sql = 'SELECT amount, SUM(amount) AS totalIncomeSum FROM incomes, incomes_category_assigned_to_users
+                WHERE incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id
+                AND incomes.user_id = :user_id AND incomes.user_id = incomes_category_assigned_to_users.user_id 
+                AND incomes.date_of_income BETWEEN :startDate AND :endDate
+                ORDER BY totalIncomeSum DESC';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $this->sumIncomes = $stmt->fetchAll();
+    }
+
+    protected function sumExpenses(){
+        $sql = 'SELECT amount, SUM(amount) AS totalExpenseSum FROM expenses, expenses_category_assigned_to_users
+                WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
+                AND expenses.user_id = :user_id AND expenses.user_id = expenses_category_assigned_to_users.user_id 
+                AND expenses.date_of_expense BETWEEN :startDate AND :endDate
+                ORDER BY totalExpenseSum DESC';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $this->sumExpenses = $stmt->fetchAll();
+}
 }
