@@ -14,13 +14,31 @@
             Przeglądaj bilans
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/show-balance/current-month">obecny miesiąc</a></li>
-            <li><a class="dropdown-item" href="/show-balance/previous-month">poprzedni miesiąc</a></li>
-            <li><a class="dropdown-item" href="/show-balance/current-year">obecny rok</a></li>
-            <li><a class="dropdown-item" href="">wybierz okres czasu</a></li>
+            <li><a class="dropdown-item" href="/show-balance/currentMonth">obecny miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/previousMonth">poprzedni miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/currentYear">obecny rok</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#dateModal">wybierz okres czasu</a></li>
         </ul>
         </div>
-    
+        <div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Wybierz zakres dat</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="/show-balance/customPeriod">
+                        <div class="modal-body">
+                            <label for="inputDate">zaznacz datę początkową</label>
+                            <div class="form-group"><input type="date" id="inputDate" name="startDate" value="{{ current_date }}" min="2000-01-01" required></div>
+                            <label for="inputDate">zaznacz datę końcową</label>
+                            <div class="form-group"><input type="date" id="inputDate" name="endDate" value="{{ current_date }}"min="2000-01-01" required></div>
+                        </div>
+                        <div><button class="btn btn-primary" type="submit">Filtruj</button></div>
+                    </form> 
+                </div>
+            </div>
+        </div>
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
@@ -66,4 +84,10 @@
         </tbody>
     </table>
     
+{% endblock %}
+{% block footer %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
+  
 {% endblock %}

@@ -71,7 +71,7 @@ select,
     border: 2px solid #7b7bd2;
     padding: 3px;
     padding-left: 7px;
-    width: 250px;
+    width: 150px;
     color: #29282f;
     text-align: center;
 }
@@ -175,3 +175,4 @@ a:hover{
 .same-as-selected {
     background-color: #8d8de8;
 }
+

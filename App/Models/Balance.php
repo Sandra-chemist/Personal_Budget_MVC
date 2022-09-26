@@ -32,6 +32,17 @@ class Balance extends \Core\Model{
         $this->getBalanceData();
     }
 
+    public function getCustomPeriodData(){
+        if ($this->startDate > $this->endDate) {
+
+            $endDate = $this->startDate;
+            $this->startDate = $this->endDate;
+            $this->endDate = $endDate;
+        }
+
+        $this->getBalanceData();
+    }
+    
     public function getBalanceData(){
         $this->getAllExpenses();
         $this->getAllIncomes();
