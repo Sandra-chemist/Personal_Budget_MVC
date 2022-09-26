@@ -50,7 +50,8 @@ button{
     width: 200px;
     background-color: #9f9fdf;
     font-size: 22px !important;
-    margin-top: 5px;
+    margin-top: 15px;
+    height: 55px;
 }
 .btn,
 .dropdown-item{
@@ -58,26 +59,44 @@ button{
     border: 3px solid #7b7bd2 !important;
     color: white;
     border-radius: 5px;
-    padding: 10px;
     text-align: center;
     margin-bottom: 5px;
     width: 200px;
-    font-size: 20px !important;
 }
+.dropdown-item{
+    font-size: 22px !important;
+}
+.btn{
+    font-size: 22px;
+
+}
+input[type=text],
+input[type=date],
+input[type=number]{
+    height: 55px;
+}
+
 input[type=text],
 input[type=date],
 input[type=number],
 select,
 .form{
+    background-color: #bfbffa;
     border-radius: 5px;
-    border: 2px solid #7b7bd2;
+    border-color: #393983 transparent transparent transparent;
     padding: 3px;
     padding-left: 7px;
     width: 250px;
-    color: #29282f;
     text-align: center;
 }
 
+#inputEmail,
+#inputPassword,
+#inputName{
+    margin-top: 30px;
+    margin-right: 40px;
+    height: 50px;
+}
 a{
     color: #8383db;
     transition: all .33s ease-in-out;
@@ -92,7 +111,7 @@ a:hover{
 .btn:hover {
     background-color: #8383db !important;
     border: 3px solid #7b7bd2 !important;
-    color: aliceblue;
+    color: white;
     border-radius: 5px;
 }
 .form-control{
@@ -112,6 +131,7 @@ a:hover{
     margin-left: -35px;
     margin-right: 5px;
 }
+
 .custom-select {
     position: relative;
     width: 250px;
@@ -164,7 +184,6 @@ a:hover{
     z-index: 99;
 }
 
-/* Hide the items when the select box is closed: */
 .select-hide {
     display: none;
 }
