@@ -204,17 +204,20 @@ a:hover{
     border-bottom: 3px solid #7b7bd2;
 }
 
-table{
-    background-color: #e0e0f8;
-    border: 3px solid #7b7bd2;
-}
 th{
+    background-color: #7b7bd2;
+    border-bottom: 3px solid #10105f;
     color: white;
     width: 100px;
-    background-color: #7b7bc2;
+    padding: 20px;
 }
-#income,
-#expense{
+.summary{
     font-size: 30px;
     margin-top: 30px;
+}
+.total{
+    background-color: #05051b;
+    width: 400px;
+    margin: auto;
+    color: #fff;
 }

@@ -27,7 +27,7 @@
                         <h3 class="modal-title">Wybierz zakres dat</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="post" action="/show-balance/customPeriod">
+                    <form method="post" action="/show-balance/custom-period">
                         <div class="modal-body">
                             <label for="inputDate">zaznacz datę początkową</label>
                             <div class="form-group"><input type="date" id="inputDate" name="startDate" value="{{ current_date }}" min="2000-01-01" required></div>
@@ -42,50 +42,55 @@
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
-                <header id="income">Przychody</header>
+                <header class="summary">Przychody</header>
                 <tr>
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
-                    <th class="amount">Ilość</th>
+                    <th class="amount">Kwota PLN</th>
                     <th class="comment">Komentarz</th>
                 </tr>
             </thead>
-        {% for incomes in balance.detailedIncomes %}
-        <tr>
-            <td class="category">{{ incomes['name'] }}</td>
-            <td class="date">{{ incomes['date_of_income'] }}</td>
-            <td class="amount">{{ incomes['amount'] }}</td>
-            <td class="comment">{{ incomes['income_comment'] }}</td>
-            
-        </tr>
-        {% endfor %}
-        {% for incomes in balance.sumGroupedIncomes %}
-        
-        <tr>
-            <th class="category">Kategorie: {{ incomes['name'] }}</th>
-            <th class="sum">Suma: {{ incomes['incomeSum'] }}</th>
-            {% endfor %}
-        </tr>
+                {% for incomes in balance.detailedIncomes %}
+                <tr>
+                    <td class="category">{{ incomes['name'] }}</td>
+                    <td class="date">{{ incomes['date_of_income'] }}</td>
+                    <td class="amount">{{ incomes['amount'] }}</td>
+                    <td class="comment">{{ incomes['income_comment'] }}</td>  
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+
+    <table  class="table-sm col-lg-10 mx-auto my-2">
+        <tbody>
+            <thead>
+                <header class="summary">Podumowanie</header>
+                <tr>
+                    <th>Kategoria</th>
+                    <th>Suma</th>
+                </tr>
+            <thead>
+                {% for incomes in balance.sumGroupedIncomes %}
+                <tr>
+                    <td class="category">{{ incomes['name'] }}</td>
+                    <td class="sum">{{ incomes['incomeSum'] }}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
 
         {% for incomes in balance.sumIncomes %}
-        
-        <tr>
-            <th class="sum">Suma: {{ incomes['totalIncomeSum'] }}</th>
-            {% endfor %}
-        </tr>
-
-       
-        </tbody>
-        </table>
+            <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
+        {% endfor %}
 
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
-                <header id="expense">Wydatki</header>
+                <header class="summary">Wydatki</header>
                 <tr>
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
-                    <th class="amount">Ilość</th>
+                    <th class="amount">Kwota PLN</th>
                     <th class="comment">Komentarz</th>
                 </tr>
             </thead>
@@ -97,23 +102,31 @@
                 <td class="comment">{{ expenses['expense_comment'] }}</td>
             </tr>
             {% endfor %}
-            {% for expenses in balance.sumGroupedExpenses %}
-
-            <tr>
-                <th class="category">Kategorie: {{ expenses['name'] }}</th>
-                <th class="sum">Suma: {{ expenses['expenseSum'] }}</th>
-                {% endfor %}
-            </tr>
-            {% for expenses in balance.sumExpenses %}
-            
-            <tr>
-                <th class="sum">Suma: {{ expenses['totalExpenseSum'] }}</th>
-                {% endfor %}
-            </tr>
-            
         </tbody>
     </table>
     
+    <table class="table-sm col-lg-10 mx-auto my-2">
+        <tbody>
+            <thead>
+                <header class="summary">Podumowanie</header>
+                <tr>
+                    <th>Kategoria</th>
+                    <th>Suma</th>
+                </tr>
+                <thead>
+                    {% for expenses in balance.sumGroupedExpenses %}
+                    <tr>
+                        <td class="category">{{ expenses['name'] }}</td>
+                        <td class="sum">{{ expenses['expenseSum'] }}</td>
+                    </tr>
+                    {% endfor %}
+        </tbody>
+    </table>
+
+        {% for expenses in balance.sumExpenses %}
+        <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
+        {% endfor %}
+
 {% endblock %}
 {% block footer %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
