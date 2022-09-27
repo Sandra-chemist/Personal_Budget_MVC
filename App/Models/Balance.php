@@ -89,14 +89,14 @@ class Balance extends \Core\Model{
     }
 
     protected function groupedIncomes(){
-        $sql = 'SELECT name, SUM(amount) AS incomeSum FROM incomes, incomes_category_assigned_to_users
+        $sqlIncome = 'SELECT name, SUM(amount) AS incomeSum FROM incomes, incomes_category_assigned_to_users
                 WHERE incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id
                 AND incomes.user_id = :user_id AND incomes.user_id = incomes_category_assigned_to_users.user_id 
                 AND incomes.date_of_income BETWEEN :startDate AND :endDate
                 GROUP BY income_category_assigned_to_user_id ORDER BY incomeSum DESC';
 
         $db = static::getDB();
-        $stmt = $db->prepare($sql);
+        $stmt = $db->prepare($sqlIncome);
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);

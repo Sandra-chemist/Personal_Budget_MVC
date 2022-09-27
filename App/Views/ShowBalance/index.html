@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Profil{% endblock %}
+{% block title %}Bilans{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script scr="/js/pieChart.js"></script>
+{% endblock %}
 
 {% block body %}
-
     <h3>Przeglądaj bilans</h3>
     <div>
         <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
@@ -82,6 +86,8 @@
         {% for incomes in balance.sumIncomes %}
             <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
         {% endfor %}
+
+        <div id="piechart" style="width: 900px; height: 500px;">Wykres</div>
 
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
