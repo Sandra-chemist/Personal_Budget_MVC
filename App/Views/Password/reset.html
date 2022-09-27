@@ -5,7 +5,6 @@
 {% block footer %}
 <script src="/js/app.js"></script>
 
-
 {% endblock %}
 
 {% block body %}
@@ -14,11 +13,9 @@
 
 {% if user.errors is not empty %}
 <p>Błędy:</p>
-
     {% for error in user.errors %}
     <li>{{ error }}</li>
     {% endfor %}
-
 {% endif %}
 
 <form method="post" id="formPassword" action="/password/reset-password">
