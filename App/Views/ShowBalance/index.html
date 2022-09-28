@@ -86,7 +86,7 @@
             <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
         {% endfor %}
 
-        <div id="piechart" style="width: 900px; height: 500px;">Wykres</div>
+        <div id="incomePiechart" style="width: 900px; height: 500px; margin: auto;"></div>
 
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
@@ -131,6 +131,8 @@
         {% for expenses in balance.sumExpenses %}
         <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
         {% endfor %}
+
+        <div id="expensePiechart" style="width: 900px; height: 500px; margin: auto;"></div>
 
 {% endblock %}
 {% block footer %}

@@ -1,9 +1,9 @@
 google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawIncomeChart);
 
-function drawChart() {
+function drawIncomeChart() {
 
-    var data = google.visualization.arrayToDataTable([
+    var incomeData = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
         ['Work', 11],
         ['Eat', 2],
@@ -13,10 +13,31 @@ function drawChart() {
     ]);
 
     var options = {
-        title: 'My Daily Activities'
+        title: 'Przychody'
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
 
-    chart.draw(data, options);
+    chart.draw(incomeData, options);
+}
+google.charts.setOnLoadCallback(drawExpenseChart);
+
+function drawExpenseChart() {
+
+    var expenseData = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Work', 11],
+        ['Eat', 2],
+        ['Commute', 2],
+        ['Watch TV', 2],
+        ['Sleep', 7]
+    ]);
+
+    var options = {
+        title: 'Wydatki'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
+
+    chart.draw(expenseData, options);
 }
