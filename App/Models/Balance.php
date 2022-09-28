@@ -105,7 +105,7 @@ class Balance extends \Core\Model{
         $this->sumGroupedIncomes = $stmt->fetchAll();
     }
 
-    protected function groupedExpenses(){
+    public function groupedExpenses(){
         $sql = 'SELECT name, SUM(amount) AS expenseSum FROM expenses, expenses_category_assigned_to_users
                 WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
                 AND expenses.user_id = :user_id AND expenses.user_id = expenses_category_assigned_to_users.user_id 
