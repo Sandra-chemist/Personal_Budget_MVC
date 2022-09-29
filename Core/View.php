@@ -2,11 +2,9 @@
 
 namespace Core;
 
-class View
-{
+class View{
 
-    public static function render($view, $args = [])
-    {
+    public static function render($view, $args = []){
         extract($args, EXTR_SKIP);
 
         $file = dirname(__DIR__) . "/App/Views/$view";  
@@ -18,13 +16,11 @@ class View
         }
     }
 
-    public static function renderTemplate($template, $args = [])
-    {
+    public static function renderTemplate($template, $args = []){
         echo static::getTemplate($template, $args);
     }
 
-    public static function getTemplate($template, $args = [])
-    {
+    public static function getTemplate($template, $args = []){
         static $twig = null;
 
         if ($twig === null) {

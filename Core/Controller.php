@@ -6,13 +6,8 @@ use \App\Auth;
 use \App\Flash;
 
 
-abstract class Controller
-{
+abstract class Controller{
 
-    /**
-     * Parameters from the matched route
-     * @var array
-     */
     protected $route_params = [];
 
     /**
@@ -22,8 +17,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function __construct($route_params)
-    {
+    public function __construct($route_params){
         $this->route_params = $route_params;
     }
 
@@ -38,8 +32,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function __call($name, $args)
-    {
+    public function __call($name, $args){
         $method = $name . 'Action';
 
         if (method_exists($this, $method)) {
@@ -57,8 +50,7 @@ abstract class Controller
      *
      * @return void
      */
-    protected function before()
-    {
+    protected function before(){
     }
 
     /**
@@ -66,8 +58,7 @@ abstract class Controller
      *
      * @return void
      */
-    protected function after()
-    {
+    protected function after(){
     }
 
     /**
@@ -77,8 +68,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function redirect($url)
-    {
+    public function redirect($url){
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
         exit;
     }
@@ -89,8 +79,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function requireLogin()
-    {
+    public function requireLogin(){
         if (!Auth::getUser()) {
 
             Flash::addMessage('Zaloguj się, aby uzyskać dostęp do tej strony', Flash::INFO);

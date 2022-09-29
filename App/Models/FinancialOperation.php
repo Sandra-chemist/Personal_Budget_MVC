@@ -63,6 +63,5 @@ class FinancialOperation extends \Core\Model{
             }
         }
     }
-
-   
+  
 }

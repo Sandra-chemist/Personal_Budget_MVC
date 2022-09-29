@@ -7,11 +7,7 @@ use \App\Models\User;
 use \App\Auth;
 use \App\Flash;
 
-/**
- * Login controller
- *
- * PHP version 7.0
- */
+
 class Login extends \Core\Controller{
    public function newAction(){
       View::renderTemplate('Login/new.html');
@@ -29,6 +25,7 @@ class Login extends \Core\Controller{
          Flash::addMessage('Zalogowano poprawnie!');
 
          $this->redirect(Auth::getReturnToPage());
+         
       } else {
 
          Flash::addMessage('Logowanie nie powodło się, proszę spróbuj jeszcze raz.', Flash::WARNING);

@@ -12,7 +12,7 @@ class ShowBalance extends Authenticated{
        $balance = new Balance($_POST);
         
         if(!$balance){
-            Flash::addMessage('Podano nieprawidłowe dane');
+            Flash::addMessage('Podano nieprawidłowe dane.');
             $this->redirect('/Menu/index');
         }
         View::renderTemplate('ShowBalance/index.html');

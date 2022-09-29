@@ -62,9 +62,11 @@ class Balance extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $this->detailedIncomes = $stmt->fetchAll();
@@ -80,9 +82,11 @@ class Balance extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $this->detailedExpenses = $stmt->fetchAll();
@@ -97,9 +101,11 @@ class Balance extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sqlIncome);
+
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $this->sumGroupedIncomes = $stmt->fetchAll();
@@ -114,9 +120,11 @@ class Balance extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $this->sumGroupedExpenses = $stmt->fetchAll();
@@ -131,9 +139,11 @@ class Balance extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $this->sumIncomes = $stmt->fetchAll();
@@ -148,11 +158,13 @@ class Balance extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
         $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+        
         $stmt->execute();
 
         $this->sumExpenses = $stmt->fetchAll();
-}
+    }
 }

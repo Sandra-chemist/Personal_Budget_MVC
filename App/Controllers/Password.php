@@ -26,8 +26,7 @@ class Password extends \Core\Controller{
             ]);
         
     }
-    public function resetPasswordAction()
-    {
+    public function resetPasswordAction(){
         $token = $_POST['token'];
 
         $user = $this->getUserOrExit($token);
@@ -42,23 +41,13 @@ class Password extends \Core\Controller{
         }
     }
 
-    /**
-     * Find the user model associated with the password reset token, or end the request with a message
-     *
-     * @param string $token Password reset token sent to user
-     *
-     * @return mixed User object if found and the token hasn't expired, null otherwise
-     */
-    protected function getUserOrExit($token)
-    {
+    protected function getUserOrExit($token){
         $user = User::findByPasswordReset($token);
 
-        if ($user) {
-
+        if ($user){
             return $user;
 
-        } else {
-
+        } else{
             View::renderTemplate('Password/token_expired.html');
             exit;
 

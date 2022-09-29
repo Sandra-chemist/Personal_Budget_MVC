@@ -46,18 +46,17 @@ class User extends \Core\Model{
     }
 
     public function validate(){
-        // Username
         if ($this->username == ''){
             $this->errors[] = 'Podaj imię.';
         }
-         // Email
+
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = 'Niepoprawny email!';
         }
         if (static::emailExists($this->email, $this->id ?? null)){
             $this->errors[] = 'Już istnieje konto z tym adresem e-mail!';
         }
-        // Password
+
         if (isset($this->password)){
         if (strlen($this->password) < 6){
             $this->errors[] = 'Hasło powinno zawierać co najmniej 6 znaków.';
@@ -90,6 +89,7 @@ class User extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -110,12 +110,12 @@ class User extends \Core\Model{
         return false;
     }
 
-    public static function findByID($id)
-    {
+    public static function findByID($id){
         $sql = 'SELECT * FROM users WHERE id = :id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -196,7 +196,9 @@ class User extends \Core\Model{
 
         $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
         $stmt->execute();
+       
         $user = $stmt->fetch();
 
         if ($user){
@@ -301,8 +303,7 @@ class User extends \Core\Model{
         $stmt->execute();
     }
 
-    public function setDefaultExpensesCategories()
-    {
+    public function setDefaultExpensesCategories(){
         $user =  static::findByEmail($this->email);
         $email = $user->email;
 
@@ -316,8 +317,7 @@ class User extends \Core\Model{
         $stmt->execute();
     }
 
-    public function setDefaultPaymentMethods()
-    {
+    public function setDefaultPaymentMethods(){
         $user =  static::findByEmail($this->email);
         $email = $user->email;
 
