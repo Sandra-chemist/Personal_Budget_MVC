@@ -3,7 +3,7 @@ body{
     font-family: 'Darker Grotesque', sans-serif;
     text-align: center;
     color: #29282f;
-    font-size: 22px;
+    font-size: 20px;
     /* Background pattern from subtlepatterns.com */
         background-image: url('img/dot-grid.png');
 
@@ -13,13 +13,13 @@ h1, h2{
     
 }
 h1{
-    font-size: 50px;
+    font-size: 45px;
 }
 h2{
-    font-size: 30px;
+    font-size: 25px;
 }
 h3{
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
     letter-spacing: 3px;
 }
