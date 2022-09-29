@@ -2,33 +2,56 @@
 
 {% block title %}Bilans{% endblock %}
 
-{% block head %}
-{% endblock %}
 {% block footer %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
     crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="/js/pieChart.js"></script>
 
-<script>
+<script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawIncomeChart);
+    google.charts.setOnLoadCallback(drawExpenseChart);
 
     function drawIncomeChart() {
 
-        const incomeData = google.visualization.arrayToDataTable([
+        var incomeData = google.visualization.arrayToDataTable([
             ['Kategoria', 'Kwota'],
+             {% for incomes in balance.sumGroupedIncomes %}
+             ['{{incomes.name}}', {{incomes.incomeSum | number_format(2, '.','') }}],
+             {% endfor %}
 
         ]);
 
-        const options = {
-            title: 'Przychody'
+        var options = {
+            title: 'Przychody',
+            colors: ['#ffad33', '#ffc266', '#ffd699', '#ff9900', '#e68a00'],
         };
 
-        const chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
 
         chart.draw(incomeData, options);
+    }
+
+    function drawExpenseChart() {
+
+        var expenseData = google.visualization.arrayToDataTable([
+            ['Kategoria', 'Kwota'],
+
+            {% for expenses in balance.sumGroupedExpenses %}
+            ['{{expenses.name}}', {{ expenses.expenseSum | number_format(2, '.', '') }}],
+            {% endfor %}
+
+        ]);
+
+    var options = {
+        title: 'Przychody',
+        colors: ['#ffad33', '#ffc266', '#ffd699', '#ff9900', '#e68a00'],
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
+
+    chart.draw(expenseData, options);
     }
 </script>
 
