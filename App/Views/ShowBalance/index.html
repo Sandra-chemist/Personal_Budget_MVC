@@ -93,6 +93,14 @@
                 </div>
             </div>
         </div>
+
+    {% if balance.detailedIncomes is not null or balance.detailedExpenses is not null %}
+    
+    {% if balance.detailedIncomes is empty %}
+        <div><h3>Brak przychodów</h3></div>
+    {% endif %}
+    
+    {% if balance.detailedIncomes is not empty %}
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
@@ -138,7 +146,13 @@
         {% endfor %}
 
         <div id="incomePiechart" style="width: 900px; height: 500px; margin: auto;"></div>
+    {% endif %}
+  
+    {% if balance.detailedExpenses is empty %}
+        <div><h3>Brak wydatków</h3></div>
+    {% endif %}
 
+    {% if balance.detailedExpenses is not empty %}
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
@@ -184,5 +198,8 @@
         {% endfor %}
 
         <div id="expensePiechart" style="width: 900px; height: 500px; margin: auto;"></div>
+
+{% endif %}
+{% endif %}
 
 {% endblock %}
