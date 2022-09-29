@@ -48,8 +48,8 @@ button{
     width: 200px;
     background-color: #9f9fdf;
     font-size: 22px !important;
-    margin-top: 15px;
-    height: 55px;
+    margin-top: 20px;
+    height: 60px;
 }
 .btn,
 .dropdown-item{
@@ -63,8 +63,11 @@ button{
 }
 .dropdown-item{
     font-size: 22px !important;
+    height: 55px;
+    margin-bottom: 10px;
 }
 .btn{
+    width: 200px;
     font-size: 22px;
 
 }
@@ -192,7 +195,7 @@ a:hover{
 }
 
 .modal-content{
-    background-color: #bdbddf;
+    background-color: white;
     border: 3px solid #7b7bd2;
     margin-top: 390px;
 }
@@ -203,21 +206,26 @@ a:hover{
 }
 
 th{
-    background-color: #7b7bd2;
-    border-bottom: 3px solid #10105f;
+    background-color: #9f9fdf;
+    border-bottom: 5px solid #7b7bd2;
     color: white;
-    width: 100px;
-    padding: 20px;
+    width: 300px;
+    padding: 10px;
 }
+
 .summary{
     font-size: 30px;
     margin-top: 30px;
 }
 .total{
-    background-color: #05051b;
-    width: 400px;
-    margin: auto;
-    color: #fff;
+    background-color: #7b7bd2;;
+    width: auto;
+    height: 50px;
+    padding: 5px;
+    color: white;
+    margin-top: -50px;
+    margin-bottom: 60px;
+    font-size: 25px;
 }
 .hidden{
     display: none;
@@ -230,7 +238,6 @@ th{
 }
 
 .highcharts-data-table table {
-    font-family: Verdana, sans-serif;
     border-collapse: collapse;
     border: 1px solid #ebebeb;
     margin: 10px auto;
@@ -263,4 +270,27 @@ th{
 
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
+}
+.error{
+    color: rgb(226, 13, 13);
+}
+
+#periodTime{
+    color: #7b7bd2;
+    font-size: 30px;
+}
+
+.finance{
+    margin-top: 25px;
+}
+
+.block{
+    width: auto;
+    display: inline-block;
+}
+
+.sumFinance{
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 15px;
 }

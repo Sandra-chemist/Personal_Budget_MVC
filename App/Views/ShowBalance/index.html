@@ -24,8 +24,7 @@
         ]);
 
         var options = {
-            title: 'Przychody',
-            colors: ['#ffad33', '#ffc266', '#ffd699', '#ff9900', '#e68a00'],
+            backgroundColor: { fill: 'transparent' },
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
@@ -45,8 +44,7 @@
         ]);
 
     var options = {
-        title: 'Przychody',
-        colors: ['#ffad33', '#ffc266', '#ffd699', '#ff9900', '#e68a00'],
+        backgroundColor: { fill: 'transparent' },
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
@@ -59,13 +57,10 @@
 
 {% block body %}
     <h3>Przeglądaj bilans</h3>
-    <div>
-        <h5><span class="text-nowrap">{{ balance.startDate|date("d M Y") }}</span> - <span class="text-nowrap">{{
-                balance.endDate|date("d M Y") }}</span></h5>
-    </div>
+   
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Przeglądaj bilans
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" required>
+            Wybierz okres czasu
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/show-balance/currentMonth">obecny miesiąc</a></li>
@@ -95,9 +90,11 @@
         </div>
 
     {% if balance.detailedIncomes is not null or balance.detailedExpenses is not null %}
-    
+    <div id="periodTime">
+        <span>{{ balance.startDate }}</span> - <span>{{ balance.endDate }}</span>
+    </div>
     {% if balance.detailedIncomes is empty %}
-        <div><h3>Brak przychodów</h3></div>
+        <div class="finance"><h4>Brak przychodów w tym okresie czasu.</h4></div>
     {% endif %}
     
     {% if balance.detailedIncomes is not empty %}
@@ -122,34 +119,36 @@
                 {% endfor %}
         </tbody>
     </table>
-
-    <table  class="table-sm col-lg-10 mx-auto my-2">
+  
+    <table class="block">
         <tbody>
             <thead>
-                <header class="summary">Podumowanie</header>
+                <header class="sumFinance">Podumowanie przychodów</header>
                 <tr>
-                    <th>Kategoria</th>
+                    <th >Kategoria</th>
                     <th>Suma</th>
                 </tr>
-            <thead>
+                <thead>
                 {% for incomes in balance.sumGroupedIncomes %}
                 <tr>
                     <td class="category">{{ incomes['name'] }}</td>
                     <td class="sum">{{ incomes['incomeSum'] }}</td>
                 </tr>
                 {% endfor %}
-        </tbody>
+        </tbody> 
     </table>
 
+    <div class="block">
+     <div id="incomePiechart"style="width: 900px; height: 500px; margin: auto;"></div>
+    </div>
         {% for incomes in balance.sumIncomes %}
             <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
         {% endfor %}
-
-        <div id="incomePiechart" style="width: 900px; height: 500px; margin: auto;"></div>
+    
     {% endif %}
   
     {% if balance.detailedExpenses is empty %}
-        <div><h3>Brak wydatków</h3></div>
+        <div class="finance"><h4>Brak wydatków w tym okresie czasu.</h4></div>
     {% endif %}
 
     {% if balance.detailedExpenses is not empty %}
@@ -175,10 +174,10 @@
         </tbody>
     </table>
     
-    <table class="table-sm col-lg-10 mx-auto my-2">
+    <table class="block">
         <tbody>
             <thead>
-                <header class="summary">Podumowanie</header>
+                <header class="sumFinance">Podumowanie wydatków</header>
                 <tr>
                     <th>Kategoria</th>
                     <th>Suma</th>
@@ -192,12 +191,15 @@
                     {% endfor %}
         </tbody>
     </table>
+    
+    <div class="block">
+        <div id="expensePiechart" style="width: 800px; height: 500px; margin: auto;"></div>
+    </div>
+    {% for expenses in balance.sumExpenses %}
+    <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
+    {% endfor %}
+    
 
-        {% for expenses in balance.sumExpenses %}
-        <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
-        {% endfor %}
-
-        <div id="expensePiechart" style="width: 900px; height: 500px; margin: auto;"></div>
 
 {% endif %}
 {% endif %}

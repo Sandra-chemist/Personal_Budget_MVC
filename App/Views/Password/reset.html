@@ -12,11 +12,9 @@
 <h3>Resetowanie hasła</h3>
 
 {% if user.errors is not empty %}
-<p>Błędy:</p>
     {% for error in user.errors %}
-    <li>{{ error }}</li>
+    <li class="error">{{ error }}</li>
     {% endfor %}
-{% endif %}
 
 <form method="post" id="formPassword" action="/password/reset-password">
 

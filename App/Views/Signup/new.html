@@ -13,9 +13,8 @@
 <h3>Rejestracja</h3>
 
 {% if user.errors is not empty %}
-<p>Błędy:</p>
     {% for error in user.errors %}
-    <li>{{ error }}</li>
+    <li class="error">{{ error }}</li>
     {% endfor %}
 {% endif %}
 
@@ -33,7 +32,7 @@
     <div class="form-group">
         <label for="inputEmail
         <label for="inputPassword"><i class="icon-lock"></i></label>
-        <input type="password" name="password" id="inputPassword" placeholder="hasło" value="{{ user.password }}" class="form"/>
+        <input type="password" name="password" id="inputPassword" placeholder="hasło" value="{{ user.password }}" class="form" required/>
         <i class="bi bi-eye-slash" id="togglePassword"></i>
     </div>
     <button type="submit" class="btn btn-primary">Zarejestruj się</button>
