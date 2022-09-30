@@ -86,7 +86,7 @@ abstract class Controller{
 
             Auth::rememberRequestedPage();
 
-            $this->redirect('/login?message=please+login+first');
+            $this->redirect('/login/new');
         }
     }
 }

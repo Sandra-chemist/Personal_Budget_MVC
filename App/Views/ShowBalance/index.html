@@ -198,8 +198,28 @@
     {% for expenses in balance.sumExpenses %}
     <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
     {% endfor %}
-    
 
+    {% for incomes in balance.sumIncomes %}
+    {% for expenses in balance.sumExpenses %}
+
+        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) > 0 %}
+        <div class="bilans">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotSukces.jpg" style="width: 35%; height: 35%; margin-top: 30px;" />
+        {% endif %}
+
+    {% endfor %}
+    {% endfor %}
+
+    {% for incomes in balance.sumIncomes %}
+    {% for expenses in balance.sumExpenses %}
+
+        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %}
+        <div class="bilans">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotWydatki.jpg" style="width: 30%; height: 30%; margin-top: 30px;" />
+        {% endif %}
+
+    {% endfor %}
+    {% endfor %}
 
 {% endif %}
 {% endif %}
