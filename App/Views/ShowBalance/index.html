@@ -3,9 +3,6 @@
 {% block title %}Bilans{% endblock %}
 
 {% block footer %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-    crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
@@ -25,6 +22,8 @@
 
         var options = {
             backgroundColor: { fill: 'transparent' },
+             colors: ['#7c7cd5', '#7c5cb5', '#7c7cb5', '#a2a2df', '#cacaff'],
+             fontSize: 13,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
@@ -45,6 +44,8 @@
 
     var options = {
         backgroundColor: { fill: 'transparent' },
+        colors: ['#7c7cd5', '#7c5cb5', '#7c7cb5', '#a2a2df', '#cacaff'],
+        fontSize: 13,
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
@@ -101,7 +102,7 @@
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
-                <header class="summary">Przychody</header>
+                <header class="summary">PRZYCHODY</header>
                 <tr>
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
@@ -139,7 +140,7 @@
     </table>
 
     <div class="block">
-     <div id="incomePiechart"style="width: 900px; height: 500px; margin: auto;"></div>
+     <div id="incomePiechart" style="width: 500px; height: 300px; margin: auto;"></div>
     </div>
         {% for incomes in balance.sumIncomes %}
             <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
@@ -155,7 +156,7 @@
     <table class="table-sm col-lg-10 mx-auto my-2">
         <tbody>
             <thead class="thead-dark">
-                <header class="summary">Wydatki</header>
+                <header class="summary">WYDATKI</header>
                 <tr>
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
@@ -193,7 +194,7 @@
     </table>
     
     <div class="block">
-        <div id="expensePiechart" style="width: 800px; height: 500px; margin: auto;"></div>
+        <div id="expensePiechart" style="width: 500px; height: 300px; margin: auto;"></div>
     </div>
     {% for expenses in balance.sumExpenses %}
     <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
@@ -203,21 +204,16 @@
     {% for expenses in balance.sumExpenses %}
 
         {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) > 0 %}
-        <div class="bilans">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
-        <img src="/css/img/kotSukces.jpg" style="width: 35%; height: 35%; margin-top: 30px;" />
+        <div class="balance">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotSukces.jpg" style="width: 37%; height: 37%; margin-top: 30px;" />
         {% endif %}
 
-    {% endfor %}
-    {% endfor %}
 
-    {% for incomes in balance.sumIncomes %}
-    {% for expenses in balance.sumExpenses %}
-
-        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %}
-        <div class="bilans">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} 
+        <div class="balance">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
         <img src="/css/img/kotWydatki.jpg" style="width: 30%; height: 30%; margin-top: 30px;" />
         {% endif %}
-
+         
     {% endfor %}
     {% endfor %}
 

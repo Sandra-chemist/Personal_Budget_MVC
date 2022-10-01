@@ -2,7 +2,7 @@ body{
     margin-top: 3em;
     font-family: 'Darker Grotesque', sans-serif;
     text-align: center;
-    color: #29282f;
+    color: #3c3c40;
     font-size: 20px;
     /* Background pattern from subtlepatterns.com */
         background-image: url('img/dot-grid.png');
@@ -24,14 +24,14 @@ h3{
     letter-spacing: 1px;
 }
 .row{
-    border-bottom: 5px solid #7b7bd2;
+    border-bottom: 5px solid #8e8ecb;
     border-top: 5px solid #7b7bd2;
     padding: 25px;
     background-color: #9f9fdf;
 }
 .navbar{
     background-color: white;
-    border-bottom: 3px solid #7b7bd2;
+    border-bottom: 5px solid #7b7bd2;
     padding: 10px;
     padding-left: 15px;
     padding-right: 35px;
@@ -207,9 +207,8 @@ a:hover{
 }
 
 th{
-    background-color: #9f9fdf;
-    border-bottom: 5px solid #7b7bd2;
-    color: white;
+    border-bottom: 3px solid #7b7bd2;
+    font-size: 24px;
     width: 300px;
     padding: 10px;
 }
@@ -217,14 +216,17 @@ th{
 .summary{
     font-size: 30px;
     margin-top: 30px;
-    border-top: 3px solid #7b7bd2;
-    border-bottom: 3px solid #7b7bd2;
+    border-top: 5px solid #7b7bd2;
+    border-bottom: 5px solid #7b7bd2;
 }
 .total{
-    width: auto;
+    border: 3px solid #7b7bd2;
+    border-radius: 10px;
+    width: 400px;
+    margin: auto;
     color: black;
     margin-bottom: 50px;
-    font-size: 25px;
+    font-size: 23px;
 }
 .hidden{
     display: none;
@@ -276,7 +278,7 @@ th{
 
 #periodTime{
     color: #7b7bd2;
-    font-size: 30px;
+    font-size: 27px;
 }
 
 .finance{
@@ -285,7 +287,7 @@ th{
 
 .block{
     width: auto;
-    display: inline-block;
+    margin: auto;
 }
 
 .sumFinance{
@@ -293,10 +295,10 @@ th{
     margin-top: 40px;
     margin-bottom: 15px;
 }
-.bilans{
-    border-top: 3px solid #7b7bd2;
-    border-bottom: 3px solid #7b7bd2;
+.balance{
     background-color:#7b7bd2 ;
+    border: 4px solid #6161ca;
+    border-radius: 10px;
     color: white !important;
     font-size: 30px !important;
 }
