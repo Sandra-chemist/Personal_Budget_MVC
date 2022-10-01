@@ -84,7 +84,7 @@ select,
 .form{
     background-color: #bfbffa;
     border-radius: 5px;
-    border-color: #393983 transparent transparent transparent;
+    border-color: #cacaff transparent transparent transparent;
     padding: 3px;
     padding-left: 7px;
     width: 250px;
@@ -198,7 +198,7 @@ a:hover{
 .modal-content{
     background-color: white;
     border: 3px solid #7b7bd2;
-    margin-top: 390px;
+    margin-top: 370px;
 }
 
 .modal-header{

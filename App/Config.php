@@ -7,20 +7,20 @@ class Config
 
     const DB_HOST = 'localhost';
 
-    const DB_NAME = 'mvcpersonalbudget';
+    const DB_NAME = '';
 
-    const DB_USER = 'mvcuser';
+    const DB_USER = '';
 
-    const DB_PASSWORD = 'Bejula123';
+    const DB_PASSWORD = '';
 
     const SHOW_ERRORS = true;
 
-    const SECRET_KEY ='Alf4WgE0AB8YlR3fWXK33Lm5Bz8awQQh';
+    const SECRET_KEY ='';
     
     const SMTP = 'smtp.gmail.com';  
     
-    const MAIL_ADDRESS = 'sandraskibiszewska@gmail.com';
+    const MAIL_ADDRESS = '';
 
-    const PASSWORD = 'kftfdmhqfpvbwzxr'; 
+    const PASSWORD = ''; 
     
 }
