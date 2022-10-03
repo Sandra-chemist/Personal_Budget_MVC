@@ -256,22 +256,26 @@ class User extends \Core\Model{
     public function updateProfile($data){
         $this->username = $data['username'];
         $this->email = $data['email'];
-        
-        if ($data['password'] != ''){
+
+        // Only validate and update the password if a value provided
+        if ($data['password'] != "") {
             $this->password = $data['password'];
         }
 
         $this->validate();
 
-        if (empty($this->errors)){
+        if (empty($this->errors)) {
 
-            $sql = 'UPDATE users 
-                    SET username = :username, 
+            $sql = 'UPDATE users
+                    SET username = :username,
                         email = :email';
-                        if (isset($this->password)){
-                            $sql .= ', password = :password';
-                        } 
-                  $sql .= "\nWHERE id = :id";
+
+            if (isset($this->password)) {
+                $sql .= ', password = :password';
+            }
+
+            $sql .= "\nWHERE id = :id";
+
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -280,12 +284,15 @@ class User extends \Core\Model{
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
-            if (isset($this->password)){
-            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
-            $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
+            if (isset($this->password)) {
+
+                $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+                $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
             }
+
             return $stmt->execute();
         }
+
         return false;
     }
 

@@ -3,7 +3,6 @@
 {% block title %}Profil{% endblock %}
 
 {% block footer %}
-<script src="/js/hideShowPassword.min.js"></script>
 <script scr="/js/app.js"></script>
 
 <script>
@@ -13,7 +12,7 @@
 
         $('#formProfile').validate({
             rules: {
-                name: 'required',
+                username: 'required',
                 email: {
                     required: true,
                     email: true,
@@ -27,6 +26,7 @@
                     }
                 },
                 password: {
+                    required: true,
                     minlength: 6,
                     validPassword: true
                 }
@@ -38,14 +38,6 @@
             }
         });
 
-
-        /**
-          * Show password toggle button
-          */
-        $('#inputPassword').hideShowPassword({
-            show: false,
-            innerToggle: 'focus'
-        });
     });
 </script>
 
@@ -56,12 +48,9 @@
 <h3>Profil</h3>
 
 {% if user.errors is not empty %}
-<p>Errors:</p>
-<ul>
-    {% for error in user.errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-</ul>
+{% for error in user.errors %}
+<li class="error">{{ error }}</li>
+{% endfor %}
 {% endif %}
 
 <form method="post" id="formProfile" action="/profile/update">
@@ -76,13 +65,13 @@
     </div>
     <div class="form-group">
         <label for="inputPassword"><i class="icon-lock"></i></label>
-        <input type="password" id="inputPassword" name="password" placeholder="hasło" aria-describedby="helpBlock" class="form"/>    
+        <input type="password" id="inputPassword" name="password" placeholder="hasło" aria-describedby="helpBlock" class="form" required/>    
     </div>
-    <div id="helpBlock" class="help-block">Pozostaw puste, aby zachować aktualne hasło</div>
+    <span id="helpBlock" class="help-block">Wpisz stare lub nowe hasło</span>
     
-    <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a href="/profile/show"><button type="button" class="btn btn-primary">Anuluj</button></a></a>
-
+    <p> <button type="submit" class="butt">Zapisz</button>
+        <a href="/profile/show"><button type="button" class="butt">Anuluj</button></a></a>
+    </p>
 </form>
 
 {% endblock %}

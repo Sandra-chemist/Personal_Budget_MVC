@@ -1,7 +1,6 @@
 body{
     margin-top: 3em;
     font-family: 'Darker Grotesque', sans-serif;
-    text-align: center;
     color: #3c3c40;
     font-size: 20px;
     /* Background pattern from subtlepatterns.com */
@@ -23,17 +22,17 @@ h3{
     font-weight: bold;
     letter-spacing: 1px;
 }
-.row{
-    border-bottom: 5px solid #8e8ecb;
-    border-top: 5px solid #7b7bd2;
+#budget{
+    border-bottom: 5px solid #420e95;
+    border-top: 5px solid #420e95;
     padding: 25px;
-    background-color: #9f9fdf;
+    background-color: #6610f2;
+    color: white;
 }
 .navbar{
-    background-color: white;
-    border-bottom: 5px solid #7b7bd2;
-    padding: 10px;
-    padding-left: 15px;
+    border-bottom: 5px solid #420e95;
+    padding: 15px;
+    padding-left: 20px;
     padding-right: 35px;
     margin-bottom: 20px;
     /* Background pattern from subtlepatterns.com */
@@ -42,16 +41,38 @@ h3{
 #menu{
     margin-top: 20px;
 }
+
 button{
     border-radius: 5px;
-    border: 3px solid #7b7bd2;
-    width: 200px;
-    background-color: #9f9fdf;
+    border: 3px solid #420e95;
+    width: 220px;
+    background-color: #9156f0;
+    color: white;
     font-size: 22px !important;
-    margin-top: 20px;
+    margin-top: 15px;
     height: 60px;
 }
-.btn,
+.butt {
+    border-radius: 5px;
+    border: 3px solid #420e95;
+    width: 180px !important;
+    background-color: #9156f0;
+    color: white;
+    font-size: 22px !important;
+    margin-top: 25px;
+    height: 60px;
+}
+.btn{
+    border-radius: 5px;
+        border: 3px solid #420e95;
+        width: 250px !important;
+        background-color: #9156f0;
+        color: white;
+        font-size: 22px !important;
+        margin-top: 15px;
+        height: 60px;
+}
+
 .dropdown-item{
     background-color: #9f9fdf !important;
     border: 3px solid #7b7bd2 !important;
@@ -66,11 +87,7 @@ button{
     height: 55px;
     margin-bottom: 10px;
 }
-.btn{
-    width: 200px;
-    font-size: 22px;
 
-}
 input[type=text],
 input[type=date],
 input[type=number]{
@@ -99,22 +116,21 @@ select,
     height: 50px;
 }
 a{
-    color: #8383db;
+    color: #9156f0;
     transition: all .33s ease-in-out;
     text-decoration: none;
     font-size: 25px !important;
 }
 a:hover{
-    color: #3b3baa;
+    color: #b490ed;
 }
-.btn-primary:hover,
-.dropdown-item:hover,
-.btn:hover {
-    background-color: #8383db !important;
-    border: 3px solid #7b7bd2 !important;
+button:hover,
+.btn:hover,
+.dropdown-item:hover{
+    background-color: #a073e9 !important;
     color: white;
-    border-radius: 5px;
 }
+
 .form-control{
     width: 250px;
     height: 40px;
@@ -207,22 +223,25 @@ a:hover{
 }
 
 th{
-    border-bottom: 3px solid #7b7bd2;
+    border-bottom: 4px solid #420e95;
     font-size: 24px;
     width: 300px;
     padding: 10px;
 }
 
-.summary{
+.summary,
+.balance{
     font-size: 30px;
     margin-top: 30px;
-    border-top: 5px solid #7b7bd2;
-    border-bottom: 5px solid #7b7bd2;
+    color:white;
+    background-color: #7122f1;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
 }
 .total{
-    border: 3px solid #7b7bd2;
-    border-radius: 10px;
-    width: 400px;
+    border-bottom: 3px solid #420e95;
+    border-top: 3px solid #420e95;
+    padding: 10px;
     margin: auto;
     color: black;
     margin-bottom: 50px;
@@ -230,47 +249,6 @@ th{
 }
 .hidden{
     display: none;
-}
-.highcharts-figure,
-.highcharts-data-table table {
-    min-width: 320px;
-    max-width: 660px;
-    margin: 1em auto;
-}
-
-.highcharts-data-table table {
-    border-collapse: collapse;
-    border: 1px solid #ebebeb;
-    margin: 10px auto;
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-}
-
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
-
-.highcharts-data-table th {
-    font-weight: 600;
-    padding: 0.5em;
-}
-
-.highcharts-data-table td,
-.highcharts-data-table th,
-.highcharts-data-table caption {
-    padding: 0.5em;
-}
-
-.highcharts-data-table thead tr,
-.highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
-
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
 }
 .error{
     color: rgb(226, 13, 13);
@@ -294,11 +272,6 @@ th{
     font-size: 30px;
     margin-top: 40px;
     margin-bottom: 15px;
-}
-.balance{
-    background-color:#7b7bd2 ;
-    border: 4px solid #6161ca;
-    border-radius: 10px;
-    color: white !important;
-    font-size: 30px !important;
+    border-bottom: 3px solid #420e95;
+    border-top: 3px solid #420e95;
 }

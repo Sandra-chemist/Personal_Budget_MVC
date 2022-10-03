@@ -75,7 +75,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title">Wybierz zakres dat</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="post" action="/show-balance/custom-period">
                         <div class="modal-body">
@@ -99,9 +99,10 @@
     {% endif %}
     
     {% if balance.detailedIncomes is not empty %}
-    <table class="table-sm col-lg-10 mx-auto my-2">
+    <div class="table-responsive-md">
+    <table class="table table-hover">
         <tbody>
-            <thead class="thead-dark">
+            <thead>
                 <header class="summary">PRZYCHODY</header>
                 <tr>
                     <th class="category">Kategoria</th>
@@ -120,42 +121,46 @@
                 {% endfor %}
         </tbody>
     </table>
-  
-    <table class="block">
-        <tbody>
-            <thead>
-                <header class="sumFinance">Podumowanie przychodów</header>
-                <tr>
-                    <th >Kategoria</th>
-                    <th>Suma</th>
-                </tr>
-                <thead>
-                {% for incomes in balance.sumGroupedIncomes %}
-                <tr>
-                    <td class="category">{{ incomes['name'] }}</td>
-                    <td class="sum">{{ incomes['incomeSum'] }}</td>
-                </tr>
-                {% endfor %}
-        </tbody> 
-    </table>
+    </div>
 
-    <div class="block">
-     <div id="incomePiechart" style="width: 500px; height: 300px; margin: auto;"></div>
+    <div class="table-responsive-md position-relative">
+        <table class="table table-hover w-75 mx-auto">
+            <tbody>
+                <thead>
+                    <header class="sumFinance w-75 mx-auto">Podsumowanie wydatków</header>
+                    <tr>
+                        <th>Kategoria</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
+                    {% for incomes in balance.sumGroupedIncomes %}
+                    <tr>
+                        <td>{{ incomes['name'] }}</td>
+                        <td>{{ incomes['incomeSum'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mx-auto">
+     <div id="incomePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
     </div>
         {% for incomes in balance.sumIncomes %}
-            <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
+            <p class="total w-50">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</p>
         {% endfor %}
     
     {% endif %}
-  
+
     {% if balance.detailedExpenses is empty %}
         <div class="finance"><h4>Brak wydatków w tym okresie czasu.</h4></div>
     {% endif %}
 
     {% if balance.detailedExpenses is not empty %}
-    <table class="table-sm col-lg-10 mx-auto my-2">
+    <div class="table-responsive-md">
+    <table class="table table-hover">
         <tbody>
-            <thead class="thead-dark">
+            <thead>
                 <header class="summary">WYDATKI</header>
                 <tr>
                     <th class="category">Kategoria</th>
@@ -174,50 +179,56 @@
             {% endfor %}
         </tbody>
     </table>
-    
-    <table class="block">
-        <tbody>
-            <thead>
-                <header class="sumFinance">Podumowanie wydatków</header>
-                <tr>
-                    <th>Kategoria</th>
-                    <th>Suma</th>
-                </tr>
+    </div>
+
+
+    <div class="table-responsive-md position-relative">
+        <table class="table table-hover w-75 mx-auto">
+            <tbody>
                 <thead>
+                    <header class="sumFinance w-75 mx-auto">Podsumowanie wydatków</header>
+                    <tr>
+                        <th>Kategoria</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
                     {% for expenses in balance.sumGroupedExpenses %}
                     <tr>
-                        <td class="category">{{ expenses['name'] }}</td>
-                        <td class="sum">{{ expenses['expenseSum'] }}</td>
+                        <td>{{ expenses['name'] }}</td>
+                        <td>{{ expenses['expenseSum'] }}</td>
                     </tr>
                     {% endfor %}
-        </tbody>
-    </table>
-    
-    <div class="block">
-        <div id="expensePiechart" style="width: 500px; height: 300px; margin: auto;"></div>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="row mx-auto">
+        <div id="expensePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
     </div>
     {% for expenses in balance.sumExpenses %}
-    <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
+    <p class="total w-50">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</p>
     {% endfor %}
+    
+    {% endif %}
+    {% endif %}
 
     {% for incomes in balance.sumIncomes %}
     {% for expenses in balance.sumExpenses %}
 
         {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) > 0 %}
-        <div class="balance">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
-        <img src="/css/img/kotSukces.jpg" style="width: 37%; height: 37%; margin-top: 30px;" />
+        <div class="balance">BILANS = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotSukces.jpg" class="img-fluid mx-auto" style="width: 37%; height: 37%; margin-top: 30px;" />
         {% endif %}
 
 
         {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} 
-        <div class="balance">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
-        <img src="/css/img/kotWydatki.jpg" style="width: 30%; height: 30%; margin-top: 30px;" />
+        <div class="balance">BILANS = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotWydatki.jpg" class="img-fluid mx-auto" style="width: 30%; height: 30%; margin-top: 30px;" />
         {% endif %}
          
     {% endfor %}
     {% endfor %}
 
-{% endif %}
-{% endif %}
 
 {% endblock %}
