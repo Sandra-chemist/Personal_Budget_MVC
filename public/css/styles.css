@@ -23,14 +23,14 @@ h3{
     letter-spacing: 1px;
 }
 #budget{
-    border-bottom: 5px solid #420e95;
-    border-top: 5px solid #420e95;
+    border-bottom: 5px solid #3d348b;
+    border-top: 5px solid #3d348b;
     padding: 25px;
-    background-color: #6610f2;
+    background-color: #7678ed;
     color: white;
 }
 .navbar{
-    border-bottom: 5px solid #420e95;
+    border-bottom: 5px solid #3d348b;
     padding: 15px;
     padding-left: 20px;
     padding-right: 35px;
@@ -38,15 +38,21 @@ h3{
     /* Background pattern from subtlepatterns.com */
         background-image: url('img/dot-grid.png');
 }
+.navbar-toggler{
+    border: 3px solid #3d348b;
+    width: 100px;
+    height: 50px;
+    margin: auto;
+}
 #menu{
     margin-top: 20px;
 }
 
 button{
     border-radius: 5px;
-    border: 3px solid #420e95;
+    border: 3px solid #3d348b;
     width: 220px;
-    background-color: #9156f0;
+    background-color: #7678ed;
     color: white;
     font-size: 22px !important;
     margin-top: 15px;
@@ -54,9 +60,9 @@ button{
 }
 .butt {
     border-radius: 5px;
-    border: 3px solid #420e95;
+    border: 3px solid #3d348b;
     width: 180px !important;
-    background-color: #9156f0;
+    background-color: #7678ed;
     color: white;
     font-size: 22px !important;
     margin-top: 25px;
@@ -64,9 +70,9 @@ button{
 }
 .btn{
     border-radius: 5px;
-        border: 3px solid #420e95;
+        border: 3px solid #3d348b;
         width: 250px !important;
-        background-color: #9156f0;
+        background-color: #7678ed;
         color: white;
         font-size: 22px !important;
         margin-top: 15px;
@@ -74,13 +80,13 @@ button{
 }
 
 .dropdown-item{
-    background-color: #9f9fdf !important;
-    border: 3px solid #7b7bd2 !important;
+    background-color: #7678ed!important;
+    border: 3px solid #3d348b !important;
     color: white;
     border-radius: 5px;
     text-align: center;
     margin-bottom: 5px;
-    width: 200px;
+    width: 250px;
 }
 .dropdown-item{
     font-size: 22px !important;
@@ -101,11 +107,12 @@ select,
 .form{
     background-color: #bfbffa;
     border-radius: 5px;
-    border-color: #cacaff transparent transparent transparent;
+    border-color: #3d348b transparent transparent transparent;
     padding: 3px;
     padding-left: 7px;
     width: 250px;
     text-align: center;
+    color:
 }
 
 #inputEmail,
@@ -116,18 +123,18 @@ select,
     height: 50px;
 }
 a{
-    color: #9156f0;
+    color: #3d348b;
     transition: all .33s ease-in-out;
     text-decoration: none;
     font-size: 25px !important;
 }
 a:hover{
-    color: #b490ed;
+    color: #7678ed;
 }
 button:hover,
 .btn:hover,
 .dropdown-item:hover{
-    background-color: #a073e9 !important;
+    background-color: #9092f8 !important;
     color: white;
 }
 
@@ -187,7 +194,7 @@ button:hover,
     padding: 8px 16px;
     border: 2px solid transparent;
     border-radius: 5px;
-    border-color: #393983 transparent transparent transparent;
+    border-color: #3d348b transparent transparent transparent;
     cursor: pointer;
     width: 250px;
     margin: auto;
@@ -223,7 +230,7 @@ button:hover,
 }
 
 th{
-    border-bottom: 4px solid #420e95;
+    border-bottom: 4px solid #3d348b;
     font-size: 24px;
     width: 300px;
     padding: 10px;
@@ -234,18 +241,26 @@ th{
     font-size: 30px;
     margin-top: 30px;
     color:white;
-    background-color: #7122f1;
-    border-top: 4px solid black;
-    border-bottom: 4px solid black;
+    background-color: #7678ed;
+    border-top: 4px solid #3d348b;
+    border-bottom: 4px solid #3d348b;
 }
 .total{
-    border-bottom: 3px solid #420e95;
-    border-top: 3px solid #420e95;
     padding: 10px;
     margin: auto;
-    color: black;
+    color: white;
     margin-bottom: 50px;
     font-size: 23px;
+}
+#totalIncome{
+    border-bottom: 3px solid #094c09;
+    border-top: 3px solid #094c09;
+    background-color: #008000;
+}
+#totalExpense {
+    border-bottom: 3px solid #7c0829;
+    border-top: 3px solid #7c0829;
+    background-color: #c9184a;
 }
 .hidden{
     display: none;
@@ -271,7 +286,13 @@ th{
 .sumFinance{
     font-size: 30px;
     margin-top: 40px;
-    margin-bottom: 15px;
-    border-bottom: 3px solid #420e95;
-    border-top: 3px solid #420e95;
+    border-bottom: 3px solid #3d348b;
+    border-top: 3px solid #3d348b;
 }
+#buttonCustomDate{
+    background-color: transparent !important;
+    border: none;
+    width: 30px;
+    margin-top: 9px;
+    color: #3d348b;
+}  

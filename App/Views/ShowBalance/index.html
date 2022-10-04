@@ -22,7 +22,7 @@
 
         var options = {
             backgroundColor: { fill: 'transparent' },
-             colors: ['#7c7cd5', '#7c5cb5', '#7c7cb5', '#a2a2df', '#cacaff'],
+             colors: ['#006400', '#008000', '#38b000', '#70e000', '#ccff33'],
              fontSize: 13,
         };
 
@@ -44,7 +44,7 @@
 
     var options = {
         backgroundColor: { fill: 'transparent' },
-        colors: ['#7c7cd5', '#7c5cb5', '#7c7cb5', '#a2a2df', '#cacaff'],
+        colors: ['#a4133c', '#c9184a', '#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#fff0f3' ],
         fontSize: 13,
     };
 
@@ -75,7 +75,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title">Wybierz zakres dat</h3>
-                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" id="buttonCustomDate" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <form method="post" action="/show-balance/custom-period">
                         <div class="modal-body">
@@ -84,7 +84,7 @@
                             <label for="inputDate">zaznacz datę końcową</label>
                             <div class="form-group"><input type="date" id="inputDate" name="endDate" value="{{ current_date }}"min="2000-01-01" required></div>
                         </div>
-                        <div><button class="btn btn-primary" type="submit">Filtruj</button></div>
+                        <div><button type="submit" class="butt">Filtruj</button></div>
                     </form> 
                 </div>
             </div>
@@ -147,7 +147,7 @@
      <div id="incomePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
     </div>
         {% for incomes in balance.sumIncomes %}
-            <p class="total w-50">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</p>
+            <p class="total w-50" id="totalIncome">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</p>
         {% endfor %}
     
     {% endif %}
@@ -207,7 +207,7 @@
         <div id="expensePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
     </div>
     {% for expenses in balance.sumExpenses %}
-    <p class="total w-50">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</p>
+    <p class="total w-50" id="totalExpense">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</p>
     {% endfor %}
     
     {% endif %}
@@ -224,7 +224,7 @@
 
         {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} 
         <div class="balance">BILANS = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
-        <img src="/css/img/kotWydatki.jpg" class="img-fluid mx-auto" style="width: 30%; height: 30%; margin-top: 30px;" />
+        <img src="/css/img/kotWydatki.jpg" class="img-fluid mx-auto" style="width: 28%; height: 28%; margin-top: 30px;" />
         {% endif %}
          
     {% endfor %}
