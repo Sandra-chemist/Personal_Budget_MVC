@@ -3,6 +3,7 @@
 {% block title %}Bilans{% endblock %}
 
 {% block footer %}
+</nav>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
@@ -14,21 +15,21 @@
 
         var incomeData = google.visualization.arrayToDataTable([
             ['Kategoria', 'Kwota'],
-             {% for incomes in balance.sumGroupedIncomes %}
-             ['{{incomes.name}}', {{incomes.incomeSum | number_format(2, '.','') }}],
-             {% endfor %}
+            {% for incomes in balance.sumGroupedIncomes %}
+    ['{{incomes.name}}', {{ incomes.incomeSum | number_format(2, '.', '') }}],
+        {% endfor %}
 
         ]);
 
-        var options = {
-            backgroundColor: { fill: 'transparent' },
-             colors: ['#7c7cd5', '#7c5cb5', '#7c7cb5', '#a2a2df', '#cacaff'],
-             fontSize: 13,
-        };
+    var options = {
+        backgroundColor: { fill: 'transparent' },
+        colors: ['#006400', '#008000', '#38b000', '#70e000', '#ccff33'],
+        fontSize: 13,
+    };
 
-        var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
+    var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
 
-        chart.draw(incomeData, options);
+    chart.draw(incomeData, options);
     }
 
     function drawExpenseChart() {
@@ -37,14 +38,14 @@
             ['Kategoria', 'Kwota'],
 
             {% for expenses in balance.sumGroupedExpenses %}
-            ['{{expenses.name}}', {{ expenses.expenseSum | number_format(2, '.', '') }}],
-            {% endfor %}
+    ['{{expenses.name}}', {{ expenses.expenseSum | number_format(2, '.', '') }}],
+        {% endfor %}
 
         ]);
 
     var options = {
         backgroundColor: { fill: 'transparent' },
-        colors: ['#7c7cd5', '#7c5cb5', '#7c7cb5', '#a2a2df', '#cacaff'],
+        colors: ['#a4133c', '#c9184a', '#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#fff0f3'],
         fontSize: 13,
     };
 
@@ -57,51 +58,58 @@
 {% endblock %}
 
 {% block body %}
-    <h3>Przeglądaj bilans przychodów i wydatków</h3>
-   
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" required>
-            Wybierz okres czasu
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/show-balance/currentMonth">obecny miesiąc</a></li>
-            <li><a class="dropdown-item" href="/show-balance/previousMonth">poprzedni miesiąc</a></li>
-            <li><a class="dropdown-item" href="/show-balance/currentYear">obecny rok</a></li>
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#dateModal">wybierz zakres dat</a></li>
-        </ul>
-        </div>
-        <div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Wybierz zakres dat</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form method="post" action="/show-balance/custom-period">
-                        <div class="modal-body">
-                            <label for="inputDate">zaznacz datę początkową</label>
-                            <div class="form-group"><input type="date" id="inputDate" name="startDate" value="{{ current_date }}" min="2000-01-01" required></div>
-                            <label for="inputDate">zaznacz datę końcową</label>
-                            <div class="form-group"><input type="date" id="inputDate" name="endDate" value="{{ current_date }}"min="2000-01-01" required></div>
-                        </div>
-                        <div><button class="btn btn-primary" type="submit">Filtruj</button></div>
-                    </form> 
-                </div>
-            </div>
-        </div>
+<h3>Przeglądaj bilans przychodów i wydatków</h3>
 
-    {% if balance.detailedIncomes is not null or balance.detailedExpenses is not null %}
-    <div id="periodTime">
-        <span>{{ balance.startDate }}</span> - <span>{{ balance.endDate }}</span>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+        required>
+        Wybierz okres czasu
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/show-balance/currentMonth">obecny miesiąc</a></li>
+        <li><a class="dropdown-item" href="/show-balance/previousMonth">poprzedni miesiąc</a></li>
+        <li><a class="dropdown-item" href="/show-balance/currentYear">obecny rok</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#dateModal">wybierz zakres dat</a>
+        </li>
+    </ul>
+</div>
+<div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Wybierz zakres dat</h3>
+                <button type="button" id="buttonCustomDate" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form method="post" action="/show-balance/custom-period">
+                <div class="modal-body">
+                    <label for="inputDate">zaznacz datę początkową</label>
+                    <div class="form-group"><input type="date" id="inputDate" name="startDate"
+                            value="{{ current_date }}" min="2000-01-01" required></div>
+                    <label for="inputDate">zaznacz datę końcową</label>
+                    <div class="form-group"><input type="date" id="inputDate" name="endDate" value="{{ current_date }}"
+                            min="2000-01-01" required></div>
+                </div>
+                <div><button type="submit" class="butt">Filtruj</button></div>
+            </form>
+        </div>
     </div>
-    {% if balance.detailedIncomes is empty %}
-        <div class="finance"><h4>Brak przychodów w tym okresie czasu.</h4></div>
-    {% endif %}
-    
-    {% if balance.detailedIncomes is not empty %}
-    <table class="table-sm col-lg-10 mx-auto my-2">
+</div>
+
+{% if balance.detailedIncomes is not null or balance.detailedExpenses is not null %}
+<div id="periodTime">
+    <span>{{ balance.startDate }}</span> - <span>{{ balance.endDate }}</span>
+</div>
+{% if balance.detailedIncomes is empty %}
+<div class="finance">
+    <h4>Brak przychodów w tym okresie czasu.</h4>
+</div>
+{% endif %}
+
+{% if balance.detailedIncomes is not empty %}
+<div class="table-responsive-md">
+    <table class="table table-hover">
         <tbody>
-            <thead class="thead-dark">
+            <thead>
                 <header class="summary">PRZYCHODY</header>
                 <tr>
                     <th class="category">Kategoria</th>
@@ -110,52 +118,58 @@
                     <th class="comment">Komentarz</th>
                 </tr>
             </thead>
-                {% for incomes in balance.detailedIncomes %}
-                <tr>
-                    <td class="category">{{ incomes['name'] }}</td>
-                    <td class="date">{{ incomes['date_of_income'] }}</td>
-                    <td class="amount">{{ incomes['amount'] }}</td>
-                    <td class="comment">{{ incomes['income_comment'] }}</td>  
-                </tr>
-                {% endfor %}
+            {% for incomes in balance.detailedIncomes %}
+            <tr>
+                <td class="category">{{ incomes['name'] }}</td>
+                <td class="date">{{ incomes['date_of_income'] }}</td>
+                <td class="amount">{{ incomes['amount'] }}</td>
+                <td class="comment">{{ incomes['income_comment'] }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
-  
-    <table class="block">
+</div>
+
+<div class="table-responsive-md position-relative">
+    <table class="table table-hover w-75 mx-auto">
         <tbody>
             <thead>
-                <header class="sumFinance">Podumowanie przychodów</header>
+                <header class="sumFinance w-75 mx-auto">Podsumowanie przychodów</header>
                 <tr>
-                    <th >Kategoria</th>
+                    <th>Kategoria</th>
                     <th>Suma</th>
                 </tr>
-                <thead>
-                {% for incomes in balance.sumGroupedIncomes %}
-                <tr>
-                    <td class="category">{{ incomes['name'] }}</td>
-                    <td class="sum">{{ incomes['incomeSum'] }}</td>
-                </tr>
-                {% endfor %}
-        </tbody> 
+            </thead>
+            {% for incomes in balance.sumGroupedIncomes %}
+            <tr>
+                <td>{{ incomes['name'] }}</td>
+                <td>{{ incomes['incomeSum'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
+</div>
 
-    <div class="block">
-     <div id="incomePiechart" style="width: 500px; height: 300px; margin: auto;"></div>
-    </div>
-        {% for incomes in balance.sumIncomes %}
-            <div class="total">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</div>
-        {% endfor %}
-    
-    {% endif %}
-  
-    {% if balance.detailedExpenses is empty %}
-        <div class="finance"><h4>Brak wydatków w tym okresie czasu.</h4></div>
-    {% endif %}
+<div class="row mx-auto">
+    <div id="incomePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
+</div>
+{% for incomes in balance.sumIncomes %}
+<p class="total w-75" id="totalIncome">Przychody: {{ incomes['totalIncomeSum'] }} zł</p>
+{% endfor %}
 
-    {% if balance.detailedExpenses is not empty %}
-    <table class="table-sm col-lg-10 mx-auto my-2">
+{% endif %}
+
+{% if balance.detailedExpenses is empty %}
+<div class="finance">
+    <h4>Brak wydatków w tym okresie czasu.</h4>
+</div>
+{% endif %}
+
+{% if balance.detailedExpenses is not empty %}
+<div class="table-responsive-md">
+    <table class="table table-hover">
         <tbody>
-            <thead class="thead-dark">
+            <thead>
                 <header class="summary">WYDATKI</header>
                 <tr>
                     <th class="category">Kategoria</th>
@@ -174,50 +188,58 @@
             {% endfor %}
         </tbody>
     </table>
-    
-    <table class="block">
+</div>
+
+
+<div class="table-responsive-md position-relative">
+    <table class="table table-hover w-75 mx-auto">
         <tbody>
             <thead>
-                <header class="sumFinance">Podumowanie wydatków</header>
+                <header class="sumFinance w-75 mx-auto">Podsumowanie wydatków</header>
                 <tr>
                     <th>Kategoria</th>
                     <th>Suma</th>
                 </tr>
-                <thead>
-                    {% for expenses in balance.sumGroupedExpenses %}
-                    <tr>
-                        <td class="category">{{ expenses['name'] }}</td>
-                        <td class="sum">{{ expenses['expenseSum'] }}</td>
-                    </tr>
-                    {% endfor %}
+            </thead>
+            {% for expenses in balance.sumGroupedExpenses %}
+            <tr>
+                <td>{{ expenses['name'] }}</td>
+                <td>{{ expenses['expenseSum'] }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
-    
-    <div class="block">
-        <div id="expensePiechart" style="width: 500px; height: 300px; margin: auto;"></div>
-    </div>
-    {% for expenses in balance.sumExpenses %}
-    <div class="total">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</div>
-    {% endfor %}
-
-    {% for incomes in balance.sumIncomes %}
-    {% for expenses in balance.sumExpenses %}
-
-        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) > 0 %}
-        <div class="balance">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
-        <img src="/css/img/kotSukces.jpg" style="width: 37%; height: 37%; margin-top: 30px;" />
-        {% endif %}
+</div>
 
 
-        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} 
-        <div class="balance">Bilans = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
-        <img src="/css/img/kotWydatki.jpg" style="width: 30%; height: 30%; margin-top: 30px;" />
-        {% endif %}
-         
-    {% endfor %}
-    {% endfor %}
+<div class="row mx-auto">
+    <div id="expensePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
+</div>
+{% for expenses in balance.sumExpenses %}
+<p class="total w-75" id="totalExpense">Wydatki: {{ expenses['totalExpenseSum'] }} zł</p>
+{% endfor %}
 
 {% endif %}
 {% endif %}
 
-{% endblock %}
+{% for incomes in balance.sumIncomes %}
+{% for expenses in balance.sumExpenses %}
+
+{% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) > 0 %}
+<div class="balance">BILANS = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+<img src="/css/img/kotSukces.jpg" class="img-fluid mx-auto"
+    style="width: 450px; height: 330px; margin-top: 30px; margin-bottom: 10px;" />
+{% endif %}
+
+
+{% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} <div class="balance">BILANS =
+    {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+    <img src="/css/img/kotWydatki.jpg" class="img-fluid mx-auto"
+        style="width: 320px; height: 330px; margin-top: 30px; margin-bottom: 10px" />
+    {% endif %}
+
+    {% endfor %}
+    {% endfor %}
+
+
+    {% endblock %}

@@ -43,15 +43,17 @@
     </div>
     <label for="inputDate">Data</label>
     <div class="form-group">
-        <input type="date" id="inputDate" name="date" value="{{ expense.date ? expense.date : current_date }}" min="2000-01-01">
+        <input type="date" id="inputDate" name="date" value="{{ expense.date ? expense.date : current_date }}"
+            min="2000-01-01">
     </div>
     <label for="inputComment">Komentarz</label>
     <div class="form-group">
         <input type="text" id="inputComment" name="comment" placeholder="(opcjonalnie)">
     </div>
-   
-        <button type="submit" class="btn btn-primary">Dodaj</button>
-        <a href="/Menu/index"><button type="button" class="btn btn-primary">Anuluj</button></a>
-    </form>
+
+    <button type="submit" class="butt icon-ok" style="width: 100px !important; height: 50px !important;"></button>
+    <a href="/Menu/index"><button type="button" class="butt icon-cancel"
+            style="width: 100px !important; height: 50px !important;"></button></a>
+</form>
 
 {% endblock %}
