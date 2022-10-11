@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Models\Category;
 
 class Settings extends Authenticated{
     public function indexAction(){
@@ -10,7 +11,10 @@ class Settings extends Authenticated{
     }
 
     public function incomeCategoriesAction(){
-        View::renderTemplate('Settings/incomeCategories.html');
+        $incomeCategories = Category::getLoggedUserIncomeCategories();
+        View::renderTemplate('Settings/incomeCategories.html', [
+            'incomeCategories' => $incomeCategories
+        ]);
     }
 
     public function expenseCategoriesAction(){

@@ -5,4 +5,8 @@
 {% block body %}
 
  <h3>Kategorie przychodów</h3>
+
+ {% for category in incomeCategories %}
+    <p>{{ category.id}}  {{category.name}}</p>
+ {% endfor %}
 {% endblock %}
