@@ -5,28 +5,32 @@
 {% block body %}
 
  <h3>Kategorie przychodów</h3>
-
+{% if incomeCategory.errors is not empty %}
+{% for error in incomeCategory.errors %}
+<li class="error">{{ error }}</li>
+{% endfor %}
+{% endif %}
     {% for category in incomeCategories %}
     <div>
     <input type="text" value="{{ category.name }}"/>
-    <button type="button" class="butt icon-pencil" style="width: 60px !important; height: 50px !important;" category-id="{{ category.id }}" category-name="{{ category.name }}" data-bs-toggle="modal" data-bs-target="#dateModal"></button>
+    <button type="button" class="butt icon-pencil" style="width: 60px !important; height: 50px !important;" category-id="{{ category.id }}" category-name="{{ category.name }}" ></button>
     <button type="button" class="butt icon-trash-empty" style="width: 60px !important; height: 50px !important;"></button>
     </div>
     {% endfor %}
 
-    <button type="button" class="butt icon-plus" style="width: 60px !important; height: 50px !important; margin:auto; margin-top: 20px;"></button>
+    <button type="button" class="butt icon-plus" style="width: 60px !important; height: 50px !important; margin:auto; margin-top: 20px;" data-bs-toggle="modal" data-bs-target="#dateModal"></button>
 
     <div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Edytuj</h3>
+                    <h3 class="modal-title">Dodaj kategorię</h3>
                     <button type="button" id="buttonCustomDate" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
-                <form method="post" action="">
+                <form method="post" action="/settings/create">
                     <div class="modal-body">
-                        <label for="inputDate">wprowadź nową nazwę dla wybranej kategorii</label>
-                        <div class="form-group"><input type="text" name="categoryNewName"></div>
+                        <label for="inputDate">wprowadź nazwę kategorii</label>
+                        <div class="form-group"><input type="text" name="nameCategory"></div>
                     </div>
                     <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
                     <a href="/Settings/index"><button type="submit" class="butt" style="width: 120px !important;">Anuluj</button></a></div>
