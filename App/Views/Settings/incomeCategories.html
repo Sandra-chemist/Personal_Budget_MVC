@@ -14,7 +14,7 @@
 
     {% for category in incomeCategories %}
     <div>
-    <input type="text" value="{{ category.name }}"/>
+    <input type="text" value="{{ category.name }}" disabled/>
     <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ category.id }}" category-name="{{ category.name }}" ></button>
     <button type="button" class="butt icon-trash-empty" style="width: 70px !important;"></button>
     </div>
@@ -32,7 +32,7 @@
                     <h3 class="modal-title">Dodaj nową kategorię</h3>
                     <button type="button" id="buttonCustomDate" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
-                <form method="post" action="/settings/create">
+                <form method="post" action="/settings/createIncomeCategory">
                     <div class="modal-body">
                         <label for="inputDate">wprowadź nazwę kategorii:</label>
                         <div class="form-group"><input type="text" name="nameCategory"></div>

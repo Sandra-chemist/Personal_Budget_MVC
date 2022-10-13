@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use PDO;
 
@@ -38,7 +36,7 @@ class IncomeCategory extends Category{
             $this->errors[] = 'Podaj nazwę kategorii.';
         }
         if (static::categoryIncomeExist($this->nameCategory)) {
-            $this->errors[] = 'Już istnieje kategoria z tą nazwą';
+            $this->errors[] = 'Już istnieje kategoria z tą nazwą.';
         }
         if (isset($this->nameCategory)) {
             if (strlen($this->nameCategory) < 3 || strlen($this->nameCategory) > 30) {
