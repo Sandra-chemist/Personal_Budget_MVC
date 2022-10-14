@@ -12,11 +12,13 @@ class Expense extends Authenticated{
         parent::before();
 
         $this->expenseCategories = Category::getLoggedUserExpenseCategories();
+        $this->paymentMethods = Category::getLoggedUserPaymentMethods();
     }
 
     public function indexAction(){
         View::renderTemplate('Expense/index.html', [
-            'expenseCategories' => $this->expenseCategories
+            'expenseCategories' => $this->expenseCategories,
+            'paymentMethods' => $this->paymentMethods
         ]);
     }
 

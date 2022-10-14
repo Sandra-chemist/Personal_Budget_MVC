@@ -12,11 +12,11 @@
 {% endfor %}
 {% endif %}
 
-{% for category in paymentMethods %}
+{% for payment in paymentMethods %}
 <div>
-    <input type="text" value="{{ category.name }}" disabled />
-    <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ category.id }}"
-        category-name="{{ category.name }}"></button>
+    <input type="text" value="{{ payment.name }}" disabled />
+    <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ payment.id }}"
+        category-name="{{ payment.name }}"></button>
     <button type="button" class="butt icon-trash-empty" style="width: 70px !important;"></button>
 </div>
 {% endfor %}

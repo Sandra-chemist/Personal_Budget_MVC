@@ -19,9 +19,9 @@
     <div class="custom-select">
         <label for="inputPayment">Sposób płatności</label>
         <select name="payment" id="inputPayment">
-            <option value="1">gotówka</option>
-            <option value="2">karta debetowa</option>
-            <option value="3">karta kredytowa</option>
+            {% for payment in paymentMethods %}
+            <option>{{ payment.name }}</option>
+            {% endfor %}
         </select>
     </div>
     <label for="inputAmount">Kwota</label>
