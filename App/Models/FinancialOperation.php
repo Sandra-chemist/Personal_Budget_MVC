@@ -39,13 +39,13 @@ class FinancialOperation extends \Core\Model{
 
         if (empty($this->errors)) {
             $sql = 'INSERT INTO expenses (user_id, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, amount, date_of_expense, expense_comment)
-                    VALUES (:user_id, :expense_category_assigned_to_user_id, :payment_method_assigned_to_user_id, :amount, :date_of_expense, :expense_comment)';
+                    VALUES (:user_id, (SELECT id FROM expenses_category_assigned_to_users WHERE name = :name AND user_id = :user_id ), :payment_method_assigned_to_user_id, :amount, :date_of_expense, :expense_comment)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
 
             $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
-            $stmt->bindValue(':expense_category_assigned_to_user_id', $this->category, PDO::PARAM_STR);
+            $stmt->bindValue(':name', $this->category, PDO::PARAM_STR);
             $stmt->bindValue(':payment_method_assigned_to_user_id', $this->payment, PDO::PARAM_STR);
             $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
             $stmt->bindValue(':date_of_expense', $this->date, PDO::PARAM_STR);

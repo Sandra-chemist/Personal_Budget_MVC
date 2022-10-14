@@ -37,7 +37,7 @@ class Settings extends Authenticated{
 
         if ($incomeCategory->addIncomeCategory()) {
             Flash::addMessage('Kategoria przychodu została poprawnie dodana!');
-            $this->redirect('/Settings/index');
+            $this->redirect('/Settings/incomeCategories');
         } else {
             View::renderTemplate('Settings/incomeCategories.html', [
                 'incomeCategory' => $incomeCategory
@@ -50,7 +50,7 @@ class Settings extends Authenticated{
 
         if ($expenseCategory->addExpenseCategory()) {
             Flash::addMessage('Kategoria wydatku została poprawnie dodana!');
-            $this->redirect('/Settings/index');
+            $this->redirect('/Settings/expenseCategories');
         } else {
             View::renderTemplate('Settings/expenseCategories.html', [
                 'expenseCategory' => $expenseCategory
