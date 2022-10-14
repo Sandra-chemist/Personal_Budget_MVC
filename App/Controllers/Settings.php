@@ -7,6 +7,7 @@ use \App\Models\Category;
 use \App\Models\IncomeCategory;
 use \App\Models\ExpenseCategory;
 use \App\Flash;
+use \App\Models\PaymentMethod;
 
 
 class Settings extends Authenticated{
@@ -29,7 +30,10 @@ class Settings extends Authenticated{
     }
 
     public function paymentMethodsAction(){
-        View::renderTemplate('Settings/paymentMethods.html');
+        $paymentMethods = Category::getLoggedUserPaymentMethods();
+        View::renderTemplate('Settings/paymentMethods.html', [
+            'paymentMethods' => $paymentMethods
+        ]);
     }
 
     public function createIncomeCategoryAction(){
@@ -54,6 +58,19 @@ class Settings extends Authenticated{
         } else {
             View::renderTemplate('Settings/expenseCategories.html', [
                 'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
+
+    public function createPaymentMethodAction(){
+        $paymentMethod = new PaymentMethod($_POST);
+
+        if ($paymentMethod->addPaymentMethod()) {
+            Flash::addMessage('Kategoria sposobu płątności została poprawnie dodana!');
+            $this->redirect('/Settings/paymentMethods');
+        } else {
+            View::renderTemplate('Settings/paymentMethods.html', [
+                'paymentMethod' => $paymentMethod
             ]);
         }
     }
