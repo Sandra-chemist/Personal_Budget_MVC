@@ -23,18 +23,18 @@
 
 <div>
     <button type="button" class="butt icon-plus" style="width: 70px !important; margin:auto; margin-top: 20px;"
-        data-bs-toggle="modal" data-bs-target="#dateModal"></button>
+        data-bs-toggle="modal" data-bs-target="#dataModal"></button>
     <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
 </div>
 
-<div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
+<div class="modal fade" role="dialog" id="dataModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Dodaj nową kategorię</h3>
-                <button type="button" id="buttonCustomDate" data-bs-dismiss="modal" aria-label="Close">X</button>
+                <button type="button" id="buttonAddExpenseCategory" data-bs-dismiss="modal" aria-label="Close">X</button>
             </div>
-            <form method="post" action="/settings/createExpenseCategory">
+            <form method="post" action="/settings/createExpense">
                 <div class="modal-body">
                     <label for="inputDate">wprowadź nazwę kategorii:</label>
                     <div class="form-group"><input type="text" name="nameCategory"></div>
