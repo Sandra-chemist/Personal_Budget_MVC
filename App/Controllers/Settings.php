@@ -74,4 +74,17 @@ class Settings extends Authenticated{
             ]);
         }
     }
+
+    public function editIncomeCategoryAction(){
+        $incomeCategory = new IncomeCategory($_POST);
+
+        if ($incomeCategory->editIncomeCategory()) {
+            Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
+            $this->redirect('/Settings/incomeCategories');
+        } else {
+            View::renderTemplate('Settings/incomeCategories.html', [
+                'incomeCategory' => $incomeCategory
+            ]);
+        }
+    }
 }
