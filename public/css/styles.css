@@ -313,7 +313,12 @@ th {
     border-top: 3px solid #3d348b;
 }
 
-#buttonCustomDate {
+#buttonEditIncomeCategory,
+#buttonEditExpenseCategory,
+#buttonEditPaymentCategory,
+#buttonAddIncomeCategory,
+#buttonAddExpenseCategory,
+#buttonAddPaymentCategory {
     background-color: transparent !important;
     border: none;
     width: 30px;

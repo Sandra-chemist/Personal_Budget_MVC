@@ -5,10 +5,19 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Models\FinancialOperation;
 use \App\Flash;
+use App\Models\Category;
 
 class Income extends Authenticated{
+    protected function before(){
+        parent::before();
+
+        $this->incomeCategories = Category::getLoggedUserIncomeCategories();
+    }
+
     public function indexAction(){
-        View::renderTemplate('Income/index.html');
+        View::renderTemplate('Income/index.html', [
+            'incomeCategories' => $this->incomeCategories
+        ]);
     }
 
     public function createAction(){

@@ -11,30 +11,17 @@
     <div class="custom-select">
         <label for="inputCategory">Kategoria</label>
         <select name="category" id="inputCategory">
-            <option value="1">jedzenie</option>
-            <option value="2">mieszkanie</option>
-            <option value="3">transport</option>
-            <option value="4">telekomunikacja</option>
-            <option value="5">opieka zdrowotna</option>
-            <option value="6">ubrania</option>
-            <option value="7">higiena</option>
-            <option value="8">dzieci</option>
-            <option value="9">rozrywka</option>
-            <option value="10">podróże</option>
-            <option value="11">szkolenia</option>
-            <option value="12">książki</option>
-            <option value="13">oszczędności</option>
-            <option value="14">spłata długu</option>
-            <option value="15">darowizna</option>
-            <option value="16">giełda</option>
+            {% for category in expenseCategories %}
+            <option>{{ category.name }}</option>
+            {% endfor %}
         </select>
     </div>
     <div class="custom-select">
         <label for="inputPayment">Sposób płatności</label>
         <select name="payment" id="inputPayment">
-            <option value="1">gotówka</option>
-            <option value="2">karta debetowa</option>
-            <option value="3">karta kredytowa</option>
+            {% for payment in paymentMethods %}
+            <option>{{ payment.name }}</option>
+            {% endfor %}
         </select>
     </div>
     <label for="inputAmount">Kwota</label>
@@ -49,8 +36,12 @@
     <label for="inputComment">Komentarz</label>
     <div class="form-group">
         <input type="text" id="inputComment" name="comment" placeholder="(opcjonalnie)">
+        {% if financialOperation.errors is not empty %}
+        {% for error in financialOperation.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        {% endif %}
     </div>
-
     <button type="submit" class="butt icon-ok" style="width: 100px !important; height: 50px !important;"></button>
     <a href="/Menu/index"><button type="button" class="butt icon-cancel"
             style="width: 100px !important; height: 50px !important;"></button></a>
