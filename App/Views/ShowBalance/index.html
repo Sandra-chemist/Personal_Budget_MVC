@@ -219,6 +219,8 @@
 <p class="total w-75" id="totalExpense">Wydatki: {{ expenses['totalExpenseSum'] }} zł</p>
 {% endfor %}
 
+{% endif %}
+{% endif %}
 
 {% for incomes in balance.sumIncomes %}
 {% for expenses in balance.sumExpenses %}
