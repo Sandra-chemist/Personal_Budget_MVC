@@ -3,6 +3,7 @@
 {% block title %}Strona główna{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
 
 {% if current_user %}
 <h3>Witaj {{ current_user.username }}!</h3>
@@ -17,3 +18,19 @@
 {% endif %}
 
 {% endblock %}
+=======
+   
+    {% if current_user %}
+       <h3>Witaj {{ current_user.username }}!</h3>
+       <h4>Miej kontrolę nad swoimi finansami!</h4>
+
+       <img src="css/img/kotHome.jpg" class="img-fluid mx-auto" style="width: 20%; height: 20%; margin-top: 30px;"/>
+    {% else %}
+    
+        <div class="mx-auto">
+            <a href="/signup/new">Zarejestruj się</a> lub <a href="/login">Zaloguj się</a>
+        </div>
+    {% endif %}
+       
+{% endblock %}
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6

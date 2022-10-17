@@ -26,6 +26,7 @@ h3 {
     font-weight: bold;
     letter-spacing: 1px;
 }
+<<<<<<< HEAD
 
 h5 {
     font-size: 15px;
@@ -41,6 +42,16 @@ h5 {
 }
 
 .navbar {
+=======
+#budget{
+    border-bottom: 5px solid #3d348b;
+    border-top: 5px solid #3d348b;
+    padding: 25px;
+    background-color: #7678ed;
+    color: white;
+}
+.navbar{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     border-bottom: 5px solid #3d348b;
     padding: 15px;
     padding-left: 20px;
@@ -49,19 +60,31 @@ h5 {
     /* Background pattern from subtlepatterns.com */
     background-image: url('img/dot-grid.png');
 }
+<<<<<<< HEAD
 
 .navbar-toggler {
+=======
+.navbar-toggler{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     border: 3px solid #3d348b;
     width: 100px;
     height: 50px;
     margin: auto;
 }
+<<<<<<< HEAD
 
 #menu {
     margin-top: 20px;
 }
 
 button {
+=======
+#menu{
+    margin-top: 20px;
+}
+
+button{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     border-radius: 5px;
     border: 3px solid #3d348b;
     width: 220px;
@@ -71,7 +94,10 @@ button {
     margin-top: 15px;
     height: 60px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
 .butt {
     border-radius: 5px;
     border: 3px solid #3d348b;
@@ -82,6 +108,7 @@ button {
     margin-top: 25px;
     height: 60px;
 }
+<<<<<<< HEAD
 
 .btn {
     border-radius: 5px;
@@ -96,6 +123,21 @@ button {
 
 .dropdown-item {
     background-color: #7678ed !important;
+=======
+.btn{
+    border-radius: 5px;
+        border: 3px solid #3d348b;
+        width: 250px !important;
+        background-color: #7678ed;
+        color: white;
+        font-size: 22px !important;
+        margin-top: 15px;
+        height: 60px;
+}
+
+.dropdown-item{
+    background-color: #7678ed!important;
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     border: 3px solid #3d348b !important;
     color: white;
     border-radius: 5px;
@@ -128,6 +170,7 @@ select,
     padding-left: 7px;
     width: 250px;
     text-align: center;
+    color:
 }
 
 #inputEmail,
@@ -139,15 +182,20 @@ select,
     margin-right: 30px;
     text-align: center;
 }
+<<<<<<< HEAD
 #togglePassword{
     margin-left: -25px;
 }
 a {
+=======
+a{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     color: #3d348b;
     transition: all .33s ease-in-out;
     text-decoration: none;
     font-size: 25px !important;
 }
+<<<<<<< HEAD
 
 a:hover {
     color: #7678ed;
@@ -156,10 +204,19 @@ a:hover {
 button:hover,
 .btn:hover,
 .dropdown-item:hover {
+=======
+a:hover{
+    color: #7678ed;
+}
+button:hover,
+.btn:hover,
+.dropdown-item:hover{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     background-color: #9092f8 !important;
     color: white;
 }
 
+<<<<<<< HEAD
 #inputCategory,
 #inputAmount,
 #inputDate,
@@ -170,6 +227,9 @@ button:hover,
 }
 
 .form-control {
+=======
+.form-control{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     width: 250px;
     height: 40px;
     text-align: center;
@@ -248,7 +308,11 @@ button:hover,
     border-bottom: 3px solid #7b7bd2;
 }
 
+<<<<<<< HEAD
 th {
+=======
+th{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     border-bottom: 4px solid #3d348b;
     font-size: 24px;
     width: 300px;
@@ -256,39 +320,65 @@ th {
 }
 
 .summary,
+<<<<<<< HEAD
 .balance {
     font-size: 30px;
     margin-top: 30px;
     color: white;
+=======
+.balance{
+    font-size: 30px;
+    margin-top: 30px;
+    color:white;
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     background-color: #7678ed;
     border-top: 4px solid #3d348b;
     border-bottom: 4px solid #3d348b;
 }
+<<<<<<< HEAD
 
 .total {
+=======
+.total{
+    padding: 10px;
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     margin: auto;
     color: white;
     margin-bottom: 50px;
     font-size: 25px;
 }
+<<<<<<< HEAD
 
 #totalIncome {
+=======
+#totalIncome{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     border-bottom: 3px solid #094c09;
     border-top: 3px solid #094c09;
     background-color: #008000;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
 #totalExpense {
     border-bottom: 3px solid #7c0829;
     border-top: 3px solid #7c0829;
     background-color: #c9184a;
 }
+<<<<<<< HEAD
 
 .hidden {
     display: none;
 }
 
 .error {
+=======
+.hidden{
+    display: none;
+}
+.error{
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     color: rgb(226, 13, 13);
 }
 
@@ -311,6 +401,7 @@ th {
     margin-top: 40px;
     border-bottom: 3px solid #3d348b;
     border-top: 3px solid #3d348b;
+<<<<<<< HEAD
 }
 
 #buttonAddIncomeCategory,
@@ -337,3 +428,13 @@ th {
 .icon-copyright {
     font-size: 17px !important;
 }
+=======
+}
+#buttonCustomDate{
+    background-color: transparent !important;
+    border: none;
+    width: 30px;
+    margin-top: 9px;
+    color: #3d348b;
+}  
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6

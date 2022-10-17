@@ -21,11 +21,19 @@
 
         ]);
 
+<<<<<<< HEAD
     var options = {
         backgroundColor: { fill: 'transparent' },
         colors: ['#006400', '#008000', '#38b000', '#70e000', '#ccff33'],
         fontSize: 13,
     };
+=======
+        var options = {
+            backgroundColor: { fill: 'transparent' },
+             colors: ['#006400', '#008000', '#38b000', '#70e000', '#ccff33'],
+             fontSize: 13,
+        };
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
 
     var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
 
@@ -45,7 +53,11 @@
 
     var options = {
         backgroundColor: { fill: 'transparent' },
+<<<<<<< HEAD
         colors: ['#a4133c', '#c9184a', '#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#fff0f3'],
+=======
+        colors: ['#a4133c', '#c9184a', '#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#fff0f3' ],
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
         fontSize: 13,
     };
 
@@ -58,7 +70,42 @@
 {% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
 <h3>Przeglądaj bilans przychodów i wydatków</h3>
+=======
+    <h3>Przeglądaj bilans przychodów i wydatków</h3>
+   
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" required>
+            Wybierz okres czasu
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/show-balance/currentMonth">obecny miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/previousMonth">poprzedni miesiąc</a></li>
+            <li><a class="dropdown-item" href="/show-balance/currentYear">obecny rok</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#dateModal">wybierz zakres dat</a></li>
+        </ul>
+        </div>
+        <div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Wybierz zakres dat</h3>
+                        <button type="button" id="buttonCustomDate" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <form method="post" action="/show-balance/custom-period">
+                        <div class="modal-body">
+                            <label for="inputDate">zaznacz datę początkową</label>
+                            <div class="form-group"><input type="date" id="inputDate" name="startDate" value="{{ current_date }}" min="2000-01-01" required></div>
+                            <label for="inputDate">zaznacz datę końcową</label>
+                            <div class="form-group"><input type="date" id="inputDate" name="endDate" value="{{ current_date }}"min="2000-01-01" required></div>
+                        </div>
+                        <div><button type="submit" class="butt">Filtruj</button></div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
 
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -93,6 +140,7 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 
 {% if balance.detailedIncomes is not null or balance.detailedExpenses is not null %}
@@ -107,6 +155,14 @@
 
 {% if balance.detailedIncomes is not empty %}
 <div class="table-responsive-md">
+=======
+    {% if balance.detailedIncomes is empty %}
+        <div class="finance"><h4>Brak przychodów w tym okresie czasu.</h4></div>
+    {% endif %}
+    
+    {% if balance.detailedIncomes is not empty %}
+    <div class="table-responsive-md">
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     <table class="table table-hover">
         <tbody>
             <thead>
@@ -128,6 +184,7 @@
             {% endfor %}
         </tbody>
     </table>
+<<<<<<< HEAD
 </div>
 
 <div class="table-responsive-md position-relative">
@@ -167,6 +224,45 @@
 
 {% if balance.detailedExpenses is not empty %}
 <div class="table-responsive-md">
+=======
+    </div>
+
+    <div class="table-responsive-md position-relative">
+        <table class="table table-hover w-75 mx-auto">
+            <tbody>
+                <thead>
+                    <header class="sumFinance w-75 mx-auto">Podsumowanie wydatków</header>
+                    <tr>
+                        <th>Kategoria</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
+                    {% for incomes in balance.sumGroupedIncomes %}
+                    <tr>
+                        <td>{{ incomes['name'] }}</td>
+                        <td>{{ incomes['incomeSum'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mx-auto">
+     <div id="incomePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
+    </div>
+        {% for incomes in balance.sumIncomes %}
+            <p class="total w-50" id="totalIncome">Suma wszystkich przychodów: {{ incomes['totalIncomeSum'] }} zł</p>
+        {% endfor %}
+    
+    {% endif %}
+
+    {% if balance.detailedExpenses is empty %}
+        <div class="finance"><h4>Brak wydatków w tym okresie czasu.</h4></div>
+    {% endif %}
+
+    {% if balance.detailedExpenses is not empty %}
+    <div class="table-responsive-md">
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
     <table class="table table-hover">
         <tbody>
             <thead>
@@ -188,6 +284,7 @@
             {% endfor %}
         </tbody>
     </table>
+<<<<<<< HEAD
 </div>
 
 
@@ -218,9 +315,59 @@
 {% for expenses in balance.sumExpenses %}
 <p class="total w-75" id="totalExpense">Wydatki: {{ expenses['totalExpenseSum'] }} zł</p>
 {% endfor %}
+=======
+    </div>
 
-{% endif %}
-{% endif %}
+
+    <div class="table-responsive-md position-relative">
+        <table class="table table-hover w-75 mx-auto">
+            <tbody>
+                <thead>
+                    <header class="sumFinance w-75 mx-auto">Podsumowanie wydatków</header>
+                    <tr>
+                        <th>Kategoria</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
+                    {% for expenses in balance.sumGroupedExpenses %}
+                    <tr>
+                        <td>{{ expenses['name'] }}</td>
+                        <td>{{ expenses['expenseSum'] }}</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="row mx-auto">
+        <div id="expensePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
+    </div>
+    {% for expenses in balance.sumExpenses %}
+    <p class="total w-50" id="totalExpense">Suma wszystkich wydatków: {{ expenses['totalExpenseSum'] }} zł</p>
+    {% endfor %}
+    
+    {% endif %}
+    {% endif %}
+
+    {% for incomes in balance.sumIncomes %}
+    {% for expenses in balance.sumExpenses %}
+
+        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) > 0 %}
+        <div class="balance">BILANS = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotSukces.jpg" class="img-fluid mx-auto" style="width: 37%; height: 37%; margin-top: 30px;" />
+        {% endif %}
+
+
+        {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} 
+        <div class="balance">BILANS = {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>
+        <img src="/css/img/kotWydatki.jpg" class="img-fluid mx-auto" style="width: 28%; height: 28%; margin-top: 30px;" />
+        {% endif %}
+         
+    {% endfor %}
+    {% endfor %}
+>>>>>>> 56402fd9a0b441c0d795c6a8bab23284d07a7af6
+
 
 {% for incomes in balance.sumIncomes %}
 {% for expenses in balance.sumExpenses %}
