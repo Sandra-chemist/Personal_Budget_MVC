@@ -8,15 +8,13 @@ class PaymentMethod extends Category
 {
     public $errors = [];
 
-    public function __construct($data = [])
-    {
+    public function __construct($data = []){
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
 
-    public function addPaymentMethod()
-    {
+    public function addPaymentMethod(){
         $this->validate();
 
         if (empty($this->errors)) {
@@ -34,8 +32,7 @@ class PaymentMethod extends Category
         return false;
     }
 
-    public function validate()
-    {
+    public function validate(){
         if ($this->nameCategory == '') {
             $this->errors[] = 'Podaj nazwę metody płatności.';
         }
@@ -49,8 +46,7 @@ class PaymentMethod extends Category
         }
     }
 
-    public static function paymentMethodExist($nameCategory)
-    {
+    public static function paymentMethodExist($nameCategory){
         $sql = 'SELECT * FROM payment_methods_assigned_to_users 
         WHERE name = :name AND user_id = :user_id';
 

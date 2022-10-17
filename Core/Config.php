@@ -5,13 +5,13 @@ namespace App;
 class Config
 {
 
-    const DB_HOST = 'budget.sandra-skibiszewska.profesjonalnyprogramista.pl.mysql.dhosting.pl';
+    const DB_HOST = 'localhost';
 
-    const DB_NAME = 'pa9xiu_budgetsa';
+    const DB_NAME = 'mvcpersonalbudget';
 
-    const DB_USER = 'joo4om_budgetsa';
+    const DB_USER = 'mvcuser';
 
-    const DB_PASSWORD = 'zaish6Noo6ex';
+    const DB_PASSWORD = '';
 
     const SHOW_ERRORS = true;
 

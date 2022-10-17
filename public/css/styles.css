@@ -71,7 +71,6 @@ button {
     margin-top: 15px;
     height: 60px;
 }
-
 .butt {
     border-radius: 5px;
     border: 3px solid #3d348b;
@@ -128,6 +127,7 @@ select,
     padding-left: 7px;
     width: 250px;
     text-align: center;
+    color:
 }
 
 #inputEmail,
@@ -277,7 +277,6 @@ th {
     border-top: 3px solid #094c09;
     background-color: #008000;
 }
-
 #totalExpense {
     border-bottom: 3px solid #7c0829;
     border-top: 3px solid #7c0829;
@@ -311,6 +310,7 @@ th {
     margin-top: 40px;
     border-bottom: 3px solid #3d348b;
     border-top: 3px solid #3d348b;
+
 }
 
 #buttonEditIncomeCategory,
@@ -339,3 +339,12 @@ th {
 .icon-copyright {
     font-size: 17px !important;
 }
+
+#buttonCustomDate{
+    background-color: transparent !important;
+    border: none;
+    width: 30px;
+    margin-top: 9px;
+    color: #3d348b;
+}  
+

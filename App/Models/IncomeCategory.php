@@ -8,15 +8,13 @@ class IncomeCategory extends Category
 {
     public $errors = [];
 
-    public function __construct($data = [])
-    {
+    public function __construct($data = []){
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
 
-    public function addIncomeCategory()
-    {
+    public function addIncomeCategory(){
         $this->validate();
 
         if (empty($this->errors)) {
@@ -34,8 +32,7 @@ class IncomeCategory extends Category
         return false;
     }
 
-    public function validate()
-    {
+    public function validate(){
         if ($this->nameCategory == '') {
             $this->errors[] = 'Podaj nazwę kategorii.';
         }
@@ -49,8 +46,7 @@ class IncomeCategory extends Category
         }
     }
 
-    public static function categoryIncomeExist($nameCategory)
-    {
+    public static function categoryIncomeExist($nameCategory){
         $sql = 'SELECT * FROM incomes_category_assigned_to_users 
         WHERE name = :name AND user_id = :user_id';
 
@@ -65,8 +61,7 @@ class IncomeCategory extends Category
         return $stmt->fetch();
     }
 
-    public function validateNewName()
-    {
+    public function validateNewName(){
         if ($this->newNameCategory == '') {
             $this->errors[] = 'Podaj nazwę kategorii.';
         }
@@ -80,8 +75,7 @@ class IncomeCategory extends Category
         }
     }
 
-    public function editIncomeCategory()
-    {
+    public function editIncomeCategory(){
         $this->validateNewName();
 
         if (empty($this->errors)) {
@@ -94,7 +88,6 @@ class IncomeCategory extends Category
 
             $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
             $stmt->bindValue(':name', strtolower($this->newNameCategory), PDO::PARAM_STR);
-
 
             return $stmt->execute();
         }

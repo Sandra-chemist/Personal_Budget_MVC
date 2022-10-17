@@ -27,7 +27,7 @@ class Expense extends Authenticated{
 
         if ($financialOperation->saveExpense()) {
             Flash::addMessage('Wydatek został poprawnie dodany!');
-            $this->redirect('/Menu/index');
+            $this->redirect('/Expense/index');
         } else {
             View::renderTemplate('Expense/index.html', [
                 'financialOperation' => $financialOperation
