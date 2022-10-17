@@ -4,5 +4,48 @@
 
 {% block body %}
 
-<h3>Sposoby płatności</h3>
+<h3>Spsoby płatności</h3>
+
+{% if paymentMethod.errors is not empty %}
+{% for error in paymentMethod.errors %}
+<li class="error">{{ error }}</li>
+{% endfor %}
+{% endif %}
+
+{% for payment in paymentMethods %}
+<div>
+    <input type="text" value="{{ payment.name }}" disabled />
+    <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ payment.id }}"
+        category-name="{{ payment.name }}"></button>
+    <button type="button" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+</div>
+{% endfor %}
+
+<div>
+    <button type="button" class="butt icon-plus" style="width: 70px !important; margin:auto; margin-top: 20px;"
+        data-bs-toggle="modal" data-bs-target="#dateModal"></button>
+    <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
+</div>
+
+<div class="modal fade" role="dialog" id="dateModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Dodaj nowy sposób płatności</h3>
+                <button type="button" id="buttonAddPaymentCategory" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form method="post" action="/settings/createPaymentMethod">
+                <div class="modal-body">
+                    <label for="inputDate">wprowadź nazwę:</label>
+                    <div class="form-group"><input type="text" name="nameCategory"></div>
+                </div>
+                <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
+                    <a href="/Settings/paymentMethods"><button type="button" class="butt"
+                            style="width: 120px !important;">Anuluj</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
