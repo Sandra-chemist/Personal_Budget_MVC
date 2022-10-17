@@ -87,11 +87,11 @@ class IncomeCategory extends Category{
 
             $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
             $stmt->bindValue(':name', strtolower($this->newNameCategory), PDO::PARAM_STR);
+            
 
             return $stmt->execute();
         }
         return false;
-
     }
 
 }
