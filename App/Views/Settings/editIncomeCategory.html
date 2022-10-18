@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Ustawienia{% endblock %}
+
+{% block body %}
+
+<h3>Kategorie przychodów</h3>
+
+
+                 
+<p class="status"></p>
+{% for category in incomeCategories %}
+<form method="post" action="editIncomeCategory">
+    <input type="hidden" name="old_category" value="{{ category.name }}" />
+    <input type="text" name="newNameCategory" value="{{ category.name }}" minlength="3" maxlength="30" />
+    <button type="submit" id="submitBtn">zapisz</button>
+</form>
+{% endfor %}
+
+
+{% endblock %}
