@@ -76,11 +76,13 @@ class Settings extends Authenticated{
     }
 
     public function editIncomeCategoryAction(){
-        $oldCategory = $_POST['old_category'];
+        $oldCategory = $_POST['old_name_category'];
+        $oldId = $_POST['old_id_category'];
         $incomeCategory = new IncomeCategory($_POST);
-      
+      //  $incomeCategory->updateIncomesAssignedToEditedCategory($oldId);
 
         if ($incomeCategory->editIncomeCategory($oldCategory)) {
+            
             Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
             $this->redirect('/Settings/incomeCategories');
         } else {

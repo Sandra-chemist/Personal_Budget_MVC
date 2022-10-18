@@ -66,7 +66,22 @@ class IncomeCategory extends Category
             $this->errors[] = 'Już istnieje kategoria z tą nazwą.';
         }
     }
-    
+
+   /* public function updateIncomesAssignedToEditedCategory($oldId){
+        $sql = 'UPDATE incomes
+                    SET income_category_assigned_to_user_id = 
+                    WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldId';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldId', $oldId, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }*/
+
     public function editIncomeCategory($oldCategory){
         $this->validateNewName();
 
