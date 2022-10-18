@@ -10,39 +10,33 @@ use \App\Flash;
 use \App\Models\PaymentMethod;
 
 
-class Settings extends Authenticated
-{
-    public function indexAction()
-    {
+class Settings extends Authenticated{
+    public function indexAction(){
         View::renderTemplate('Settings/index.html');
     }
 
-    public function incomeCategoriesAction()
-    {
+    public function incomeCategoriesAction(){
         $incomeCategories = Category::getLoggedUserIncomeCategories();
         View::renderTemplate('Settings/incomeCategories.html', [
             'incomeCategories' => $incomeCategories
         ]);
     }
 
-    public function expenseCategoriesAction()
-    {
+    public function expenseCategoriesAction(){
         $expenseCategories = Category::getLoggedUserExpenseCategories();
         View::renderTemplate('Settings/expenseCategories.html', [
             'expenseCategories' => $expenseCategories
         ]);
     }
 
-    public function paymentMethodsAction()
-    {
+    public function paymentMethodsAction(){
         $paymentMethods = Category::getLoggedUserPaymentMethods();
         View::renderTemplate('Settings/paymentMethods.html', [
             'paymentMethods' => $paymentMethods
         ]);
     }
 
-    public function createIncomeCategoryAction()
-    {
+    public function createIncomeCategoryAction(){
         $incomeCategory = new IncomeCategory($_POST);
 
         if ($incomeCategory->addIncomeCategory()) {
@@ -55,8 +49,7 @@ class Settings extends Authenticated
         }
     }
 
-    public function createExpenseCategoryAction()
-    {
+    public function createExpenseCategoryAction(){
         $expenseCategory = new ExpenseCategory($_POST);
 
         if ($expenseCategory->addExpenseCategory()) {
@@ -69,8 +62,7 @@ class Settings extends Authenticated
         }
     }
 
-    public function createPaymentMethodAction()
-    {
+    public function createPaymentMethodAction(){
         $paymentMethod = new PaymentMethod($_POST);
 
         if ($paymentMethod->addPaymentMethod()) {
@@ -83,11 +75,12 @@ class Settings extends Authenticated
         }
     }
 
-    public function editIncomeCategoryAction()
-    {
+    public function editIncomeCategoryAction(){
+        $oldCategory = $_POST['old_category'];
         $incomeCategory = new IncomeCategory($_POST);
+      
 
-        if ($incomeCategory->editIncomeCategory()) {
+        if ($incomeCategory->editIncomeCategory($oldCategory)) {
             Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
             $this->redirect('/Settings/incomeCategories');
         } else {

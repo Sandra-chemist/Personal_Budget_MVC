@@ -14,16 +14,16 @@
 
 {% for category in incomeCategories %}
 <div>
-    <input type="text" value="{{ category.name }}" disabled />
-    <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ category.id }}"
-        category-name="{{ category.name }}" data-bs-toggle="modal" data-bs-target="#editCategoryModal"></button>
-    <button type="button" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+    <input type="text" value="{{ category.name }}" name="old_category" disabled />
 </div>
 {% endfor %}
 
 <div>
+    <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ category.id }}"
+    category-name="{{ category.name }}" data-bs-toggle="modal" data-bs-target="#editCategoryModal"></button>
     <button type="button" class="butt icon-plus" style="width: 70px !important; margin:auto; margin-top: 20px;"
         data-bs-toggle="modal" data-bs-target="#addCategoryModal"></button>
+     <button type="button" class="butt icon-trash-empty" style="width: 70px !important;"></button> 
     <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
 </div>
 
@@ -38,7 +38,12 @@
             <form method="post" action="editIncomeCategory">
                 <div class="modal-body">
                     <label for="inputDate">wprowadź nową nazwę:</label>
-                    <div class="form-group"><input type="text" name="newNameCategory"></div>
+                    {% for category in incomeCategories %}
+                    <div class="form-group">
+                        <input type="text" name="old_category" value="{{ category.name }}">
+                        <input type="text" name="newNameCategory" placeholder="wprowadź nową nazwę">
+                   </div>
+                    {% endfor %}
                 </div>
                 <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
                     <a href="/Settings/incomeCategories"><button type="button" class="butt"
@@ -47,7 +52,16 @@
             </form>
         </div>
     </div>
-</div>
+</div> 
+
+        {% for category in incomeCategories %}
+        <form method="post" action="editIncomeCategory">
+        <input type="hidden" name="old_category" value="{{ category.name }}"/>
+        <input type="text" name="newNameCategory" value="{{ category.name }}"/>
+        <button type="submit">zapisz</button>
+        </form>
+        {% endfor %}
+
 
 <div class="modal fade" role="dialog" id="addCategoryModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -70,4 +84,9 @@
     </div>
 </div>
 
+<!--<div>
+<a href="/Settings/editIncomeCategories"><button type="button" class="butt icon-pencil" style="width: 70px !important; margin:auto; margin-top: 20px;"></button></a>
+<a href="/Settings/addIncomeCategories"><button type="button" class="butt icon-plus" style="width: 70px !important; margin:auto; margin-top: 20px;"></button></a>
+<a href="/Settings/deleteIncomeCategory"><button type="button" class="butt icon-trash-empty" style="width: 70px !important; margin:auto; margin-top: 20px;"></button></a>
+</div> -->
 {% endblock %}
