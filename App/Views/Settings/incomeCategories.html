@@ -41,10 +41,10 @@
                 <h3 class="modal-title">Usuń kategorię</h3>
                 <button type="button" id="buttonDeleteIncomeCategory" data-bs-dismiss="modal" aria-label="Close">X</button>
             </div>
-            <form method="post" action="">
+            <form method="post" action="/settings/deleteIncomeCategory">
                 <div class="modal-body">
                     {% for category in incomeCategories %}
-                    <div class="form-group" "><input type="text" value="{{ category.name }}">
+                    <div class="form-group" "><input type="text" value="{{ category.name }}" name="old_name_category">
                     <button type="submit" style="width: 70px !important;" class="butt icon-cancel"></button></div>
                     {% endfor %}
                    

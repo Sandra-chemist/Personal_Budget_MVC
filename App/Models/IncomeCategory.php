@@ -67,21 +67,6 @@ class IncomeCategory extends Category
         }
     }
 
-   /* public function updateIncomesAssignedToEditedCategory($oldId){
-        $sql = 'UPDATE incomes
-                    SET income_category_assigned_to_user_id = 
-                    WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldId';
-
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
-        $stmt->bindValue(':oldId', $oldId, PDO::PARAM_INT);
-
-        return $stmt->execute();
-    }*/
-
     public function editIncomeCategory($oldCategory){
         $this->validateNewName();
 
@@ -100,5 +85,19 @@ class IncomeCategory extends Category
             return $stmt->execute();
         }
         return false;
+    }
+
+    public function deleteIncomeCategory($oldCategory){
+            $sql = 'DELETE FROM incomes_category_assigned_to_users
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+            return $stmt->execute();
+      
     }
 }

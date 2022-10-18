@@ -77,12 +77,9 @@ class Settings extends Authenticated{
 
     public function editIncomeCategoryAction(){
         $oldCategory = $_POST['old_name_category'];
-        $oldId = $_POST['old_id_category'];
         $incomeCategory = new IncomeCategory($_POST);
-      //  $incomeCategory->updateIncomesAssignedToEditedCategory($oldId);
 
-        if ($incomeCategory->editIncomeCategory($oldCategory)) {
-            
+        if ($incomeCategory->editIncomeCategory($oldCategory)) {   
             Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
             $this->redirect('/Settings/incomeCategories');
         } else {
@@ -91,4 +88,17 @@ class Settings extends Authenticated{
             ]);
         }
     }
+     public function deleteIncomeCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $incomeCategory = new IncomeCategory($_POST); 
+
+        if ($incomeCategory->deleteIncomeCategory($oldCategory)) {
+            Flash::addMessage('Kategoria została usunięta!');
+            $this->redirect('/Settings/incomeCategories');
+        } else {
+            View::renderTemplate('Settings/incomeCategories.html', [
+                'incomeCategory' => $incomeCategory
+            ]);
+        }
+     }
 }
