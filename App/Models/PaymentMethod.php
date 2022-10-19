@@ -18,7 +18,7 @@ class PaymentMethod extends Category
         $this->validate();
 
         if (empty($this->errors)) {
-            $sql = 'INSERT INTO payment_methods_assigned_to_users (user_id, name)
+            $sql = 'INSERT INTO payment_methods_assigned_to_users (user_id, namePayment)
                     VALUES (:user_id, :name)';
 
             $db = static::getDB();
@@ -48,7 +48,7 @@ class PaymentMethod extends Category
 
     public static function paymentMethodExist($nameCategory){
         $sql = 'SELECT * FROM payment_methods_assigned_to_users 
-        WHERE name = :name AND user_id = :user_id';
+        WHERE namePayment = :name AND user_id = :user_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -72,7 +72,7 @@ class PaymentMethod extends Category
 
         if (empty($this->errors)) {
             $sql = 'UPDATE payment_methods_assigned_to_users
-                    SET name = :name
+                    SET namePayment = :name
                     WHERE user_id = :user_id AND name = :oldNameCategory';
 
             $db = static::getDB();
@@ -89,7 +89,7 @@ class PaymentMethod extends Category
 
     public static function deletePaymentMethod($oldCategory){
         $sql = 'DELETE FROM payment_methods_assigned_to_users
-                    WHERE user_id = :user_id AND name = :oldNameCategory';
+                    WHERE user_id = :user_id AND namePayment = :oldNameCategory';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

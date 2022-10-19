@@ -38,7 +38,7 @@
 <div id="formPayment">
     <div id="editPayment">
         <form method="post" action="/settings/editPaymentMethod">
-            <input type="text" name="old_name_category" value="{{ payment.name }}" />
+            <input type="text" name="old_name_category" value="{{ payment.namePayment }}" />
             <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
                 maxlength="30" required />
             <button type="submit" class="butt">zmień nazwę</button>
@@ -48,7 +48,7 @@
     <div id="deletePayment">
         <form method="post" action="/settings/deletePaymentMethod">
             <input type="hidden" name="old_id_category" value="{{ payment.id }}" />
-            <input type="hidden" name="old_name_category" value="{{ payment.name }}" />
+            <input type="hidden" name="old_name_category" value="{{ payment.namePayment }}" />
             <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
         </form>
     </div>

@@ -47,8 +47,8 @@ class ShowBalance extends Authenticated{
             'balance' => $currentYear
         ]);
     }
-    public function customPeriodAction()
-    {
+
+    public function customPeriodAction(){
         $customPeriod = new Balance($_POST);
 
         $customPeriod->getcustomPeriodData();
