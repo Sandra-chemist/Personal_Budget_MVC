@@ -100,7 +100,7 @@ class PaymentMethod extends Category
         return $stmt->execute();
     }
 
-    public static function deleteExoenseAssignedToDeletedPaymentMethod($oldIdCategory){
+    public static function deleteExpenseAssignedToDeletedPaymentMethod($oldIdCategory){
         $sql = 'DELETE FROM expenses
                     WHERE user_id = :user_id AND payment_method_assigned_to_user_id = :oldIdCategory';
 
