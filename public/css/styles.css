@@ -318,7 +318,10 @@ th {
 #buttonEditPaymentCategory,
 #buttonAddIncomeCategory,
 #buttonAddExpenseCategory,
-#buttonAddPaymentCategory {
+#buttonAddPaymentMethod,
+#buttonDeleteIncomeCategory,
+#buttonDeleteExpenseCategory,
+#buttonDeletePaymentMethod {
     background-color: transparent !important;
     border: none;
     width: 30px;
@@ -340,11 +343,13 @@ th {
     font-size: 17px !important;
 }
 
-#buttonCustomDate{
-    background-color: transparent !important;
-    border: none;
-    width: 30px;
-    margin-top: 9px;
-    color: #3d348b;
-}  
+#editIncome,
+#deleteIncome,
+#editExpense,
+#deleteExpense,
+#editPayment,
+#deletePayment{
+    display: inline-block;
+}
+
 

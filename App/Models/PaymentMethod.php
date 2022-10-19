@@ -18,7 +18,7 @@ class PaymentMethod extends Category
         $this->validate();
 
         if (empty($this->errors)) {
-            $sql = 'INSERT INTO payment_methods_assigned_to_users (user_id, name)
+            $sql = 'INSERT INTO payment_methods_assigned_to_users (user_id, namePayment)
                     VALUES (:user_id, :name)';
 
             $db = static::getDB();
@@ -48,7 +48,7 @@ class PaymentMethod extends Category
 
     public static function paymentMethodExist($nameCategory){
         $sql = 'SELECT * FROM payment_methods_assigned_to_users 
-        WHERE name = :name AND user_id = :user_id';
+        WHERE namePayment = :name AND user_id = :user_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -59,5 +59,57 @@ class PaymentMethod extends Category
         $stmt->execute();
 
         return $stmt->fetch();
+    }
+
+    public function validateNewName(){
+        if (static::paymentMethodExist($this->newNameCategory)) {
+            $this->errors[] = 'Już istnieje sposób płatności z tą nazwą.';
+        }
+    }
+
+    public function editPaymentMethod($oldCategory){
+        $this->validateNewName();
+
+        if (empty($this->errors)) {
+            $sql = 'UPDATE payment_methods_assigned_to_users
+                    SET namePayment = :name
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':name', strtolower($this->newNameCategory), PDO::PARAM_STR);
+            $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        }
+        return false;
+    }
+
+    public static function deletePaymentMethod($oldCategory){
+        $sql = 'DELETE FROM payment_methods_assigned_to_users
+                    WHERE user_id = :user_id AND namePayment = :oldNameCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }
+
+    public static function deleteExpenseAssignedToDeletedPaymentMethod($oldIdCategory){
+        $sql = 'DELETE FROM expenses
+                    WHERE user_id = :user_id AND payment_method_assigned_to_user_id = :oldIdCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldIdCategory', $oldIdCategory, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 }

@@ -38,7 +38,7 @@ class Category extends \core\Model{
     }
 
     public static function getLoggedUserPaymentMethods(){
-        $sql = "SELECT id, name FROM payment_methods_assigned_to_users WHERE user_id = :user_id";
+        $sql = "SELECT id, namePayment FROM payment_methods_assigned_to_users WHERE user_id = :user_id";
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

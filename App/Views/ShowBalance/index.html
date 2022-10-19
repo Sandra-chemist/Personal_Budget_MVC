@@ -175,6 +175,7 @@
                     <th class="category">Kategoria</th>
                     <th class="date">Data</th>
                     <th class="amount">Kwota PLN</th>
+                    <th class="payment">Sposób płatności</th>
                     <th class="comment">Komentarz</th>
                 </tr>
             </thead>
@@ -183,6 +184,7 @@
                 <td class="category">{{ expenses['name'] }}</td>
                 <td class="date">{{ expenses['date_of_expense'] }}</td>
                 <td class="amount">{{ expenses['amount'] }}</td>
+                <td class="payment">{{ expenses['namePayment'] }}</td>
                 <td class="comment">{{ expenses['expense_comment'] }}</td>
             </tr>
             {% endfor %}

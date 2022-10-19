@@ -66,7 +66,7 @@ class Settings extends Authenticated{
         $paymentMethod = new PaymentMethod($_POST);
 
         if ($paymentMethod->addPaymentMethod()) {
-            Flash::addMessage('Kategoria sposobu płątności została poprawnie dodana!');
+            Flash::addMessage('Sposób płatności został poprawnie dodany!');
             $this->redirect('/Settings/paymentMethods');
         } else {
             View::renderTemplate('Settings/paymentMethods.html', [
@@ -76,16 +76,88 @@ class Settings extends Authenticated{
     }
 
     public function editIncomeCategoryAction(){
-        $oldCategory = $_POST['old_category'];
+        $oldCategory = $_POST['old_name_category'];
         $incomeCategory = new IncomeCategory($_POST);
-      
 
-        if ($incomeCategory->editIncomeCategory($oldCategory)) {
+        if ($incomeCategory->editIncomeCategory($oldCategory)) {   
             Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
             $this->redirect('/Settings/incomeCategories');
         } else {
             View::renderTemplate('Settings/incomeCategories.html', [
                 'incomeCategory' => $incomeCategory
+            ]);
+        }
+    }
+
+     public function deleteIncomeCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $oldIdCategory = $_POST['old_id_category'];
+        $incomeCategory = new IncomeCategory($_POST);
+      
+        if ($incomeCategory->deleteIncomeCategory($oldCategory) && $incomeCategory->deleteIncomesAssignedToDeletedCategory($oldIdCategory)) {
+            Flash::addMessage('Kategoria oraz przychody tej kategorii zostały usunięte!');
+            $this->redirect('/Settings/incomeCategories');
+        } else {
+            View::renderTemplate('Settings/incomeCategories.html', [
+                'incomeCategory' => $incomeCategory
+            ]);
+        }
+    }
+
+    public function editExpenseCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $expenseCategory = new ExpenseCategory($_POST);
+
+        if ($expenseCategory->editExpenseCategory($oldCategory)) {
+            Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
+            $this->redirect('/Settings/expenseCategories');
+        } else {
+            View::renderTemplate('Settings/expenseCategories.html', [
+                'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
+
+    public function deleteExpenseCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $oldIdCategory = $_POST['old_id_category'];
+        $expenseCategory = new ExpenseCategory($_POST);
+
+        if ($expenseCategory->deleteExpenseCategory($oldCategory) && $expenseCategory->deleteExpensesAssignedToDeletedCategory($oldIdCategory)) {
+            Flash::addMessage('Kategoria oraz wydatki tej kategorii zostały usunięte!');
+            $this->redirect('/Settings/expenseCategories');
+        } else {
+            View::renderTemplate('Settings/expenseCategories.html', [
+                'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
+
+    public function editPaymentMethodAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $paymentMethod = new PaymentMethod($_POST);
+
+        if ($paymentMethod->editPaymentMethod($oldCategory)) {
+            Flash::addMessage('Nazwa sposobu płatności została poprawnie zmieniona!');
+            $this->redirect('/Settings/paymentMethods');
+        } else {
+            View::renderTemplate('Settings/paymentMethods.html', [
+                'paymentMethod' => $paymentMethod
+            ]);
+        }
+    }
+
+    public function deletePaymentMethodAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $oldIdCategory = $_POST['old_id_category'];
+        $paymentMethod = new PaymentMethod($_POST);
+
+        if ($paymentMethod->deletePaymentMethod($oldCategory) && $paymentMethod->deleteExpenseAssignedToDeletedPaymentMethod($oldIdCategory)) {
+            Flash::addMessage('Sposób płatności oraz wydatki przypisane do tej kategorii zostały usunięte!');
+            $this->redirect('/Settings/paymentMethods');
+        } else {
+            View::renderTemplate('Settings/paymentMethods.html', [
+                'paymentMethody' => $paymentMethod
             ]);
         }
     }

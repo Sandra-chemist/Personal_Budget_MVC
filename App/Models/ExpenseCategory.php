@@ -8,15 +8,13 @@ class ExpenseCategory extends Category
 {
     public $errors = [];
 
-    public function __construct($data = [])
-    {
+    public function __construct($data = []){
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
 
-    public function addExpenseCategory()
-    {
+    public function addExpenseCategory(){
         $this->validate();
 
         if (empty($this->errors)) {
@@ -34,8 +32,7 @@ class ExpenseCategory extends Category
         return false;
     }
 
-    public function validate()
-    {
+    public function validate(){
         if ($this->nameCategory == '') {
             $this->errors[] = 'Podaj nazwę kategorii.';
         }
@@ -49,9 +46,8 @@ class ExpenseCategory extends Category
         }
     }
 
-    public static function categoryExpenseExist($nameCategory)
-    {
-        $sql = 'SELECT * FROM incomes_category_assigned_to_users 
+    public static function categoryExpenseExist($nameCategory){
+        $sql = 'SELECT * FROM expenses_category_assigned_to_users 
         WHERE name = :name AND user_id = :user_id';
 
         $db = static::getDB();
@@ -64,4 +60,61 @@ class ExpenseCategory extends Category
 
         return $stmt->fetch();
     }
+
+     public function validateNewName(){
+        if (static::categoryExpenseExist($this->newNameCategory)) {
+            $this->errors[] = 'Już istnieje kategoria z tą nazwą.';
+        }
+    }
+
+    public function editExpenseCategory($oldCategory){
+        $this->validateNewName();
+
+        if (empty($this->errors)) {
+            $sql = 'UPDATE expenses_category_assigned_to_users
+                    SET name = :name
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':name', strtolower($this->newNameCategory), PDO::PARAM_STR);
+            $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        }
+        return false;
+    }
+
+    public static function deleteExpenseCategory($oldCategory){
+        $sql = 'DELETE FROM expenses_category_assigned_to_users
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }
+
+    public static function deleteExpensesAssignedToDeletedCategory($oldIdCategory){
+        $sql = 'DELETE FROM expenses
+                    WHERE user_id = :user_id AND expense_category_assigned_to_user_id = :oldIdCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldIdCategory', $oldIdCategory, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+
+
+
+
 }

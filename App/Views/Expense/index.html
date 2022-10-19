@@ -20,7 +20,7 @@
         <label for="inputPayment">Sposób płatności</label>
         <select name="payment" id="inputPayment">
             {% for payment in paymentMethods %}
-            <option>{{ payment.name }}</option>
+            <option>{{ payment.namePayment }}</option>
             {% endfor %}
         </select>
     </div>

@@ -12,22 +12,7 @@
 {% endfor %}
 {% endif %}
 
-{% for category in expenseCategories %}
-<div>
-    <input type="text" value="{{ category.name }}" disabled />
-    <button type="button" class="butt icon-pencil" style="width: 70px !important;" category-id="{{ category.id }}"
-        category-name="{{ category.name }}"></button>
-    <button type="button" class="butt icon-trash-empty" style="width: 70px !important;"></button>
-</div>
-{% endfor %}
-
-<div>
-    <button type="button" class="butt icon-plus" style="width: 70px !important; margin:auto; margin-top: 20px;"
-        data-bs-toggle="modal" data-bs-target="#dataModal"></button>
-    <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
-</div>
-
-<div class="modal fade" role="dialog" id="dataModal" aria-hidden="true">
+<div class="modal fade" role="dialog" id="addExpenseCategoryModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -35,10 +20,10 @@
                 <button type="button" id="buttonAddExpenseCategory" data-bs-dismiss="modal"
                     aria-label="Close">X</button>
             </div>
-            <form method="post" action="/settings/createExpense">
+            <form method="post" action="/settings/createExpenseCategory">
                 <div class="modal-body">
                     <label for="inputDate">wprowadź nazwę kategorii:</label>
-                    <div class="form-group"><input type="text" name="nameCategory"></div>
+                    <div class="form-group"><input type="text" name="nameCategory" minlength="3" maxlength="30" required></div>
                 </div>
                 <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
                     <a href="/Settings/expenseCategories"><button type="button" class="butt"
@@ -47,6 +32,34 @@
             </form>
         </div>
     </div>
+</div>
+
+{% for category in expenseCategories %}
+<div id="formExpense">
+    <div id="editExpense">
+        <form method="post" action="/settings/editExpenseCategory">
+            <input type="text" name="old_name_category" value="{{ category.name }}" />
+            <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3" maxlength="30" required/>
+            <button type="submit" class="butt">zmień nazwę</button>
+        </form>
+    </div>
+
+    <div id="deleteExpense">
+        <form method="post" action="/settings/deleteExpenseCategory">
+            <input type="hidden" name="old_id_category" value="{{ category.id }}" />
+            <input type="hidden" name="old_name_category" value="{{ category.name }}" />
+            <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+        </form>
+    </div>
+</div>
+
+{% endfor %}
+
+
+<div>
+    <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
+        data-bs-target="#addExpenseCategoryModal"></button>
+    <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
 </div>
 
 {% endblock %}

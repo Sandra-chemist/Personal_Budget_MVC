@@ -328,8 +328,8 @@ class User extends \Core\Model{
         $user =  static::findByEmail($this->email);
         $email = $user->email;
 
-        $sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) 
-                SELECT users.id, payment_methods_default.name 
+        $sql = "INSERT INTO payment_methods_assigned_to_users (user_id, namePayment) 
+                SELECT users.id, payment_methods_default.namePayment 
                 FROM payment_methods_default, users WHERE email = '$email'";
 
         $db = static::getDB();

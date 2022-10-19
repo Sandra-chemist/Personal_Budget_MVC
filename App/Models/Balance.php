@@ -73,10 +73,13 @@ class Balance extends \Core\Model{
     }
 
     protected function getAllExpenses(){
-        $sql = 'SELECT name, date_of_expense, amount, expense_comment
-                FROM expenses, expenses_category_assigned_to_users WHERE expenses.user_id = :user_id 
+        $sql = 'SELECT name, date_of_expense, amount, expense_comment, namePayment
+                FROM expenses, expenses_category_assigned_to_users, payment_methods_assigned_to_users 
+                WHERE expenses.user_id = :user_id 
                 AND expenses.user_id = expenses_category_assigned_to_users.user_id
                 AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id 
+                AND expenses.user_id = payment_methods_assigned_to_users.user_id
+                AND expenses.payment_method_assigned_to_user_id = payment_methods_assigned_to_users.id
                 AND date_of_expense BETWEEN :startDate AND :endDate
                 ORDER BY date_of_expense ASC, name';
 
@@ -93,14 +96,14 @@ class Balance extends \Core\Model{
     }
 
     protected function groupedIncomes(){
-        $sqlIncome = 'SELECT name, SUM(amount) AS incomeSum FROM incomes, incomes_category_assigned_to_users
+        $sql = 'SELECT name, SUM(amount) AS incomeSum FROM incomes, incomes_category_assigned_to_users
                 WHERE incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id
                 AND incomes.user_id = :user_id AND incomes.user_id = incomes_category_assigned_to_users.user_id 
                 AND incomes.date_of_income BETWEEN :startDate AND :endDate
                 GROUP BY income_category_assigned_to_user_id ORDER BY incomeSum DESC';
 
         $db = static::getDB();
-        $stmt = $db->prepare($sqlIncome);
+        $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);

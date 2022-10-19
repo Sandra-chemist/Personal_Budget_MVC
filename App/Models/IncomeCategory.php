@@ -62,33 +62,10 @@ class IncomeCategory extends Category
     }
 
     public function validateNewName(){
-        if ($this->newNameCategory == '') {
-            $this->errors[] = 'Podaj nazwę kategorii.';
-        }
         if (static::categoryIncomeExist($this->newNameCategory)) {
             $this->errors[] = 'Już istnieje kategoria z tą nazwą.';
         }
-        if (isset($this->newNameCategory)) {
-            if (strlen($this->newNameCategory) < 3 || strlen($this->newNameCategory) > 30) {
-                $this->errors[] = 'Nazwa powinna zawierać od 3 do 30 znaków.';
-            }
-        }
     }
-
-    /*protected function getIdIncomeCategory(){
-        $sql = "SELECT id FROM incomes_category_assigned_to_users 
-                WHERE user_id = :user_id AND name = :name";
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
-        $stmt->bindParam(':name', $this->newNameCategory, PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }*/
 
     public function editIncomeCategory($oldCategory){
         $this->validateNewName();
@@ -109,4 +86,32 @@ class IncomeCategory extends Category
         }
         return false;
     }
+
+    public static function deleteIncomeCategory($oldCategory){
+            $sql = 'DELETE FROM incomes_category_assigned_to_users
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+            
+            return $stmt->execute();
+      
+    }
+
+    public static function deleteIncomesAssignedToDeletedCategory($oldIdCategory){
+        $sql = 'DELETE FROM incomes
+                    WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldIdCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldIdCategory', $oldIdCategory, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
 }
