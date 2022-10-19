@@ -146,4 +146,19 @@ class Settings extends Authenticated{
             ]);
         }
     }
+
+    public function deletePaymentMethodAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $oldIdCategory = $_POST['old_id_category'];
+        $paymentMethod = new PaymentMethod($_POST);
+
+        if ($paymentMethod->deletePaymentMethod($oldCategory) && $paymentMethod->deleteExpenseAssignedToDeletedPaymentMethod($oldIdCategory)) {
+            Flash::addMessage('Sposób płatności oraz wydatki przypisane do tej kategorii zostały usunięte!');
+            $this->redirect('/Settings/paymentMethods');
+        } else {
+            View::renderTemplate('Settings/paymentMethods.html', [
+                'paymentMethody' => $paymentMethod
+            ]);
+        }
+    }
 }

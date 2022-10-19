@@ -37,16 +37,24 @@
 {% for payment in paymentMethods %}
 <div id="formPayment">
     <div id="editPayment">
-        <form method="post" action="">
+        <form method="post" action="/settings/editPaymentMethod">
             <input type="text" name="old_name_category" value="{{ payment.name }}" />
             <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
                 maxlength="30" required />
             <button type="submit" class="butt">zmień nazwę</button>
         </form>
     </div>
+
+    <div id="deletePayment">
+        <form method="post" action="">
+            <input type="hidden" name="old_id_category" value="{{ payment.id }}" />
+            <input type="hidden" name="old_name_category" value="{{ payment.name }}" />
+            <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+        </form>
+    </div>
+    </div>
+
 {% endfor %}
-
-
 
 <div>
     <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"

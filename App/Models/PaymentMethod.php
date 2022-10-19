@@ -86,4 +86,30 @@ class PaymentMethod extends Category
         }
         return false;
     }
+
+    public static function deletePaymentMethod($oldCategory){
+        $sql = 'DELETE FROM payment_methods_assigned_to_users
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }
+
+    public static function deleteExoenseAssignedToDeletedPaymentMethod($oldIdCategory){
+        $sql = 'DELETE FROM expenses
+                    WHERE user_id = :user_id AND payment_method_assigned_to_user_id = :oldIdCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldIdCategory', $oldIdCategory, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 }
