@@ -34,42 +34,31 @@
     </div>
 </div>
 
-<div class="modal fade" role="dialog" id="deleteCategoryModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Usuń kategorię</h3>
-                <button type="button" id="buttonDeleteIncomeCategory" data-bs-dismiss="modal" aria-label="Close">X</button>
-            </div>
-            <form method="post" action="/settings/deleteIncomeCategory">
-                <div class="modal-body">
-                    {% for category in incomeCategories %}
-                    <div class="form-group" "><input type="text" value="{{ category.name }}" name="old_name_category">
-                    <button type="submit" style="width: 70px !important;" class="butt icon-cancel"></button></div>
-                    {% endfor %}
-                   
-                    <a href="/Settings/incomeCategories"><button type="button" class="butt"
-                            style="width: 120px !important;">Anuluj</button></a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
         {% for category in incomeCategories %}
+        <div id="formIncome">
+        <div id="editIncome">
         <form method="post" action="editIncomeCategory">
-            <input name="old_id_category" value="{{ category.id }}" />
+           <!-- <input name="old_id_category" value="{{ category.id }}" /> -->
             <input type="text" name="old_name_category" value="{{ category.name }}" />
             <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3" maxlength="30" required/>
             <button type="submit" class="butt">zmień nazwę</button>
         </form>
+        </div>
+    
+        <div id="deleteIncome">
+        <form method="post" action="/settings/deleteIncomeCategory">
+            <input type="hidden" name="old_category" value="{{ category.name }}" />
+            <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+        </form>
+        </div>
+        </div>
+     
         {% endfor %}
 
 
 <div>
     <button type="button" class="butt icon-plus" style="width: 70px !important;"
         data-bs-toggle="modal" data-bs-target="#addCategoryModal"></button>
-    <button type="button" class="butt icon-trash-empty" style="width: 70px !important;" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"></button>
     <a href="/Settings/index"><button type="button" class="btn-primary"
             style="width: 120px;">Cofnij</button></a>
 </div>

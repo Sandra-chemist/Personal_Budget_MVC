@@ -96,8 +96,21 @@ class IncomeCategory extends Category
 
             $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
             $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
-
+            
             return $stmt->execute();
       
     }
+
+   /* public function deleteIncomesAssignedToDeletedCategory($oldId){
+        $sql = 'DELETE FROM incomes
+                    WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldIdCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldIdCategory', $oldId, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }*/
 }

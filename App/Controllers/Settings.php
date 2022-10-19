@@ -89,9 +89,9 @@ class Settings extends Authenticated{
         }
     }
      public function deleteIncomeCategoryAction(){
-        $oldCategory = $_POST['old_name_category'];
-        $incomeCategory = new IncomeCategory($_POST); 
-
+        $oldCategory = $_POST['old_category'];
+        $incomeCategory = new IncomeCategory($_POST);
+      
         if ($incomeCategory->deleteIncomeCategory($oldCategory)) {
             Flash::addMessage('Kategoria została usunięta!');
             $this->redirect('/Settings/incomeCategories');
