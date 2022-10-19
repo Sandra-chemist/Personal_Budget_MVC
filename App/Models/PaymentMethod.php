@@ -60,4 +60,30 @@ class PaymentMethod extends Category
 
         return $stmt->fetch();
     }
+
+    public function validateNewName(){
+        if (static::paymentMethodExist($this->newNameCategory)) {
+            $this->errors[] = 'Już istnieje sposób płatności z tą nazwą.';
+        }
+    }
+
+    public function editPaymentMethod($oldCategory){
+        $this->validateNewName();
+
+        if (empty($this->errors)) {
+            $sql = 'UPDATE payment_methods_assigned_to_users
+                    SET name = :name
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':name', strtolower($this->newNameCategory), PDO::PARAM_STR);
+            $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        }
+        return false;
+    }
 }

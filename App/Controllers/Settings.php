@@ -132,4 +132,18 @@ class Settings extends Authenticated{
             ]);
         }
     }
+
+    public function editPaymentMethodAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $paymentMethod = new PaymentMethod($_POST);
+
+        if ($paymentMethod->editPaymentMethod($oldCategory)) {
+            Flash::addMessage('Nazwa sposobu płatności została poprawnie zmieniona!');
+            $this->redirect('/Settings/paymentMethods');
+        } else {
+            View::renderTemplate('Settings/paymentMethods.html', [
+                'paymentMethod' => $paymentMethod
+            ]);
+        }
+    }
 }
