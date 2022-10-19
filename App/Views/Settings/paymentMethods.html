@@ -34,6 +34,20 @@
     </div>
 </div>
 
+{% for payment in paymentMethods %}
+<div id="formPayment">
+    <div id="editPayment">
+        <form method="post" action="">
+            <input type="text" name="old_name_category" value="{{ payment.name }}" />
+            <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
+                maxlength="30" required />
+            <button type="submit" class="butt">zmień nazwę</button>
+        </form>
+    </div>
+{% endfor %}
+
+
+
 <div>
     <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
         data-bs-target="#addPaymentModal"></button>
