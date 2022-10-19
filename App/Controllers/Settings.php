@@ -66,7 +66,7 @@ class Settings extends Authenticated{
         $paymentMethod = new PaymentMethod($_POST);
 
         if ($paymentMethod->addPaymentMethod()) {
-            Flash::addMessage('Kategoria sposobu płątności została poprawnie dodana!');
+            Flash::addMessage('Sposób płatności został poprawnie dodany!');
             $this->redirect('/Settings/paymentMethods');
         } else {
             View::renderTemplate('Settings/paymentMethods.html', [

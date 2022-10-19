@@ -318,10 +318,10 @@ th {
 #buttonEditPaymentCategory,
 #buttonAddIncomeCategory,
 #buttonAddExpenseCategory,
-#buttonAddPaymentCategory,
+#buttonAddPaymentMethod,
 #buttonDeleteIncomeCategory,
 #buttonDeleteExpenseCategory,
-#buttonDeletePaymentCategory {
+#buttonDeletePaymentMethod {
     background-color: transparent !important;
     border: none;
     width: 30px;
