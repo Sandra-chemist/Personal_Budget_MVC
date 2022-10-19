@@ -94,13 +94,13 @@ class Settings extends Authenticated{
         $oldIdCategory = $_POST['old_id_category'];
         $incomeCategory = new IncomeCategory($_POST);
       
-            if ($incomeCategory->deleteIncomeCategory($oldCategory) && $incomeCategory->deleteIncomesAssignedToDeletedCategory($oldIdCategory)) {
-                Flash::addMessage('Kategoria oraz przychody tej kategori zostały usunięte!');
-                $this->redirect('/Settings/incomeCategories');
-            } else {
-              View::renderTemplate('Settings/incomeCategories.html', [
-                  'incomeCategory' => $incomeCategory
-             ]);
+        if ($incomeCategory->deleteIncomeCategory($oldCategory) && $incomeCategory->deleteIncomesAssignedToDeletedCategory($oldIdCategory)) {
+            Flash::addMessage('Kategoria oraz przychody tej kategorii zostały usunięte!');
+            $this->redirect('/Settings/incomeCategories');
+        } else {
+            View::renderTemplate('Settings/incomeCategories.html', [
+                'incomeCategory' => $incomeCategory
+            ]);
         }
     }
 
@@ -124,7 +124,7 @@ class Settings extends Authenticated{
         $expenseCategory = new ExpenseCategory($_POST);
 
         if ($expenseCategory->deleteExpenseCategory($oldCategory) && $expenseCategory->deleteExpensesAssignedToDeletedCategory($oldIdCategory)) {
-            Flash::addMessage('Kategoria oraz wydatki tej kategori zostały usunięte!');
+            Flash::addMessage('Kategoria oraz wydatki tej kategorii zostały usunięte!');
             $this->redirect('/Settings/expenseCategories');
         } else {
             View::renderTemplate('Settings/expenseCategories.html', [
