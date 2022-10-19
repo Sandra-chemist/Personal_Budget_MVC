@@ -344,7 +344,9 @@ th {
 }
 
 #editIncome,
-#deleteIncome{
+#deleteIncome,
+#editExpense,
+#deleteExpense{
     display: inline-block;
 }
 

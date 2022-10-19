@@ -88,6 +88,7 @@ class Settings extends Authenticated{
             ]);
         }
     }
+
      public function deleteIncomeCategoryAction(){
         $oldCategory = $_POST['old_category'];
         $oldIdCategory = $_POST['old_id_category'];
