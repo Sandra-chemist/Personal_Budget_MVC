@@ -37,7 +37,7 @@
 {% for category in expenseCategories %}
 <div id="formExpense">
     <div id="editExpense">
-        <form method="post" action="editExpesneCategory">
+        <form method="post" action="/settings/editExpenseCategory">
             <input type="text" name="old_name_category" value="{{ category.name }}" />
             <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
                 maxlength="30" required />

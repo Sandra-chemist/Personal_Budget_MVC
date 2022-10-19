@@ -104,5 +104,18 @@ class Settings extends Authenticated{
         }
     }
 
+    public function editExpenseCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $expenseCategory = new ExpenseCategory($_POST);
+
+        if ($expenseCategory->editExpenseCategory($oldCategory)) {
+            Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
+            $this->redirect('/Settings/expenseCategories');
+        } else {
+            View::renderTemplate('Settings/expenseCategories.html', [
+                'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
 
 }
