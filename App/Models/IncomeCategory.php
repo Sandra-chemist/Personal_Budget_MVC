@@ -87,7 +87,7 @@ class IncomeCategory extends Category
         return false;
     }
 
-    public function deleteIncomeCategory($oldCategory){
+    public static function deleteIncomeCategory($oldCategory){
             $sql = 'DELETE FROM incomes_category_assigned_to_users
                     WHERE user_id = :user_id AND name = :oldNameCategory';
 
@@ -101,7 +101,7 @@ class IncomeCategory extends Category
       
     }
 
-   /* public function deleteIncomesAssignedToDeletedCategory($oldId){
+    public static function deleteIncomesAssignedToDeletedCategory($oldIdCategory){
         $sql = 'DELETE FROM incomes
                     WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldIdCategory';
 
@@ -109,8 +109,9 @@ class IncomeCategory extends Category
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
-        $stmt->bindValue(':oldIdCategory', $oldId, PDO::PARAM_STR);
+        $stmt->bindValue(':oldIdCategory', $oldIdCategory, PDO::PARAM_INT);
 
         return $stmt->execute();
-    }*/
+    }
+
 }

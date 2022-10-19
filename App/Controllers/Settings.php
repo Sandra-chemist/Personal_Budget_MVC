@@ -90,15 +90,18 @@ class Settings extends Authenticated{
     }
      public function deleteIncomeCategoryAction(){
         $oldCategory = $_POST['old_category'];
+        $oldIdCategory = $_POST['old_id_category'];
         $incomeCategory = new IncomeCategory($_POST);
       
-        if ($incomeCategory->deleteIncomeCategory($oldCategory)) {
-            Flash::addMessage('Kategoria została usunięta!');
-            $this->redirect('/Settings/incomeCategories');
-        } else {
-            View::renderTemplate('Settings/incomeCategories.html', [
-                'incomeCategory' => $incomeCategory
-            ]);
+            if ($incomeCategory->deleteIncomeCategory($oldCategory) && $incomeCategory->deleteIncomesAssignedToDeletedCategory($oldIdCategory)) {
+                Flash::addMessage('Kategoria oraz przychody tej kategori zostały usunięte!');
+                $this->redirect('/Settings/incomeCategories');
+            } else {
+              View::renderTemplate('Settings/incomeCategories.html', [
+                  'incomeCategory' => $incomeCategory
+             ]);
         }
-     }
+    }
+
+
 }
