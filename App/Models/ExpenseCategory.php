@@ -87,6 +87,34 @@ class ExpenseCategory extends Category
         return false;
     }
 
+    public static function deleteExpenseCategory($oldCategory){
+        $sql = 'DELETE FROM expenses_category_assigned_to_users
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }
+
+    public static function deleteExpensesAssignedToDeletedCategory($oldIdCategory){
+        $sql = 'DELETE FROM expenses
+                    WHERE user_id = :user_id AND expense_category_assigned_to_user_id = :oldIdCategory';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':oldIdCategory', $oldIdCategory, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+
+
 
 
 }

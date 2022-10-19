@@ -23,7 +23,7 @@
             <form method="post" action="/settings/createIncomeCategory">
                 <div class="modal-body">
                     <label for="inputDate">wprowadź nazwę kategorii:</label>
-                    <div class="form-group"><input type="text" name="nameCategory"></div>
+                    <div class="form-group"><input type="text" name="nameCategory" minlength="3" maxlength="30" required ></div>
                 </div>
                 <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
                     <a href="/Settings/incomeCategories"><button type="button" class="butt"
@@ -39,8 +39,7 @@
     <div id="editIncome">
         <form method="post" action="editIncomeCategory">
             <input type="text" name="old_name_category" value="{{ category.name }}" />
-            <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
-                maxlength="30" required />
+            <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3" maxlength="30" required />
             <button type="submit" class="butt">zmień nazwę</button>
         </form>
     </div>
@@ -48,7 +47,7 @@
     <div id="deleteIncome">
         <form method="post" action="/settings/deleteIncomeCategory">
             <input type="hidden" name="old_id_category" value="{{ category.id }}" />
-            <input type="hidden" name="old_category" value="{{ category.name }}" />
+            <input type="hidden" name="old_name_category" value="{{ category.name }}" />
             <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
         </form>
     </div>

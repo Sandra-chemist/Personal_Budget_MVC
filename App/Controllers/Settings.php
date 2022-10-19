@@ -90,7 +90,7 @@ class Settings extends Authenticated{
     }
 
      public function deleteIncomeCategoryAction(){
-        $oldCategory = $_POST['old_category'];
+        $oldCategory = $_POST['old_name_category'];
         $oldIdCategory = $_POST['old_id_category'];
         $incomeCategory = new IncomeCategory($_POST);
       
@@ -118,4 +118,18 @@ class Settings extends Authenticated{
         }
     }
 
+    public function deleteExpenseCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $oldIdCategory = $_POST['old_id_category'];
+        $expenseCategory = new ExpenseCategory($_POST);
+
+        if ($expenseCategory->deleteExpenseCategory($oldCategory) && $expenseCategory->deleteExpensesAssignedToDeletedCategory($oldIdCategory)) {
+            Flash::addMessage('Kategoria oraz wydatki tej kategori zostały usunięte!');
+            $this->redirect('/Settings/expenseCategories');
+        } else {
+            View::renderTemplate('Settings/expenseCategories.html', [
+                'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
 }
