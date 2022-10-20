@@ -39,20 +39,22 @@
 <div id="formExpense">
     <div id="editExpense">
         <form method="post" action="/settings/editExpenseCategory">
-            <input type="text" name="old_name_category" value="{{ category.name }}" />
+            <input type="text" name="old_name_category" value="{{ category.name }}" disabled/>
             <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3" maxlength="30" required/>
-            <button type="submit" class="butt">zmień nazwę</button>
+            <button type="submit" class="butt" style="width: 130px !important;">zmień nazwę</button>
         </form>
     </div>
 
         <div id="editExpense">
             <form method="post" action="/settings/setLimitExpenseCategory">
                 <input type="hidden" name="old_name_category" value="{{ category.name }}" />
+                <input type="text" value="{{ category.monthly_limit }}" style="width: 100px;" disabled/>
                 <input type="number" name="limit" placeholder="wprowadź limit wydatków" min="0" step="1" required>
-                <button type="submit" class="butt" style="width: 100px;">ustaw limit</button>
+                <button type="submit" class="butt" style="width: 130px !important;">ustaw limit</button>
             </form>
         </div>
 
+ 
     <div id="deleteExpense">
         <form method="post" action="/settings/deleteExpenseCategory">
             <input type="hidden" name="old_id_category" value="{{ category.id }}" />
