@@ -12,6 +12,7 @@
 {% endfor %}
 {% endif %}
 
+
 <div class="modal fade" role="dialog" id="addExpenseCategoryModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -28,6 +29,32 @@
                 <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
                     <a href="/Settings/expenseCategories"><button type="button" class="butt"
                             style="width: 120px !important;">Anuluj</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" role="dialog" id="addLimitExpenseCategoryModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ustaw miesięczny litmit wydatków</h3>
+                <button type="button" id="buttonAddLimitExpenseCategory" data-bs-dismiss="modal"
+                    aria-label="Close">X</button>
+            </div>
+            <form method="post" action="">
+                <div class="modal-body">
+                <div>
+                    {% for category in expenseCategories %}
+                    <input type="text" name="old_name_category" value="{{ category.name }}" />
+                    <input type="number" name="limit" placeholder="wprowadź kwotę" min="0" step="1">
+                    <p><button type="submit" class="butt icon-ok" style="width: 100px !important; height: 50px !important;"></button>
+                    <a href="/Settings/expenseCategories"><button type="button" class="butt icon-cancel" style="width: 100px !important; height: 50px !important;"></button></a>
+                    </p>
+                    {% endfor %}
+                </div>
                 </div>
             </form>
         </div>
@@ -59,7 +86,11 @@
 <div>
     <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
         data-bs-target="#addExpenseCategoryModal"></button>
-    <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
+    <button type="button" class="butt " data-bs-toggle="modal"
+        data-bs-target="#addLimitExpenseCategoryModal">ustaw limity</button>
+    <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">cofnij</button></a>
 </div>
 
+
+    
 {% endblock %}
