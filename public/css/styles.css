@@ -321,8 +321,7 @@ th {
 #buttonAddPaymentMethod,
 #buttonDeleteIncomeCategory,
 #buttonDeleteExpenseCategory,
-#buttonDeletePaymentMethod,
-#buttonAddLimitExpenseCategory {
+#buttonDeletePaymentMethod{
     background-color: transparent !important;
     border: none;
     width: 30px;
