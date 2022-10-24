@@ -2,28 +2,36 @@
 
 {% block title %}Zaloguj się{% endblock %}
 
+{% block footer %}
+<script src="/js/showHidePassword.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+{% endblock %}
+
 {% block body %}
 
-    <h3>Zaloguj się</h3>
+<h3>Zaloguj się</h3>
 
-    <form action="/login/create" method="post">
-        <div class="form-group">
-            <label for="inputEmail"><i class="icon-mail-alt"></i></label>
-            <input type="email" id="inputEmail" name="email" placeholder="e-mail" autofocus value="{{ email }}" class="form"/>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword"><i class="icon-lock"></i></label>
-            <input type="password" id="inputPassword" name="password" placeholder="hasło" class="form"/>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox", name="remember_me" {% if remember_me %} checked="checked"{% endif %}/>Zpamiętaj mnie
-            </label>
-        </div>
-        <p><a href="/password/forgot">Zapomniałeś hasła?</a></p>
-        <button type="submit" class="btn-primary" style="width: 120px;">Zaloguj</button>
-        <a href="/"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
-       
-    </form>
+<form action="/login/create" method="post">
+    <div class="form-group">
+        <label for="inputEmail"><i class="icon-mail-alt"></i></label>
+        <input type="email" id="inputEmail" name="email" placeholder="e-mail" autofocus value="{{ email }}"
+            class="form" />
+    </div>
+    <div class="form-group">
+        <label for="inputPassword"><i class="icon-lock"></i></label>
+        <input type="password" id="inputPassword" name="password" placeholder="hasło" class="form">
+        <i class="fa-solid fa-eye-slash" id="show-password"></i>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" , name="remember_me" {% if remember_me %} checked="checked" {% endif %} />Zpamiętaj
+            mnie
+        </label>
+    </div>
+    <p><a href="/password/forgot">Zapomniałeś hasła?</a></p>
+    <button type="submit" class="btn-primary" style="width: 120px;">Zaloguj</button>
+    <a href="/"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
+
+</form>
 
 {% endblock %}

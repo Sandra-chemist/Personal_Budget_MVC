@@ -13,6 +13,8 @@ session_start();
 $router = new Core\Router();
 
 // Add the routes
+$router->add('api/limit/{category}', ['controller' => 'Expesne', 'action' => 'limit']);
+
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login', ['controller' => 'Login', 'action' => 'new']);
 $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);

@@ -13,7 +13,7 @@
 
     function drawIncomeChart() {
 
-        var incomeData = google.visualization.arrayToDataTable([
+        const incomeData = google.visualization.arrayToDataTable([
             ['Kategoria', 'Kwota'],
             {% for incomes in balance.sumGroupedIncomes %}
     ['{{incomes.name}}', {{ incomes.incomeSum | number_format(2, '.', '') }}],
@@ -21,7 +21,7 @@
 
         ]);
 
-    var options = {
+    const optionsIncome = {
         backgroundColor: { fill: 'transparent' },
         colors: ['#006400', '#008000', '#38b000', '#70e000', '#ccff33'],
         fontSize: 13,
@@ -29,12 +29,12 @@
 
     var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
 
-    chart.draw(incomeData, options);
+    chart.draw(incomeData, optionsIncome);
     }
 
     function drawExpenseChart() {
 
-        var expenseData = google.visualization.arrayToDataTable([
+        const expenseData = google.visualization.arrayToDataTable([
             ['Kategoria', 'Kwota'],
 
             {% for expenses in balance.sumGroupedExpenses %}
@@ -43,7 +43,7 @@
 
         ]);
 
-    var options = {
+    const optionsExpense = {
         backgroundColor: { fill: 'transparent' },
         colors: ['#a4133c', '#c9184a', '#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#fff0f3'],
         fontSize: 13,
@@ -51,7 +51,7 @@
 
     var chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
 
-    chart.draw(expenseData, options);
+    chart.draw(expenseData, optionsExpesne);
     }
 </script>
 

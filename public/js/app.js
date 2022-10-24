@@ -1,17 +1,24 @@
-$.validator.addMethod('validPassword',
-    function (value, element, param) {
+const categoryOption = document.querySelector('select[name="category"]');
+const limit = document.querySelector('#limit');
 
-        if (value != '') {
-            if (value.match(/.*[a-z]+.*/i) == null) {
-                return false;
-            }
-            if (value.match(/.*\d+.*/) == null) {
-                return false;
-            }
-        }
+/*chooser.addEventListener("change", function () {
+    if (chooser.value) {
+        limit.classList.remove("hidden");
+    } else {
+        limit.classList.add("hidden");
+    }
+});
 
-        return true;
-    },
-    'Musi posiadać co najmniej jedną literę i jedną cyfrę.'
-);
+const getLimitForCategory = async (category) => {
+    try {
+        const resolve = await fetch['/api/limit/$(category)'];
+    } catch (e) {
+        console.log('ERROR');
+    }
+}
 
+categoryField.addEventListener('change', async() =>{
+    const category = categoryField.options[categoryField.selectedIndex].value;
+})
+*/
+console.log('name');
