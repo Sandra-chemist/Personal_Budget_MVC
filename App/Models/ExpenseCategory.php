@@ -130,7 +130,7 @@ class ExpenseCategory extends Category
         
     }
 
-    /*public static function getLimitExpenseCategory($category){
+    public static function getLimitExpenseCategory($category){
         $sql = 'SELECT monthly_limit FROM expenses_category_assigned_to_users 
                     WHERE user_id = :user_id AND name = :name';
 
@@ -143,6 +143,6 @@ class ExpenseCategory extends Category
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }*/
+    }
 
 }

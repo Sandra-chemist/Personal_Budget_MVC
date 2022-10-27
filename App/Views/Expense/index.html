@@ -10,9 +10,7 @@
 
 <h3>Dodaj wydatek</h3>
 
-<!--<div id="limit" class="hidden">
-    Miesięczny limit to: 
-</div>-->
+<div class="monthlyLimit hidden"></div>
 
 <form method="post" action="/expense/create">
     <label for="inputCategory">Kategoria</label>
@@ -51,8 +49,6 @@
         {% endfor %}
         {% endif %}
     </div>
-
-
 
     <button type="submit" class="butt icon-ok" style="width: 100px !important; height: 50px !important;"></button>
     <a href="/Menu/index"><button type="button" class="butt icon-cancel"
