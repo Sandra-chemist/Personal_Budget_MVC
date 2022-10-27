@@ -6,6 +6,7 @@ use \Core\View;
 use \App\Models\FinancialOperation;
 use \App\Flash;
 use \App\Models\Category;
+use App\Models\ExpenseCategory;
 
 class Expense extends Authenticated{
     protected function before(){
@@ -33,5 +34,11 @@ class Expense extends Authenticated{
                 'financialOperation' => $financialOperation
             ]);
         }
+    }
+
+    public function limitAction(){
+        $category = $_POST['category'];
+        
+        echo json_encode(ExpenseCategory::getLimitExpenseCategory($category), JSON_UNESCAPED_UNICODE);
     }
 }

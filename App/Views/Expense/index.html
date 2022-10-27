@@ -3,19 +3,26 @@
 {% block title %}Dodaj wydatek{% endblock %}
 {% block footer %}
 <script src="/js/customSelect.js"></script>
+<script src="/js/app.js"></script>
 
 {% endblock %}
 {% block body %}
+
 <h3>Dodaj wydatek</h3>
+
+<div class="monthlyLimit hidden"></div>
+
 <form method="post" action="/expense/create">
-    <div class="custom-select">
-        <label for="inputCategory">Kategoria</label>
+    <label for="inputCategory">Kategoria</label>
+    <div>
         <select name="category" id="inputCategory">
+            <option value="">wybierz kategorię</option>
             {% for category in expenseCategories %}
             <option>{{ category.name }}</option>
             {% endfor %}
         </select>
     </div>
+
     <div class="custom-select">
         <label for="inputPayment">Sposób płatności</label>
         <select name="payment" id="inputPayment">

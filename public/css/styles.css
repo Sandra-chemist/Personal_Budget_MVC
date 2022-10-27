@@ -1,163 +1,160 @@
 body {
-    margin-top: 3em;
-    font-family: 'Darker Grotesque', sans-serif;
-    color: #3c3c40;
-    font-size: 20px;
-    /* Background pattern from subtlepatterns.com */
-    background-image: url('img/dot-grid.png');
-
+	margin-top: 3em;
+	font-family: 'Darker Grotesque', sans-serif;
+	color: #3c3c40;
+	font-size: 20px;
+	/* Background pattern from subtlepatterns.com */
+	background-image: url('img/dot-grid.png');
 }
 
 h1,
 h2 {
-    font-family: 'Libre Bodoni', serif !important;
+	font-family: 'Libre Bodoni', serif !important;
 }
 
 h1 {
-    font-size: 40px;
+	font-size: 40px;
 }
 
 h2 {
-    font-size: 25px;
+	font-size: 25px;
 }
 
 h3 {
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 1px;
+	font-size: 30px;
+	font-weight: bold;
+	letter-spacing: 1px;
 }
 
 h5 {
-    font-size: 15px;
-    text-align: center;
+	font-size: 15px;
+	text-align: center;
 }
 
 #budget {
-    border-bottom: 5px solid #3d348b;
-    border-top: 5px solid #3d348b;
-    padding: 25px;
-    background-color: #7678ed;
-    color: white;
+	border-bottom: 5px solid #3d348b;
+	border-top: 5px solid #3d348b;
+	padding: 25px;
+	background-color: #7678ed;
+	color: white;
 }
 
 .navbar {
-    border-bottom: 5px solid #3d348b;
-    padding: 15px;
-    padding-left: 20px;
-    padding-right: 35px;
-    margin-bottom: 20px;
-    /* Background pattern from subtlepatterns.com */
-    background-image: url('img/dot-grid.png');
+	border-bottom: 5px solid #3d348b;
+	padding: 15px;
+	padding-left: 20px;
+	padding-right: 35px;
+	margin-bottom: 20px;
+	/* Background pattern from subtlepatterns.com */
+	background-image: url('img/dot-grid.png');
 }
 
 .navbar-toggler {
-    border: 3px solid #3d348b;
-    width: 100px;
-    height: 50px;
-    margin: auto;
+	border: 3px solid #3d348b;
+	width: 100px;
+	height: 50px;
+	margin: auto;
 }
 
 #menu {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 button {
-    border-radius: 5px;
-    border: 3px solid #3d348b;
-    width: 220px;
-    background-color: #7678ed;
-    color: white;
-    font-size: 22px !important;
-    margin-top: 15px;
-    height: 60px;
+	border-radius: 5px;
+	border: 3px solid #3d348b;
+	width: 220px;
+	background-color: #7678ed;
+	color: white;
+	font-size: 22px !important;
+	margin-top: 15px;
+	height: 60px;
 }
 .butt {
-    border-radius: 5px;
-    border: 3px solid #3d348b;
-    width: 180px !important;
-    background-color: #7678ed;
-    color: white;
-    font-size: 22px !important;
-    margin-top: 25px;
-    height: 60px;
+	border-radius: 5px;
+	border: 3px solid #3d348b;
+	width: 180px !important;
+	background-color: #7678ed;
+	color: white;
+	font-size: 22px !important;
+	margin-top: 25px;
+	height: 60px;
 }
 
 .btn {
-    border-radius: 5px;
-    border: 3px solid #3d348b;
-    width: 250px !important;
-    background-color: #7678ed;
-    color: white;
-    font-size: 22px !important;
-    margin-top: 15px;
-    height: 60px;
+	border-radius: 5px;
+	border: 3px solid #3d348b;
+	width: 250px !important;
+	background-color: #7678ed;
+	color: white;
+	font-size: 22px !important;
+	margin-top: 15px;
+	height: 60px;
 }
 
 .dropdown-item {
-    background-color: #7678ed !important;
-    border: 3px solid #3d348b !important;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 5px;
-    width: 250px;
+	background-color: #7678ed !important;
+	border: 3px solid #3d348b !important;
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+	margin-bottom: 5px;
+	width: 250px;
 }
 
 .dropdown-item {
-    font-size: 22px !important;
-    height: 55px;
-    margin-bottom: 10px;
+	font-size: 22px !important;
+	height: 55px;
+	margin-bottom: 10px;
 }
 
-input[type=text],
-input[type=date],
-input[type=number] {
-    height: 55px;
+input[type='text'],
+input[type='date'],
+input[type='number'],
+select {
+	height: 55px;
 }
 
-input[type=text],
-input[type=date],
-input[type=number],
+input[type='text'],
+input[type='date'],
+input[type='number'],
 select,
 .form {
-    background-color: #bfbffa;
-    border-radius: 5px;
-    border-color: #3d348b transparent transparent transparent;
-    padding: 3px;
-    padding-left: 7px;
-    width: 250px;
-    text-align: center;
-    color:
+	background-color: #bfbffa;
+	border-radius: 5px;
+	border-color: #3d348b transparent transparent transparent;
+	padding: 3px;
+	padding-left: 7px;
+	width: 250px;
+	text-align: center;
+	color: ;
 }
 
 #inputEmail,
 #inputName,
 #inputPassword {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    height: 50px;
-    margin-right: 30px;
-    text-align: center;
-}
-#togglePassword{
-    margin-left: -25px;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	height: 50px;
+	margin-right: 30px;
+	text-align: center;
 }
 a {
-    color: #3d348b;
-    transition: all .33s ease-in-out;
-    text-decoration: none;
-    font-size: 25px !important;
+	color: #3d348b;
+	transition: all 0.33s ease-in-out;
+	text-decoration: none;
+	font-size: 25px !important;
 }
 
 a:hover {
-    color: #7678ed;
+	color: #7678ed;
 }
 
 button:hover,
 .btn:hover,
 .dropdown-item:hover {
-    background-color: #9092f8 !important;
-    color: white;
+	background-color: #9092f8 !important;
+	color: white;
 }
 
 #inputCategory,
@@ -165,152 +162,151 @@ button:hover,
 #inputDate,
 #inputComment,
 #inputPayment {
-    text-align: center !important;
-    color: #6f6f76 !important;
+	text-align: center !important;
+	color: #6f6f76 !important;
 }
 
 .form-control {
-    width: 250px;
-    height: 40px;
-    text-align: center;
-    margin: auto;
+	width: 250px;
+	height: 40px;
+	text-align: center;
+	margin: auto;
 }
 
 .custom-select {
-    position: relative;
-    width: 250px;
-    margin: auto;
+	position: relative;
+	width: 250px;
+	margin: auto;
 }
 
 .custom-select select {
-    display: none;
+	display: none;
 }
 
 .select-selected {
-    background-color: #bfbffa;
-    color: #29282f !important;
+	background-color: #bfbffa;
+	color: #29282f !important;
 }
 
 .select-selected:after {
-    position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
+	position: absolute;
+	content: '';
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
 }
 
 .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    top: 7px;
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
 }
 
 .select-items div,
 .select-selected {
-    color: #29282f !important;
-    padding: 8px 16px;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    border-color: #3d348b transparent transparent transparent;
-    cursor: pointer;
-    width: 250px;
-    margin: auto;
+	color: #29282f !important;
+	padding: 8px 16px;
+	border: 2px solid transparent;
+	border-radius: 5px;
+	border-color: #3d348b transparent transparent transparent;
+	cursor: pointer;
+	width: 250px;
+	margin: auto;
 }
 
 .select-items {
-    position: absolute;
-    background-color: #bfbffa;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
+	position: absolute;
+	background-color: #bfbffa;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
 }
 
 .select-hide {
-    display: none;
+	display: none;
 }
 
 .select-items div:hover,
 .same-as-selected {
-    background-color: #8d8de8;
+	background-color: #8d8de8;
 }
 
 .modal-content {
-    background-color: white;
-    border: 3px solid #7b7bd2;
-    margin-top: 310px;
+	background-color: white;
+	border: 3px solid #7b7bd2;
+	margin-top: 310px;
 }
 
 .modal-header {
-    margin: auto;
-    border-bottom: 3px solid #7b7bd2;
+	margin: auto;
+	border-bottom: 3px solid #7b7bd2;
 }
 
 th {
-    border-bottom: 4px solid #3d348b;
-    font-size: 24px;
-    width: 300px;
-    padding: 10px;
+	border-bottom: 4px solid #3d348b;
+	font-size: 24px;
+	width: 300px;
+	padding: 10px;
 }
 
 .summary,
 .balance {
-    font-size: 30px;
-    margin-top: 30px;
-    color: white;
-    background-color: #7678ed;
-    border-top: 4px solid #3d348b;
-    border-bottom: 4px solid #3d348b;
+	font-size: 30px;
+	margin-top: 30px;
+	color: white;
+	background-color: #7678ed;
+	border-top: 4px solid #3d348b;
+	border-bottom: 4px solid #3d348b;
 }
 
 .total {
-    margin: auto;
-    color: white;
-    margin-bottom: 50px;
-    font-size: 25px;
+	margin: auto;
+	color: white;
+	margin-bottom: 50px;
+	font-size: 25px;
 }
 
 #totalIncome {
-    border-bottom: 3px solid #094c09;
-    border-top: 3px solid #094c09;
-    background-color: #008000;
+	border-bottom: 3px solid #094c09;
+	border-top: 3px solid #094c09;
+	background-color: #008000;
 }
 #totalExpense {
-    border-bottom: 3px solid #7c0829;
-    border-top: 3px solid #7c0829;
-    background-color: #c9184a;
+	border-bottom: 3px solid #7c0829;
+	border-top: 3px solid #7c0829;
+	background-color: #c9184a;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .error {
-    color: rgb(226, 13, 13);
+	color: rgb(226, 13, 13);
 }
 
 #periodTime {
-    color: #7b7bd2;
-    font-size: 27px;
+	color: #7b7bd2;
+	font-size: 27px;
 }
 
 .finance {
-    margin-top: 25px;
+	margin-top: 25px;
 }
 
 .block {
-    width: auto;
-    margin: auto;
+	width: auto;
+	margin: auto;
 }
 
 .sumFinance {
-    font-size: 30px;
-    margin-top: 40px;
-    border-bottom: 3px solid #3d348b;
-    border-top: 3px solid #3d348b;
-
+	font-size: 30px;
+	margin-top: 40px;
+	border-bottom: 3px solid #3d348b;
+	border-top: 3px solid #3d348b;
 }
 
 #buttonEditIncomeCategory,
@@ -322,25 +318,26 @@ th {
 #buttonDeleteIncomeCategory,
 #buttonDeleteExpenseCategory,
 #buttonDeletePaymentMethod {
-    background-color: transparent !important;
-    border: none;
-    width: 30px;
-    margin-top: 9px;
-    color: #3d348b;
+	background-color: transparent !important;
+	border: none;
+	width: 30px;
+	margin-top: 9px;
+	color: #3d348b;
 }
 
 .icon-money,
 .icon-basket,
 .icon-chart-pie,
 .icon-cog-alt {
-    padding: 10px;
-    text-align: center;
-    font-size: 25px !important;
-    margin-left: -50px;
+	padding: 10px;
+	text-align: center;
+	font-size: 25px !important;
+	margin-left: -50px;
+	color: #3d348b;
 }
 
 .icon-copyright {
-    font-size: 17px !important;
+	font-size: 17px !important;
 }
 
 #editIncome,
@@ -348,8 +345,31 @@ th {
 #editExpense,
 #deleteExpense,
 #editPayment,
-#deletePayment{
-    display: inline-block;
+#deletePayment {
+	display: inline-block;
 }
 
-
+.option {
+	border-radius: 5px;
+}
+#inputPassword {
+	position: relative;
+	left: 10px;
+}
+.fa-eye-slash {
+	position: relative;
+	right: 60px;
+	cursor: pointer;
+	color: #3d348b;
+	font-size: 18px;
+}
+.icon-lock {
+	position: relative;
+	left: 15px;
+	font-size: 25px;
+	color: #3d348b;
+}
+.icon-user,
+.icon-mail-alt {
+	color: #3d348b;
+}

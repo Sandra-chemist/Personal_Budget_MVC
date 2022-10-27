@@ -4,39 +4,42 @@
 
 {% block footer %}
 <script src="/js/showHidePassword.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 {% endblock %}
 
 {% block body %}
 
-<h3>Rejestracja</h3>
+<h3>Rejestracja</h3>\
 
 {% if user.errors is not empty %}
-    {% for error in user.errors %}
-    <li class="error">{{ error }}</li>
-    {% endfor %}
+{% for error in user.errors %}
+<li class="error">{{ error }}</li>
+{% endfor %}
 {% endif %}
 
 <form method="post" action="/signup/create" id="formSignup">
 
     <div>
         <label for="inputName"><i class="icon-user"></i></label>
-        <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}" required class="form"/>
+        <input id="inputName" name="username" placeholder="imię" autofocus value="{{ user.username }}" required
+            class="form" />
     </div>
     <div>
         <label for="inputEmail"><i class="icon-mail-alt"></i></label>
-        <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required
-            type="email" class="form" />
+        <input id="inputEmail" name="email" placeholder="e-mail" value="{{ user.email }}" required type="email"
+            class="form" />
     </div>
     <div>
         <label for="inputPassword"><i class="icon-lock"></i></label>
-        <input type="password" name="password" id="inputPassword" placeholder="hasło" value="{{ user.password }}" class="form" required/>
-        <i class="bi bi-eye-slash" id="togglePassword"></i>
+        <input type="password" id="inputPassword" name="password" placeholder="hasło" class="form">
+        <i class="fa-solid fa-eye-slash" id="show-password"></i>
+
     </div>
     <button type="submit" class="btn-primary" style="width: 120px;">Zarejestruj</button>
     <a href="/"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
 
 </form>
+
 
 {% endblock %}

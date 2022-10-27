@@ -61,7 +61,7 @@ class ExpenseCategory extends Category
         return $stmt->fetch();
     }
 
-     public function validateNewName(){
+    public function validateNewName(){
         if (static::categoryExpenseExist($this->newNameCategory)) {
             $this->errors[] = 'Już istnieje kategoria z tą nazwą.';
         }
@@ -114,7 +114,35 @@ class ExpenseCategory extends Category
     }
 
 
+    public function setLimitExpenseCategory($oldCategory){
+            $sql = 'UPDATE expenses_category_assigned_to_users 
+                    SET monthly_limit = :limit
+                    WHERE user_id = :user_id AND name = :oldNameCategory';
 
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
+            $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':limit', $this->limit, PDO::PARAM_INT);
+            $stmt->bindValue(':oldNameCategory', $oldCategory, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        
+    }
+
+    public static function getLimitExpenseCategory($category){
+        $sql = 'SELECT monthly_limit FROM expenses_category_assigned_to_users 
+                    WHERE user_id = :user_id AND name = :name';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':name', $category, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 }

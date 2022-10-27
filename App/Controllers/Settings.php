@@ -161,4 +161,18 @@ class Settings extends Authenticated{
             ]);
         }
     }
+
+    public function setLimitExpenseCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $expenseCategory = new ExpenseCategory($_POST);
+
+        if ($expenseCategory->setLimitExpenseCategory($oldCategory)) {
+            Flash::addMessage('Limit wydatków tej kategorii został ustawiony!');
+            $this->redirect('/Settings/expenseCategories');
+        } else {
+            View::renderTemplate('Settings/expenseCategories.html', [
+                'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
 }

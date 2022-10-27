@@ -25,7 +25,7 @@ class Category extends \core\Model{
     }
 
     public static function getLoggedUserExpenseCategories(){
-        $sql = "SELECT id, name FROM expenses_category_assigned_to_users WHERE user_id = :user_id";
+        $sql = "SELECT id, name, monthly_limit FROM expenses_category_assigned_to_users WHERE user_id = :user_id";
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
