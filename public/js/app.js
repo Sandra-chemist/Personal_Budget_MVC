@@ -8,7 +8,7 @@ categoryField.addEventListener('change', function () {
 
 		monthlyLimit.textContent = `Miesięczny limit dla kategorii "${category}" to:`;
 
-		/*fetch('api/limit')
+		/*fetch('/api/limit')
 			.then(res => res.json())
 			.then(data => console.log(data))
 			.catch(err => console.log(err));*/
