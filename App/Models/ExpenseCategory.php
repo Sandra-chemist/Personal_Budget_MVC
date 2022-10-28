@@ -144,4 +144,23 @@ class ExpenseCategory extends Category
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getMonthlySumCategory(){
+        $sql = 'SELECT name, date_of_expense, amount
+        FROM expenses, expenses_category_assigned_to_users
+        WHERE expenses.user_id = :user_id 
+        AND expenses.user_id = expenses_category_assigned_to_users.user_id
+        AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+     //   $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
+      //  $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
 }
