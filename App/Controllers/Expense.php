@@ -36,9 +36,7 @@ class Expense extends Authenticated{
         }
     }
 
-    public function limitAction(){
-        $category = $_POST['category'];
-        
-        echo json_encode(ExpenseCategory::getLimitExpenseCategory($category), JSON_UNESCAPED_UNICODE);
+    public function limitAction(){        
+        echo json_encode(ExpenseCategory::getLimitExpenseCategory(), JSON_UNESCAPED_UNICODE);
     }
 }
