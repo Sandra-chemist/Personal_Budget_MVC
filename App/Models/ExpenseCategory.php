@@ -149,7 +149,8 @@ class ExpenseCategory extends Category
         FROM expenses, expenses_category_assigned_to_users
         WHERE expenses.user_id = :user_id 
         AND expenses.user_id = expenses_category_assigned_to_users.user_id
-        AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id';
+        AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
+        ORDER BY date_of_expense ASC, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
