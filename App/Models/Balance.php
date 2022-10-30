@@ -170,6 +170,4 @@ class Balance extends \Core\Model{
 
         $this->sumExpenses = $stmt->fetchAll();
     }
-
-
 }

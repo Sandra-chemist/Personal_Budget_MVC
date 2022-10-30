@@ -7,7 +7,6 @@ use \App\Models\User;
 use \App\Auth;
 use \App\Flash;
 
-
 class Login extends \Core\Controller{
    public function newAction(){
       View::renderTemplate('Login/new.html');

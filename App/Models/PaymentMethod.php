@@ -4,8 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class PaymentMethod extends Category
-{
+class PaymentMethod extends Category{
     public $errors = [];
 
     public function __construct($data = []){
@@ -48,7 +47,7 @@ class PaymentMethod extends Category
 
     public static function paymentMethodExist($nameCategory){
         $sql = 'SELECT * FROM payment_methods_assigned_to_users 
-        WHERE namePayment = :name AND user_id = :user_id';
+                WHERE namePayment = :name AND user_id = :user_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -73,7 +72,7 @@ class PaymentMethod extends Category
         if (empty($this->errors)) {
             $sql = 'UPDATE payment_methods_assigned_to_users
                     SET namePayment = :name
-                    WHERE user_id = :user_id AND name = :oldNameCategory';
+                    WHERE user_id = :user_id AND namePayment = :oldNameCategory';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -89,7 +88,7 @@ class PaymentMethod extends Category
 
     public static function deletePaymentMethod($oldCategory){
         $sql = 'DELETE FROM payment_methods_assigned_to_users
-                    WHERE user_id = :user_id AND namePayment = :oldNameCategory';
+                WHERE user_id = :user_id AND namePayment = :oldNameCategory';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -102,7 +101,7 @@ class PaymentMethod extends Category
 
     public static function deleteExpenseAssignedToDeletedPaymentMethod($oldIdCategory){
         $sql = 'DELETE FROM expenses
-                    WHERE user_id = :user_id AND payment_method_assigned_to_user_id = :oldIdCategory';
+                WHERE user_id = :user_id AND payment_method_assigned_to_user_id = :oldIdCategory';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

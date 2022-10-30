@@ -49,6 +49,4 @@ class Category extends \core\Model{
 
         return $stmt->fetchAll();
     } 
-
-    
 }

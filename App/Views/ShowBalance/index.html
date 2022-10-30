@@ -3,11 +3,11 @@
 {% block title %}Bilans{% endblock %}
 
 {% block footer %}
-</nav>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
+
     google.charts.setOnLoadCallback(drawIncomeChart);
     google.charts.setOnLoadCallback(drawExpenseChart);
 
@@ -27,7 +27,7 @@
         fontSize: 13,
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
+    const chart = new google.visualization.PieChart(document.getElementById('incomePiechart'));
 
     chart.draw(incomeData, optionsIncome);
     }
@@ -49,9 +49,9 @@
         fontSize: 13,
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
+    const chart = new google.visualization.PieChart(document.getElementById('expensePiechart'));
 
-    chart.draw(expenseData, optionsExpesne);
+    chart.draw(expenseData, optionsExpense);
     }
 </script>
 
@@ -192,7 +192,6 @@
     </table>
 </div>
 
-
 <div class="table-responsive-md position-relative">
     <table class="table table-hover w-75 mx-auto">
         <tbody>
@@ -213,7 +212,6 @@
     </table>
 </div>
 
-
 <div class="row mx-auto">
     <div id="expensePiechart" style="width: 700px; height: 400px; margin: auto;"></div>
 </div>
@@ -232,7 +230,6 @@
 <img src="/css/img/kotSukces.jpg" class="img-fluid mx-auto"
     style="width: 450px; height: 330px; margin-top: 30px; margin-bottom: 10px;" />
 {% endif %}
-
 
 {% if (incomes['totalIncomeSum'] - expenses['totalExpenseSum']) < 0 %} <div class="balance">BILANS =
     {{(incomes['totalIncomeSum'] - expenses['totalExpenseSum'])|number_format(2)}}</div>

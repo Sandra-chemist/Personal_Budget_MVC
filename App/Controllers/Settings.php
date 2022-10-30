@@ -9,7 +9,6 @@ use \App\Models\ExpenseCategory;
 use \App\Flash;
 use \App\Models\PaymentMethod;
 
-
 class Settings extends Authenticated{
     public function indexAction(){
         View::renderTemplate('Settings/index.html');
@@ -89,7 +88,21 @@ class Settings extends Authenticated{
         }
     }
 
-     public function deleteIncomeCategoryAction(){
+    public function editExpenseCategoryAction(){
+        $oldCategory = $_POST['old_name_category'];
+        $expenseCategory = new ExpenseCategory($_POST);
+
+        if ($expenseCategory->editExpenseCategory($oldCategory)) {
+            Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
+            $this->redirect('/Settings/expenseCategories');
+        } else {
+            View::renderTemplate('Settings/expenseCategories.html', [
+                'expenseCategory' => $expenseCategory
+            ]);
+        }
+    }
+
+    public function deleteIncomeCategoryAction(){
         $oldCategory = $_POST['old_name_category'];
         $oldIdCategory = $_POST['old_id_category'];
         $incomeCategory = new IncomeCategory($_POST);
@@ -104,16 +117,16 @@ class Settings extends Authenticated{
         }
     }
 
-    public function editExpenseCategoryAction(){
+    public function editPaymentMethodAction(){
         $oldCategory = $_POST['old_name_category'];
-        $expenseCategory = new ExpenseCategory($_POST);
+        $paymentMethod = new PaymentMethod($_POST);
 
-        if ($expenseCategory->editExpenseCategory($oldCategory)) {
-            Flash::addMessage('Nazwa kategorii została poprawnie zmieniona!');
-            $this->redirect('/Settings/expenseCategories');
+        if ($paymentMethod->editPaymentMethod($oldCategory)) {
+            Flash::addMessage('Nazwa sposobu płatności została poprawnie zmieniona!');
+            $this->redirect('/Settings/paymentMethods');
         } else {
-            View::renderTemplate('Settings/expenseCategories.html', [
-                'expenseCategory' => $expenseCategory
+            View::renderTemplate('Settings/paymentMethods.html', [
+                'paymentMethod' => $paymentMethod
             ]);
         }
     }
@@ -129,20 +142,6 @@ class Settings extends Authenticated{
         } else {
             View::renderTemplate('Settings/expenseCategories.html', [
                 'expenseCategory' => $expenseCategory
-            ]);
-        }
-    }
-
-    public function editPaymentMethodAction(){
-        $oldCategory = $_POST['old_name_category'];
-        $paymentMethod = new PaymentMethod($_POST);
-
-        if ($paymentMethod->editPaymentMethod($oldCategory)) {
-            Flash::addMessage('Nazwa sposobu płatności została poprawnie zmieniona!');
-            $this->redirect('/Settings/paymentMethods');
-        } else {
-            View::renderTemplate('Settings/paymentMethods.html', [
-                'paymentMethod' => $paymentMethod
             ]);
         }
     }

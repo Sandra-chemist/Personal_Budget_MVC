@@ -4,8 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class IncomeCategory extends Category
-{
+class IncomeCategory extends Category{
     public $errors = [];
 
     public function __construct($data = []){
@@ -48,7 +47,7 @@ class IncomeCategory extends Category
 
     public static function categoryIncomeExist($nameCategory){
         $sql = 'SELECT * FROM incomes_category_assigned_to_users 
-        WHERE name = :name AND user_id = :user_id';
+                WHERE name = :name AND user_id = :user_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -103,7 +102,7 @@ class IncomeCategory extends Category
 
     public static function deleteIncomesAssignedToDeletedCategory($oldIdCategory){
         $sql = 'DELETE FROM incomes
-                    WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldIdCategory';
+                WHERE user_id = :user_id AND income_category_assigned_to_user_id = :oldIdCategory';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

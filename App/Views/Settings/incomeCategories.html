@@ -40,9 +40,9 @@
     <div id="formIncome">
         <div id="editIncome">
             <form method="post" action="editIncomeCategory">
-                <input type="text" name="old_name_category" value="{{ category.name }}" style="width: 200px !important"
-                    disabled />
-                <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
+                <input type="text" name="old_name_category" value="{{ category.name }}"
+                    style="width: 200px !important" />
+                <input type="text" name="newNameCategory" value="" placeholder="wpisz nową nazwę" minlength="3"
                     maxlength="30" style="width: 200px !important" required />
                 <div class="sett btnName">
                     <button type="submit" class="butt">zmień nazwę</button>
@@ -67,4 +67,5 @@
         <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
     </div>
 </div>
+
 {% endblock %}

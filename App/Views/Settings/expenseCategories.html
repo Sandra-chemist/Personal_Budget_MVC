@@ -13,7 +13,6 @@
     {% endfor %}
     {% endif %}
 
-
     <div class="modal fade" role="dialog" id="addExpenseCategoryModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -41,8 +40,8 @@
     <div id="formExpense">
         <div id="editExpense">
             <form method="post" action="/settings/editExpenseCategory">
-                <input type="text" name="old_name_category" value="{{ category.name }}" style="width: 200px !important"
-                    disabled />
+                <input type="text" name="old_name_category" value="{{ category.name }}"
+                    style="width: 200px !important" />
                 <input type="text" name="newNameCategory" value="" placeholder="wpisz nową nazwę" minlength="3"
                     maxlength="30" style="width: 200px !important" required />
                 <div class="sett btnName">
@@ -72,7 +71,6 @@
     </div>
 
     {% endfor %}
-
 
     <div>
         <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"

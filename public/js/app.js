@@ -51,6 +51,7 @@ categoryField.addEventListener('change', function () {
 										sum = sum + parseFloat(expenses[j].amount);
 									}
 								}
+
 								sumExpenses.textContent = `Dotychczasowa suma wydatków: ${sum} zł`;
 								if (sum <= limit) {
 									info.textContent =
