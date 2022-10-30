@@ -70,6 +70,7 @@ button {
 	margin-top: 15px;
 	height: 60px;
 }
+
 .butt {
 	border-radius: 5px;
 	border: 3px solid #3d348b;
@@ -170,67 +171,6 @@ button:hover,
 	height: 40px;
 	text-align: center;
 	margin: auto;
-}
-
-.custom-select {
-	position: relative;
-	width: 250px;
-	margin: auto;
-}
-
-.custom-select select {
-	display: none;
-}
-
-.select-selected {
-	background-color: #bfbffa;
-	color: #29282f !important;
-}
-
-.select-selected:after {
-	position: absolute;
-	content: '';
-	top: 14px;
-	right: 10px;
-	width: 0;
-	height: 0;
-	border: 6px solid transparent;
-	border-color: #fff transparent transparent transparent;
-}
-
-.select-selected.select-arrow-active:after {
-	border-color: transparent transparent #fff transparent;
-	top: 7px;
-}
-
-.select-items div,
-.select-selected {
-	color: #29282f !important;
-	padding: 8px 16px;
-	border: 2px solid transparent;
-	border-radius: 5px;
-	border-color: #3d348b transparent transparent transparent;
-	cursor: pointer;
-	width: 250px;
-	margin: auto;
-}
-
-.select-items {
-	position: absolute;
-	background-color: #bfbffa;
-	top: 100%;
-	left: 0;
-	right: 0;
-	z-index: 99;
-}
-
-.select-hide {
-	display: none;
-}
-
-.select-items div:hover,
-.same-as-selected {
-	background-color: #8d8de8;
 }
 
 .modal-content {
@@ -351,10 +291,12 @@ th {
 .option {
 	border-radius: 5px;
 }
+
 #inputPassword {
 	position: relative;
 	left: 10px;
 }
+
 .fa-eye-slash {
 	position: relative;
 	right: 60px;
@@ -362,31 +304,38 @@ th {
 	color: #3d348b;
 	font-size: 18px;
 }
+
 .icon-lock {
 	position: relative;
 	left: 15px;
 	font-size: 25px;
 	color: #3d348b;
 }
+
 .icon-user,
 .icon-mail-alt {
 	color: #3d348b;
 }
+
 .sett {
 	display: inline-block;
 }
+
 #deleteIncome,
 #deletePayment {
 	margin-top: -15px;
 	margin-bottom: 30px;
 }
+
 #deleteExpense {
 	margin-top: -15px;
 }
+
 #limitExpense {
 	margin-top: -15px;
 	margin-bottom: 30px;
 }
+
 .btnName {
 	margin-top: -15px;
 }

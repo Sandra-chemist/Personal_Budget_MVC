@@ -2,7 +2,6 @@
 
 {% block title %}Dodaj wydatek{% endblock %}
 {% block footer %}
-<script src="/js/customSelect.js"></script>
 <script src="/js/app.js"></script>
 
 {% endblock %}
@@ -27,23 +26,26 @@
         </select>
     </div>
 
-    <div class="custom-select">
-        <label for="inputPayment">Sposób płatności</label>
+    <label for="inputPayment">Sposób płatności</label>
+    <div>
         <select name="payment" id="inputPayment">
             {% for payment in paymentMethods %}
             <option>{{ payment.namePayment }}</option>
             {% endfor %}
         </select>
     </div>
+
     <label for="inputAmount">Kwota</label>
     <div class="form-group">
         <input type="number" id="inputAmount" name="amount" placeholder="123" min="0" step="0.01" required>
     </div>
+
     <label for="inputDate">Data</label>
     <div class="form-group">
         <input type="date" id="inputDate" name="date" value="{{ expense.date ? expense.date : current_date }}"
             min="2000-01-01">
     </div>
+
     <label for="inputComment">Komentarz</label>
     <div class="form-group">
         <input type="text" id="inputComment" name="comment" placeholder="(opcjonalnie)">
