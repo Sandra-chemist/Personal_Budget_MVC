@@ -4,62 +4,67 @@
 
 {% block body %}
 
-<h3>Kategorie przychodów</h3>
+<div class="container-lg">
+    <h3>Kategorie przychodów</h3>
 
-{% if incomeCategory.errors is not empty %}
-{% for error in incomeCategory.errors %}
-<li class="error">{{ error }}</li>
-{% endfor %}
-{% endif %}
+    {% if incomeCategory.errors is not empty %}
+    {% for error in incomeCategory.errors %}
+    <li class="error">{{ error }}</li>
+    {% endfor %}
+    {% endif %}
 
-    
-<div class="modal fade" role="dialog" id="addCategoryModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Dodaj nową kategorię</h3>
-                <button type="button" id="buttonAddIncomeCategory" data-bs-dismiss="modal" aria-label="Close">X</button>
-            </div>
-            <form method="post" action="/settings/createIncomeCategory">
-                <div class="modal-body">
-                    <label for="inputDate">wprowadź nazwę kategorii:</label>
-                    <div class="form-group"><input type="text" name="nameCategory" minlength="3" maxlength="30" required ></div>
+    <div class="modal fade" role="dialog" id="addCategoryModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Dodaj nową kategorię</h3>
+                    <button type="button" id="buttonAddIncomeCategory" data-bs-dismiss="modal"
+                        aria-label="Close">X</button>
                 </div>
-                <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
-                    <a href="/Settings/incomeCategories"><button type="button" class="butt"
-                            style="width: 120px !important;">Anuluj</button></a>
+                <form method="post" action="/settings/createIncomeCategory">
+                    <div class="modal-body">
+                        <label for="inputDate">wprowadź nazwę kategorii:</label>
+                        <div class="form-group"><input type="text" name="nameCategory" minlength="3" maxlength="30"
+                                required></div>
+                    </div>
+                    <div><button type="submit" class="butt" style="width: 120px !important;">Zapisz</button>
+                        <a href="/Settings/incomeCategories"><button type="button" class="butt"
+                                style="width: 120px !important;">Anuluj</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% for category in incomeCategories %}
+    <div id="formIncome">
+        <div id="editIncome">
+            <form method="post" action="editIncomeCategory">
+                <input type="text" name="old_name_category" value="{{ category.name }}" style="width: 200px !important"
+                    disabled />
+                <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3"
+                    maxlength="30" style="width: 200px !important" required />
+                <div class="sett btnName">
+                    <button type="submit" class="butt">zmień nazwę</button>
                 </div>
             </form>
         </div>
-    </div>
-</div>
 
-{% for category in incomeCategories %}
-<div id="formIncome">
-    <div id="editIncome">
-        <form method="post" action="editIncomeCategory">
-            <input type="text" name="old_name_category" value="{{ category.name }}" />
-            <input type="text" name="newNameCategory" value="" placeholder="wprowadź nową nazwę" minlength="3" maxlength="30" required />
-            <button type="submit" class="butt">zmień nazwę</button>
-        </form>
+        <div id="deleteIncome" class="sett">
+            <form method="post" action="/settings/deleteIncomeCategory">
+                <input type="hidden" name="old_id_category" value="{{ category.id }}" />
+                <input type="hidden" name="old_name_category" value="{{ category.name }}" />
+                <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+            </form>
+        </div>
     </div>
 
-    <div id="deleteIncome">
-        <form method="post" action="/settings/deleteIncomeCategory">
-            <input type="hidden" name="old_id_category" value="{{ category.id }}" />
-            <input type="hidden" name="old_name_category" value="{{ category.name }}" />
-            <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
-        </form>
+    {% endfor %}
+
+    <div>
+        <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
+            data-bs-target="#addCategoryModal"></button>
+        <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
     </div>
 </div>
-
-{% endfor %}
-
-
-<div>
-    <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
-        data-bs-target="#addCategoryModal"></button>
-    <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">Cofnij</button></a>
-</div>
-
 {% endblock %}

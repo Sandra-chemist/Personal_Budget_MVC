@@ -127,7 +127,6 @@ select,
 	padding-left: 7px;
 	width: 250px;
 	text-align: center;
-	color: ;
 }
 
 #inputEmail,
@@ -372,4 +371,22 @@ th {
 .icon-user,
 .icon-mail-alt {
 	color: #3d348b;
+}
+.sett {
+	display: inline-block;
+}
+#deleteIncome,
+#deletePayment {
+	margin-top: -15px;
+	margin-bottom: 30px;
+}
+#deleteExpense {
+	margin-top: -15px;
+}
+#limitExpense {
+	margin-top: -15px;
+	margin-bottom: 30px;
+}
+.btnName {
+	margin-top: -15px;
 }
