@@ -130,6 +130,10 @@ select,
 	text-align: center;
 }
 
+select {
+	border-top: 2px solid #3d348b;
+}
+
 #inputEmail,
 #inputName,
 #inputPassword {
@@ -139,6 +143,7 @@ select,
 	margin-right: 30px;
 	text-align: center;
 }
+
 a {
 	color: #3d348b;
 	transition: all 0.33s ease-in-out;
