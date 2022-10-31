@@ -2,47 +2,6 @@
 
 {% block title %}Profil{% endblock %}
 
-{% block footer %}
-<script scr="/js/app.js"></script>
-
-<script>
-    $(document).ready(function () {
-
-        var userId = '{{ user.id }}';
-
-        $('#formProfile').validate({
-            rules: {
-                username: 'required',
-                email: {
-                    required: true,
-                    email: true,
-                    remote: {
-                        url: '/account/validate-email',
-                        data: {
-                            ignore_id: function () {
-                                return userId;
-                            }
-                        }
-                    }
-                },
-                password: {
-                    required: true,
-                    minlength: 6,
-                    validPassword: true
-                }
-            },
-            messages: {
-                email: {
-                    remote: 'E-mail już istnieje w bazie danych.'
-                }
-            }
-        });
-
-    });
-</script>
-
-{% endblock %}
-
 {% block body %}
 
 <h3>Profil</h3>
@@ -68,6 +27,7 @@
         <label for="inputPassword"><i class="icon-lock"></i></label>
         <input type="password" id="inputPassword" name="password" placeholder="hasło" aria-describedby="helpBlock"
             class="form" required />
+        <i class="fa-solid fa-eye-slash" id="show-password"></i>
     </div>
     <span id="helpBlock" class="help-block">Wpisz stare lub nowe hasło</span>
 
