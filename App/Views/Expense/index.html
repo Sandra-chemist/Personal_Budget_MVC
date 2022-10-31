@@ -29,6 +29,7 @@
     <label for="inputPayment">Sposób płatności</label>
     <div>
         <select name="payment" id="inputPayment">
+            <option value="">wybierz sposób płatności</option>
             {% for payment in paymentMethods %}
             <option>{{ payment.namePayment }}</option>
             {% endfor %}
@@ -37,7 +38,7 @@
 
     <label for="inputAmount">Kwota</label>
     <div class="form-group">
-        <input type="number" id="inputAmount" name="amount" placeholder="123" min="0" step="0.01" required>
+        <input type="number" id="inputAmount" name="amount" placeholder="wpisz kwotę" min="0" step="0.01" required>
     </div>
 
     <label for="inputDate">Data</label>
