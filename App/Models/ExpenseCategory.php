@@ -4,8 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class ExpenseCategory extends Category
-{
+class ExpenseCategory extends Category{
     public $errors = [];
 
     public function __construct($data = []){
@@ -48,7 +47,7 @@ class ExpenseCategory extends Category
 
     public static function categoryExpenseExist($nameCategory){
         $sql = 'SELECT * FROM expenses_category_assigned_to_users 
-        WHERE name = :name AND user_id = :user_id';
+                WHERE name = :name AND user_id = :user_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -89,7 +88,7 @@ class ExpenseCategory extends Category
 
     public static function deleteExpenseCategory($oldCategory){
         $sql = 'DELETE FROM expenses_category_assigned_to_users
-                    WHERE user_id = :user_id AND name = :oldNameCategory';
+                WHERE user_id = :user_id AND name = :oldNameCategory';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -102,7 +101,7 @@ class ExpenseCategory extends Category
 
     public static function deleteExpensesAssignedToDeletedCategory($oldIdCategory){
         $sql = 'DELETE FROM expenses
-                    WHERE user_id = :user_id AND expense_category_assigned_to_user_id = :oldIdCategory';
+                WHERE user_id = :user_id AND expense_category_assigned_to_user_id = :oldIdCategory';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -115,9 +114,9 @@ class ExpenseCategory extends Category
 
 
     public function setLimitExpenseCategory($oldCategory){
-            $sql = 'UPDATE expenses_category_assigned_to_users 
-                    SET monthly_limit = :limit
-                    WHERE user_id = :user_id AND name = :oldNameCategory';
+        $sql = 'UPDATE expenses_category_assigned_to_users 
+                SET monthly_limit = :limit
+                WHERE user_id = :user_id AND name = :oldNameCategory';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -132,7 +131,7 @@ class ExpenseCategory extends Category
 
     public static function getLimitExpenseCategory(){
         $sql = 'SELECT * FROM expenses_category_assigned_to_users 
-                    WHERE user_id = :user_id';
+                WHERE user_id = :user_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -146,22 +145,19 @@ class ExpenseCategory extends Category
 
     public static function getMonthlySumCategory(){
         $sql = 'SELECT name, date_of_expense, amount
-        FROM expenses, expenses_category_assigned_to_users
-        WHERE expenses.user_id = :user_id 
-        AND expenses.user_id = expenses_category_assigned_to_users.user_id
-        AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
-        ORDER BY date_of_expense ASC, name';
+                FROM expenses, expenses_category_assigned_to_users
+                WHERE expenses.user_id = :user_id 
+                AND expenses.user_id = expenses_category_assigned_to_users.user_id
+                AND expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
+                ORDER BY date_of_expense ASC, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
-     //   $stmt->bindValue(':startDate', $this->startDate, PDO::PARAM_STR);
-      //  $stmt->bindValue(':endDate', $this->endDate, PDO::PARAM_STR);
 
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-}
+    }
 }

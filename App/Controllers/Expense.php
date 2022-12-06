@@ -7,7 +7,6 @@ use \App\Models\FinancialOperation;
 use \App\Flash;
 use \App\Models\Category;
 use App\Models\ExpenseCategory;
-use App\Models\Balance;
 
 class Expense extends Authenticated{
     protected function before(){
@@ -41,7 +40,6 @@ class Expense extends Authenticated{
         echo json_encode(ExpenseCategory::getLimitExpenseCategory(), JSON_UNESCAPED_UNICODE);
     }
 
-    
     public function sumMonthlyExpensesAction(){        
         echo json_encode(ExpenseCategory::getMonthlySumCategory(), JSON_UNESCAPED_UNICODE);
     }

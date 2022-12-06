@@ -18,7 +18,8 @@ class FinancialOperation extends \Core\Model{
 
         if (empty($this->errors)){
         $sql = 'INSERT INTO incomes (user_id, income_category_assigned_to_user_id, amount, date_of_income, income_comment)
-                    VALUES (:user_id, (SELECT id FROM incomes_category_assigned_to_users WHERE name = :name AND user_id = :user_id ), :amount, :date_of_income, :income_comment)';
+                VALUES (:user_id, (SELECT id FROM incomes_category_assigned_to_users 
+                WHERE name = :name AND user_id = :user_id ), :amount, :date_of_income, :income_comment)';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -39,7 +40,8 @@ class FinancialOperation extends \Core\Model{
 
         if (empty($this->errors)) {
             $sql = 'INSERT INTO expenses (user_id, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, amount, date_of_expense, expense_comment)
-                    VALUES (:user_id, (SELECT id FROM expenses_category_assigned_to_users WHERE name = :nameCategory AND user_id = :user_id ), (SELECT id FROM payment_methods_assigned_to_users WHERE namePayment = :namePayment AND user_id = :user_id ), :amount, :date_of_expense, :expense_comment)';
+                    VALUES (:user_id, (SELECT id FROM expenses_category_assigned_to_users WHERE name = :nameCategory AND user_id = :user_id ), 
+                    (SELECT id FROM payment_methods_assigned_to_users WHERE namePayment = :namePayment AND user_id = :user_id ), :amount, :date_of_expense, :expense_comment)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);

@@ -63,6 +63,7 @@ categoryField.addEventListener('change', function () {
 										console.log(sum);
 									}
 								}
+
 								sumExpenses.textContent = `Dotychczasowa suma wydatków: ${sum} zł`;
 								console.log(sum);
 
