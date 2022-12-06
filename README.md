@@ -1,4 +1,4 @@
-# Persona_Budget_MVC
+# Personal_Budget_MVC
 
 Technologies:
 - MVC pattern
