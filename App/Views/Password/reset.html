@@ -3,8 +3,8 @@
 {% block title %}Resetowanie hasła{% endblock %}
 
 {% block footer %}
-<script src="/js/app.js"></script>
-
+<script src="/js/showHidePassword.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 {% endblock %}
 
 {% block body %}
@@ -12,9 +12,9 @@
 <h3>Wpisz nowe hasło</h3>
 
 {% if user.errors is not empty %}
-    {% for error in user.errors %}
-    <li class="error">{{ error }}</li>
-    {% endfor %}
+{% for error in user.errors %}
+<li class="error">{{ error }}</li>
+{% endfor %}
 {% endif %}
 <form method="post" id="formPassword" action="/password/reset-password">
 
@@ -22,6 +22,7 @@
     <div class="form-group">
         <label for="inputPassword"><i class="icon-lock"></i></label>
         <input type="password" id="inputPassword" name="password" placeholder="hasło" required class="form" />
+        <i class="fa-solid fa-eye-slash" id="show-password"></i>
     </div>
     <button type="submit" class="butt">Resetuj hasło</button>
 

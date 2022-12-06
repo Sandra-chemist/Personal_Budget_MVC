@@ -16,11 +16,11 @@ class Date{
     }
 
     public static function getPreviousMonthStartDate(){
-        return date("Y-m-01", strtotime("last month"));
+        return date("Y-m-01", strtotime("first day of previous month"));
     }
 
     public static function getPreviousMonthEndDate(){
-        return date("Y-m-t", strtotime("last month"));
+        return date("Y-m-t", strtotime("last day of previous month"));
     }
 
     public static function getCurrentYearStartDate(){
@@ -30,5 +30,6 @@ class Date{
     public static function getCurrentYearEndDate(){
         return date("Y-12-31");
     }
+
 
 }

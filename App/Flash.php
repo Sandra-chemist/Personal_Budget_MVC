@@ -1,6 +1,9 @@
 <?php
 
+
 namespace App;
+
+
 
 class Flash{
 
@@ -9,7 +12,7 @@ class Flash{
     const WARNING = 'ostrzeżenie';
 
     public static function addMessage($message, $type = 'success'){
-        if (! isset($_SESSION['flash_notification'])){
+        if (!isset ($_SESSION['flash_notification'])){
             $_SESSION['flash_notification'] = [];
         }
 
@@ -29,3 +32,9 @@ class Flash{
         }
     }
 }
+
+
+
+
+
+

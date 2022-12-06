@@ -14,11 +14,10 @@
 <div class="sumExpenses hidden"></div>
 <div class="info hidden"></div>
 
-
 <form method="post" action="/expense/create">
     <label for="inputCategory">Kategoria</label>
     <div>
-        <select name="category" id="inputCategory">
+        <select name="category" id="inputCategory" required>
             <option value="">wybierz kategorię</option>
             {% for category in expenseCategories %}
             <option>{{ category.name }}</option>
@@ -28,7 +27,7 @@
 
     <label for="inputPayment">Sposób płatności</label>
     <div>
-        <select name="payment" id="inputPayment">
+        <select name="payment" id="inputPayment" required>
             <option value="">wybierz sposób płatności</option>
             {% for payment in paymentMethods %}
             <option>{{ payment.namePayment }}</option>

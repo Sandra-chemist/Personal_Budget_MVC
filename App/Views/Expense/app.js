@@ -2,6 +2,7 @@ const categoryField = document.querySelector('select[name="category"]');
 const monthlyLimit = document.querySelector('.monthlyLimit');
 const sumExpenses = document.querySelector('.sumExpenses');
 const info = document.querySelector('.info');
+const box = document.querySelector('.box');
 
 const date = new Date();
 const currentMonth = date.getMonth() + 1;
@@ -30,23 +31,16 @@ categoryField.addEventListener('change', function () {
 		fetch('/expense/limit')
 			.then(res => res.json())
 			.then(data => {
-				monthlyLimit.textContent = '';
-				sumExpenses.textContent = '';
-				info.textContent = '';
-
 				for (let i = 0; i < data.length; i++) {
 					limit = parseFloat(data[i].monthly_limit);
-					console.log(`limit to: ${limit}`);
 
 					if (data[i].name === category && limit > 0) {
 						monthlyLimit.classList.remove('hidden');
-						sumExpenses.classList.remove('hidden');
-						info.classList.remove('hidden');
 						console.log(`kategoria wybrana to ${data[i].name}`);
+						console.log(limit);
 
 						monthlyLimit.textContent = `Ustawiony miesięczny limit: ${limit} zł`;
-						let monthLimit = parseFloat(limit);
-						console.log(monthLimit);
+
 						fetch('/expense/sumMonthlyExpenses')
 							.then(res => res.json())
 							.then(expenses => {
@@ -60,21 +54,15 @@ categoryField.addEventListener('change', function () {
 											`${expenses[j].name} ${expenses[j].date_of_expense} ${expenses[j].amount}`
 										);
 										sum = sum + parseFloat(expenses[j].amount);
-										console.log(sum);
 									}
 								}
-								sumExpenses.textContent = `Dotychczasowa suma wydatków: ${sum} zł`;
-								console.log(sum);
 
-								if (sum < monthLimit) {
+								sumExpenses.textContent = `Dotychczasowa suma wydatków: ${sum} zł`;
+
+								if (sum <= limit) {
 									info.textContent =
 										'Jeszcze nie przekroczyłeś limitu wydatków!';
 									info.style.backgroundColor = '#006400';
-									info.style.color = '#ffffff';
-								} else if (sum == monthLimit) {
-									info.textContent =
-										'Uważaj, jesteś tuż od przekroczenia limitu wydatków!';
-									info.style.backgroundColor = '#3a86ff';
 									info.style.color = '#ffffff';
 								} else {
 									info.textContent =
@@ -85,7 +73,7 @@ categoryField.addEventListener('change', function () {
 								sum = 0;
 							})
 							.catch(err => console.log(err));
-					} else if (data[i].name === category && limit == 0) {
+					} else if (data[i].name === category && limit === 0) {
 						monthlyLimit.textContent = '';
 						sumExpenses.textContent = '';
 						info.textContent = '';
@@ -93,6 +81,9 @@ categoryField.addEventListener('change', function () {
 				}
 			})
 			.catch(err => console.log(err));
+
+		sumExpenses.classList.remove('hidden');
+		info.classList.remove('hidden');
 	} else {
 		monthlyLimit.classList.add('hidden');
 		sumExpenses.classList.add('hidden');

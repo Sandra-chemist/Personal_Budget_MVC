@@ -7,7 +7,7 @@
 <form method="post" action="/income/create">
     <label for="inputCategory">Kategoria</label>
     <div>
-        <select name="category" id="inputCategory">
+        <select name="category" id="inputCategory" required>
             <option value="">wybierz kategorię</option>
             {% for category in incomeCategories %}
             <option>{{ category.name }}</option>

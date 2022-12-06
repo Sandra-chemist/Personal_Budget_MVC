@@ -328,20 +328,22 @@ th {
 }
 
 #deleteIncome,
-#deletePayment {
-	margin-top: -15px;
-	margin-bottom: 30px;
-}
-
-#deleteExpense {
-	margin-top: -15px;
-}
-
+#deletePayment,
 #limitExpense {
 	margin-top: -15px;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
+}
+
+#delBtn {
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 
 .btnName {
 	margin-top: -15px;
+}
+
+#limitBtn {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

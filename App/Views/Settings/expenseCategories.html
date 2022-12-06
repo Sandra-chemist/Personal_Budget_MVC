@@ -24,7 +24,7 @@
                 </div>
                 <form method="post" action="/settings/createExpenseCategory">
                     <div class="modal-body">
-                        <label for="inputDate">wprowadź nazwę kategorii:</label>
+                        <label for="inputDate">wpisz nazwę kategorii:</label>
                         <div class="form-group"><input type="text" name="nameCategory" minlength="3" maxlength="30"
                                 required></div>
                     </div>
@@ -41,12 +41,12 @@
     <div id="formExpense">
         <div id="editExpense">
             <form method="post" action="/settings/editExpenseCategory">
-                <input type="text" name="old_name_category" value="{{ category.name }}" style="width: 200px !important"
-                    disabled />
+                <input type="text" name="old_name_category" value="{{ category.name }}"
+                    style="width: 200px !important" />
                 <input type="text" name="newNameCategory" value="" placeholder="wpisz nową nazwę" minlength="3"
                     maxlength="30" style="width: 200px !important" required />
                 <div class="sett btnName">
-                    <button type="submit" class="butt" style="width: 130px !important;">zmień nazwę</button>
+                    <button type="submit" class="butt">zmień nazwę</button>
                 </div>
             </form>
         </div>
@@ -55,17 +55,19 @@
             <form method="post" action="/settings/deleteExpenseCategory">
                 <input type="hidden" name="old_id_category" value="{{ category.id }}" />
                 <input type="hidden" name="old_name_category" value="{{ category.name }}" />
-                <button type="submit" class="butt icon-trash-empty" style="width: 70px !important;"></button>
+                <button id="delBtn" type="submit" class="butt icon-trash-empty"
+                    style="width: 70px !important;"></button>
             </form>
         </div>
 
         <div id="limitExpense" class="sett">
             <form method="post" action="/settings/setLimitExpenseCategory">
                 <input type="hidden" name="old_name_category" value="{{ category.name }}" />
-                <input type="text" value="{{ category.monthly_limit }}" style="width: 100px;" disabled />
+                <input type="text" value="{{ category.monthly_limit }}" style="width: 90px;" />
                 <input type="number" name="limit" placeholder="wpisz miesięczny limit" min="0" step="1"
                     style="width: 200px !important" required>
-                <button type="submit" class="butt" style="width: 130px !important;">ustaw limit</button>
+                <button id="limitBtn" type="submit" class="butt">ustaw
+                    limit</button>
             </form>
         </div>
 
@@ -73,9 +75,8 @@
 
     {% endfor %}
 
-
     <div>
-        <button type="button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
+        <button type=" button" class="butt icon-plus" style="width: 70px !important;" data-bs-toggle="modal"
             data-bs-target="#addExpenseCategoryModal"></button>
         <a href="/Settings/index"><button type="button" class="btn-primary" style="width: 120px;">cofnij</button></a>
     </div>
